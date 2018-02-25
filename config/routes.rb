@@ -3,9 +3,7 @@ Rails.application.routes.draw do
     resources :adventures do
       resources :chapters do
         resources :encouters do
-          resources :creatures do
-            resources :treasures 
-          end
+          resources :encounter_creatures 
         end
       end
     end
