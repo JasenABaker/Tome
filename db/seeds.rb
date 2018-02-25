@@ -81,23 +81,17 @@ if you need a location where the characters can
 make their final preparations.
 Your next task is to decide how the party learned
 about Khundrukar. Pick one of the following options
-that suits your campaign, or make up an explanation."
+that suits your campaign, or make up an explanation.",
+hooks:[{title:"Follow the Map",
+description: "The party has acquired a map showing the location of
 
-})
+a secret dwarven stronghold named Khundrukar. Perhaps 
+the characters discovered the map and other lore
 
-forge_of_fury.hooks.create!({
-    title:"Follow the Map",
-    description: "The party has acquired a map showing the location of
-
-    a secret dwarven stronghold named Khundrukar. Perhaps 
-    the characters discovered the map and other lore
-    
-    about the place during a previous adventure, or it turned
-    up in a forgotten corner of a library. Tales attributed to a
-    previous, failed expedition make reference to a hoard of
-    wondrous arms and armor."
-})
-forge_of_fury.hooks.create!({
+about the place during a previous adventure, or it turned
+up in a forgotten corner of a library. Tales attributed to a
+previous, failed expedition make reference to a hoard of
+wondrous arms and armor."},{
     title:"Track the Broken Blade",
     description:"Baron Althon, a local noble, hires the party to search
 
@@ -111,9 +105,8 @@ forge_of_fury.hooks.create!({
     characters richly for each of Durgeddin's blades they
     recover. He will pay the characters 20 gp each just for
     bringing back information about the dwarven complex,
-    and an additional 100 gp if they provide detailed maps."
-})
-forge_of_fury.hooks.create!({
+    and an additional 100 gp if they provide detailed maps."},
+    {
     title:"Vanquish the Orc Radiers",
     description:"In the mining town of Blasingdell, the characters learn
     that ore raiders have been pillaging isolated farmsteads
@@ -125,9 +118,8 @@ forge_of_fury.hooks.create!({
     The mayor offers a bounty of 25 gp per ore, dead or
     alive, and the gratitude of the townsfolk to any who can
     permanently end the threat."
-})
-
-forge_of_fury.adv_addtional_infos.create!({
+}],
+additional_info: [{
     title: "Placing the Adventure",
     description: "Any setting that includes a mountainous region has a
     ready-to-use location for the dwarven stronghold in The
@@ -159,9 +151,7 @@ forge_of_fury.adv_addtional_infos.create!({
     
     the Hateful Wars, when a wave of ores and other evil humanoid 
     invaders swept over the region."
-})
-
-forge_of_fury.adv_addtional_infos.create!({
+},{
     title:"The Minning Town of Blasingdell",
     description:"Blasingdell lies about 30 miles south of the Stone Tooth,
     a journey of three days on foot or two days on horseback
@@ -170,7 +160,7 @@ forge_of_fury.adv_addtional_infos.create!({
     as an overnight rest stop while they explore Khundrukar,
     
     Blasingdell is still useful as a place to purchase equipment,
-     stock up on supplies, and train between excursions
+    stock up on supplies, and train between excursions
     
     into the caverns.
     The town's population of around 2,000 is quite diverse;
@@ -196,7 +186,120 @@ forge_of_fury.adv_addtional_infos.create!({
     Sister Alonsa (female human priest) heads up the town's
     small temple (its primary deity is left to you). Sister Alonsa
     is assisted in her duties by two acolytes ."
-})
+}]})
+
+# forge_of_fury.hooks.create!({
+#     title:"Follow the Map",
+#     description: "The party has acquired a map showing the location of
+
+#     a secret dwarven stronghold named Khundrukar. Perhaps 
+#     the characters discovered the map and other lore
+    
+#     about the place during a previous adventure, or it turned
+#     up in a forgotten corner of a library. Tales attributed to a
+#     previous, failed expedition make reference to a hoard of
+#     wondrous arms and armor."
+# })
+# forge_of_fury.hooks.create!({
+#     title:"Track the Broken Blade",
+#     description:"Baron Althon, a local noble, hires the party to search
+
+#     for the legendary cache of weapons forged by Durgeddin 
+#     the smith. He shows the characters a broken blade
+    
+#     bearing the smith's mark, and tells them that it was disovered 
+#     near a rocky hill called the Stone Tooth. Baron
+    
+#     Althon provides directions and promises to reward the
+#     characters richly for each of Durgeddin's blades they
+#     recover. He will pay the characters 20 gp each just for
+#     bringing back information about the dwarven complex,
+#     and an additional 100 gp if they provide detailed maps."
+# })
+# forge_of_fury.hooks.create!({
+#     title:"Vanquish the Orc Radiers",
+#     description:"In the mining town of Blasingdell, the characters learn
+#     that ore raiders have been pillaging isolated farmsteads
+    
+#     and camps in the hills north of the town. The local militia 
+#     captured an ore warrior left for dead by its comrades and brought it back for questioning. Under the influence
+#     of a charm person spell, the ore divulged the location of
+#     the monsters' lair, a lonely hill called the Stone Tooth.
+#     The mayor offers a bounty of 25 gp per ore, dead or
+#     alive, and the gratitude of the townsfolk to any who can
+#     permanently end the threat."
+# })
+
+# forge_of_fury.adv_addtional_infos.create!({
+#     title: "Placing the Adventure",
+#     description: "Any setting that includes a mountainous region has a
+#     ready-to-use location for the dwarven stronghold in The
+#     Forge of Fury.
+#     Dragonlance. On Krynn, Khundrukar can be placed
+#     anywhere in the Kharolis Mountains. An independent
+#     stronghold that has no direct tunnels connecting it to
+#     Thorbardin, it was overrun by attackers during the Age of
+    
+#     Might. During the Age of Despair, it was seized by Highlord 
+#     Verminaard's forces. Consider replacing the ores in
+    
+#     the adventure with hobgoblins and the duergar with Theiwar 
+#     dwarves.
+    
+#     Eberron. Once an outpost in the western Mror Holds,
+#     Khundrukar was besieged and cleared of its inhabitants
+#     when the Kingdom of Galifar invaded that land. The
+#     aggressors left the place unoccupied after their victory.
+#     Since then, it has fallen into the hands of various groups
+#     of monsters.
+#     Forgotten Realms. Located northwest of Mirabar in
+#     the Spine of the World, Khundrukar was a shield dwarf
+#     stronghold that became overrun by renegade ores from the
+#     Many-Arrows tribe, unhappy with what they saw as their
+#     kingdom's betrayal of the old ways.
+#     Creyhawk. Khundrukar stands in the Pomarj, in the
+#     western Drachensgrab Hills. The fortress fell shortly after
+    
+#     the Hateful Wars, when a wave of ores and other evil humanoid 
+#     invaders swept over the region."
+# })
+
+# forge_of_fury.adv_addtional_infos.create!({
+#     title:"The Minning Town of Blasingdell",
+#     description:"Blasingdell lies about 30 miles south of the Stone Tooth,
+#     a journey of three days on foot or two days on horseback
+#     due to the surrounding rugged terrain and dense forests.
+#     Although it isn't close enough for the characters to use
+#     as an overnight rest stop while they explore Khundrukar,
+    
+#     Blasingdell is still useful as a place to purchase equipment,
+#      stock up on supplies, and train between excursions
+    
+#     into the caverns.
+#     The town's population of around 2,000 is quite diverse;
+#     although humans are the largest group, almost any player
+#     character race can be found here.
+    
+#     The town's mayor is Sir Miles Berrick (male human noble) .
+    
+#     Sergeant Grendar Kuln (male half-ore veteran) is in
+    
+#     charge of the town watch; Constable Dara Whitewood (female 
+#     human veteran) is the senior officer. The town watch
+    
+#     consists of two full-time guards in addition to its officers.
+#     A militia force of around l 00 commoners can be mustered
+#     in emergencies.
+#     Kheldegan Tolm (male dwarf commoner) owns Tolm's
+#     Superior Outfitting and Dry Goods.
+    
+#     Sarel Bankdown (female half-elf commoner) is the proprietor 
+#     of the Griffon's Nest inn and tavern .
+    
+#     Sister Alonsa (female human priest) heads up the town's
+#     small temple (its primary deity is left to you). Sister Alonsa
+#     is assisted in her duties by two acolytes ."
+# })
 forge_of_fury.chapters.create!({
     title:"Approaching Khundrukar",
     intro:"At the start of play, the characters are trekking through
@@ -273,7 +376,7 @@ stone_tooth.encounters.create!({
 
 
 
-scout = stone_tooth.encounters.create!({
+stone_tooth.encounters.create!({
     location:"Scout the Area",
     intro:"Ambitious characters might choose to ignore the path
     and scale the Stone Tooth's slopes. The going is very
@@ -294,21 +397,17 @@ scout = stone_tooth.encounters.create!({
     eral direction of the chimney. Otherwise, they lose their
     
     way (see 'Becoming Lost' in chapter 5 of the Dungeon
-    .Waster's Guide)."
-})
-
-scout.sub_locations.create!({
-    title:"The Mountain Door",
-    map_location:"A",
-    instructions:"This is the front entrance to
-    the Glitterhame. The old dwarf-path leads up to a bare
-    shoulder of rock and then turns into a deep cleft in the
-    hillside. If the characters enter this way, the expedition
-    begins in area 1 of map 2.2, the Mountain Door."
-})
-
-
-scout.sub_locations.create!({
+    .Waster's Guide).",
+    sub_locations: [{
+        title:"The Mountain Door",
+        map_location:"A",
+        instructions:"This is the front entrance to
+        the Glitterhame. The old dwarf-path leads up to a bare
+        shoulder of rock and then turns into a deep cleft in the
+        hillside. If the characters enter this way, the expedition
+        begins in area 1 of map 2.2, the Mountain Door."
+    },
+    {
     title: "Chimney",
     map_location: "B",
     instructions: "When the characters reach the area
@@ -325,10 +424,8 @@ scout.sub_locations.create!({
     score of 15 or higher notices the fissure.
     If the characters descend the chimney, the expedition
     begins in area 7 of map 2.2, the Mountain Door."
-})
-
-
-scout.sub_locations.create!({
+},
+{
     title:"Ore Tunnel",
     map_location:"C",
     instructions:"On the other side of the Stone Tooth,
@@ -350,24 +447,8 @@ scout.sub_locations.create!({
     the tunnel-reptilian footprints (from the troglodytes
     inhabiting the Glitterhame) and the paw prints of a very
     large bear."
-})
-
-
-scout.en_additional_infos.create!({
-    title:"Wilderness Encounters and Camping",
-    description:"If you want to make the trek from Blasingdell to the Stone
-    Tooth more interesting, you can create random encounters
-    with ore raiding parties (see 'Wait and Watch,'page 36)
-    or with creatures native to forest or hills. See appendix
-    B of the Dungeon Master's Guide for lists of monsters by
-    environment.
-    The characters might be forced to retreat outside the
-    stronghold to recuperate after difficult battles. The party
-    can readily find defensible campsites in the forest near the
-    Stone Tooth."
-})
-
-scout.sub_locations.create!({
+},
+{
     title:"Hilltop",
     map_location:"D",
     instructions:"An hour or two of hard hiking brings the
@@ -378,9 +459,8 @@ scout.sub_locations.create!({
     to climb successfully. The view is spectacular, but the
     hilltop is otherwise unremarkable. (No entrance to the
     fortress is to be found here.)"
-})
-
-scout.sub_locations.create!({
+},
+{
     title:"The Dark Mere",
     map_location:"E",
     instructions:"The eastern slopes of the Stone
@@ -406,7 +486,132 @@ scout.sub_locations.create!({
     through this watery passage, they emerge in area 54
     
     of map 2.6, the Black Lake."
+}],
+additional_info: [{
+    title:"Wilderness Encounters and Camping",
+    description:"If you want to make the trek from Blasingdell to the Stone
+    Tooth more interesting, you can create random encounters
+    with ore raiding parties (see 'Wait and Watch,'page 36)
+    or with creatures native to forest or hills. See appendix
+    B of the Dungeon Master's Guide for lists of monsters by
+    environment.
+    The characters might be forced to retreat outside the
+    stronghold to recuperate after difficult battles. The party
+    can readily find defensible campsites in the forest near the
+    Stone Tooth."
+}]
 })
+
+# scout.sub_locations.create!({
+#     title:"The Mountain Door",
+#     map_location:"A",
+#     instructions:"This is the front entrance to
+#     the Glitterhame. The old dwarf-path leads up to a bare
+#     shoulder of rock and then turns into a deep cleft in the
+#     hillside. If the characters enter this way, the expedition
+#     begins in area 1 of map 2.2, the Mountain Door."
+# })
+
+
+# scout.sub_locations.create!({
+#     title: "Chimney",
+#     map_location: "B",
+#     instructions: "When the characters reach the area
+#     marked B on the map, they can discover the source of
+#     the smoke. A natural rock chimney leads down into the
+#     caverns below, and a thin stream of smoke rises through
+#     it. The smoke spreads out and isn't easy to pinpoint in
+#     the rugged terrain. A character who searches for the source of the smoke
+
+#     finds the rock chimney with a successful DC 10 Wis-
+#     dom (Perception) check. If the characters pass nearby
+    
+#     without searching, anyone who has a passive Perception
+#     score of 15 or higher notices the fissure.
+#     If the characters descend the chimney, the expedition
+#     begins in area 7 of map 2.2, the Mountain Door."
+# })
+
+
+# scout.sub_locations.create!({
+#     title:"Ore Tunnel",
+#     map_location:"C",
+#     instructions:"On the other side of the Stone Tooth,
+#     a few hundred yards from the Mountain Door, the ore
+    
+#     army burrowed into the hillside to circumvent the dwar-
+#     ven defenses. The tunnel is still passable, but its en-
+#     trance is choked with brush and debris. If the characters
+    
+#     enter this area, someone who has a passive Perception
+    
+#     score of 15 or higher discovers the ore tunnel. The char-
+#     acters locate the tunnel automatically if anyone searches
+    
+#     the area; it leads to area 21 of map 2.3, the Glitterhame.
+#     The tunnel entrance is about 6 feet high and 4 feet
+    
+#     wide. Anyone who succeeds on a DC 10 Wisdom (Survival) check can spot old tracks passing in and out of
+#     the tunnel-reptilian footprints (from the troglodytes
+#     inhabiting the Glitterhame) and the paw prints of a very
+#     large bear."
+# })
+
+
+# scout.en_additional_infos.create!({
+#     title:"Wilderness Encounters and Camping",
+#     description:"If you want to make the trek from Blasingdell to the Stone
+#     Tooth more interesting, you can create random encounters
+#     with ore raiding parties (see 'Wait and Watch,'page 36)
+#     or with creatures native to forest or hills. See appendix
+#     B of the Dungeon Master's Guide for lists of monsters by
+#     environment.
+#     The characters might be forced to retreat outside the
+#     stronghold to recuperate after difficult battles. The party
+#     can readily find defensible campsites in the forest near the
+#     Stone Tooth."
+# })
+
+# scout.sub_locations.create!({
+#     title:"Hilltop",
+#     map_location:"D",
+#     instructions:"An hour or two of hard hiking brings the
+#     party to the summit. The Stone Tooth is about 1,450 feet
+#     in height, towering over the neighboring hills by 500
+#     feet or more. The last 100 feet or so are a sheer point
+#     of rock, requiring DC 15 Strength (Athletics) checks
+#     to climb successfully. The view is spectacular, but the
+#     hilltop is otherwise unremarkable. (No entrance to the
+#     fortress is to be found here.)"
+# })
+
+# scout.sub_locations.create!({
+#     title:"The Dark Mere",
+#     map_location:"E",
+#     instructions:"The eastern slopes of the Stone
+#     Tooth descend into a damp valley where water is
+#     trapped by the terrain. A dark tarn pools under the hill's
+    
+#     slopes, surrounded by numerous smaller lakes. A hidden 
+#     drainage channel deep underwater connects to the
+    
+#     subterranean Black Lake, providing access to Nightscale's 
+#     underground lair.
+    
+#     The opening is about 40 feet down, and it lies about
+#     100 feet from the western lakeshore. Player characters
+#     exploring around the lake can't find this outlet unless
+#     they conduct extensive dives to plumb the mere's depths,
+#     requiring DC 10 Strength (Athletics) checks to swim
+#     underwater. If any characters are capable of staying this
+#     deep without suffocating and conduct a thorough search
+#     of the lake, they discover the passage with a successful
+    
+#     DC 12 Wisdom (Perception) check. If the characters enter 
+#     through this watery passage, they emerge in area 54
+    
+#     of map 2.6, the Black Lake."
+# })
 
 
 wait = stone_tooth.encounters.create!({
@@ -455,43 +660,72 @@ wait = stone_tooth.encounters.create!({
     guttural tongue. Yellow tusks jut from their bestial faces."],
     developments:"No more dungeon denizens emerge
     from the dungeon during this time, and no more ores
-    leave for a week after the second patrol returns."
+    leave for a week after the second patrol returns.",
+    additional_info: [{
+        title:"Khundrukar General Features",
+        description:"The following aspects of Khundrukar are true unless other-
+        wise noted in a particular area description.
+        
+        Doors. Most doors are made of wood or stone. Charac-
+        ters can attempt various tasks before trying to open a door,
+        
+        including listening for sounds from the other side and
+        checking for traps. If characters elect to listen at a door,
+        check the description of the room beyond to determine
+        if any creatures inhabit that area. If no instructions are
+        otherwise provided, a character who listens at a door and
+        succeeds on a DC 10 Wisdom (Perception) check can hear
+        sounds of activity through the door; increase the DC to 15
+        for quieter sounds.
+        Light. Within the confines of Khundrukar, all areas are
+        dark unless a room's description says otherwise.
+        Ventilation. All keyed areas contain an adequate air
+        supply. The air is renewed through vents that lead to the
+        surface. These vents are individually too small for any but
+        Tiny creatures to navigate."
+    }],
+    treasures: [{
+        description:"Each ore carries a sack of mundane sup-
+        plies looted from the countryside, as well as coinage
+        
+        totaling 4d6 sp and ld4 gp."
+    }]
 })
 
-wait.en_additional_infos.create!({
-    title:"Khundrukar General Features",
-    description:"The following aspects of Khundrukar are true unless other-
-    wise noted in a particular area description.
+# wait.en_additional_infos.create!({
+#     title:"Khundrukar General Features",
+#     description:"The following aspects of Khundrukar are true unless other-
+#     wise noted in a particular area description.
     
-    Doors. Most doors are made of wood or stone. Charac-
-    ters can attempt various tasks before trying to open a door,
+#     Doors. Most doors are made of wood or stone. Charac-
+#     ters can attempt various tasks before trying to open a door,
     
-    including listening for sounds from the other side and
-    checking for traps. If characters elect to listen at a door,
-    check the description of the room beyond to determine
-    if any creatures inhabit that area. If no instructions are
-    otherwise provided, a character who listens at a door and
-    succeeds on a DC 10 Wisdom (Perception) check can hear
-    sounds of activity through the door; increase the DC to 15
-    for quieter sounds.
-    Light. Within the confines of Khundrukar, all areas are
-    dark unless a room's description says otherwise.
-    Ventilation. All keyed areas contain an adequate air
-    supply. The air is renewed through vents that lead to the
-    surface. These vents are individually too small for any but
-    Tiny creatures to navigate."
-})
+#     including listening for sounds from the other side and
+#     checking for traps. If characters elect to listen at a door,
+#     check the description of the room beyond to determine
+#     if any creatures inhabit that area. If no instructions are
+#     otherwise provided, a character who listens at a door and
+#     succeeds on a DC 10 Wisdom (Perception) check can hear
+#     sounds of activity through the door; increase the DC to 15
+#     for quieter sounds.
+#     Light. Within the confines of Khundrukar, all areas are
+#     dark unless a room's description says otherwise.
+#     Ventilation. All keyed areas contain an adequate air
+#     supply. The air is renewed through vents that lead to the
+#     surface. These vents are individually too small for any but
+#     Tiny creatures to navigate."
+# })
 
-wait.treasures.create!({
-    description:"Each ore carries a sack of mundane sup-
-    plies looted from the countryside, as well as coinage
+# wait.treasures.create!({
+#     description:"Each ore carries a sack of mundane sup-
+#     plies looted from the countryside, as well as coinage
     
-    totaling 4d6 sp and ld4 gp."
-})
+#     totaling 4d6 sp and ld4 gp."
+# })
 
 4.times do
-    wait.creatures.create!({
-    monster:{
+    wait.encounter_creatures.create!({
+    creatures:{
         _id: "5a52bc6f559f00418e53328a",
 index: 216,
 name: "Orc",

@@ -7,8 +7,10 @@ class Api::AdventuresController < ApplicationController
 
     def show
     @adventure = Adventure.find(params[:id])
+    @hooks = @adventure.hooks.all
+    @info = @adventure.adv_addtional_infos.all
 
-    render json: @adventure
+    render json: @adventure @hooks @info
     end
 
     def create
