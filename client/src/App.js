@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom"
 import logo from './logo.svg';
-import Header from './components/styled components/HeaderFooter'
+import Header from './components/styled components/Header'
+import { PageContainer } from './components/styled components/Containers'
+import Home from './components/Home'
+
 
 class App extends Component {
   render() {
     return (
       <div>
-      <Header />
-       hello from tome
+        <Header />
+        <PageContainer>
+          <Router>
+            <div>
+              <Switch>
+                <Route exact path='/' component={Home}/>
+                </Switch>
+         </div>
+        </Router>
+       </PageContainer>
       </div>
-    );
-  }
-}
-
-export default App;
+          );
+        }
+      }
+      
+      export default App;
