@@ -7,10 +7,8 @@ class Api::AdventuresController < ApplicationController
 
     def show
     @adventure = Adventure.find(params[:id])
-    @hooks = @adventure.hooks.all
-    @info = @adventure.adv_addtional_infos.all
 
-    render json: @adventure @hooks @info
+    render json: @adventure 
     end
 
     def create
@@ -33,6 +31,6 @@ class Api::AdventuresController < ApplicationController
 
     private
     def adventure_params
-        params.require(:adventure).permit(:title, :intro, :synopsis, :running_the_adventure, :map)
+        params.require(:adventure).permit(:title, :intro, :synopsis, :running_the_adventure, :map, :hooks_intro, :hooks, :additional_info)
     end
 end
