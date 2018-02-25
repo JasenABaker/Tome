@@ -18,12 +18,19 @@ class Api::AdventuresController < ApplicationController
     end
 
     def update
-    @adventure = Adventure.update!(adventure_params)
+    @adventure = Adventure.find(params[:id])
+    @adventure.update!(adventure_params)
 
     render json: @adventure
     end
 
     def destroy
+    @adventure = Adventure.find(params[:id]).destroy
+    render status: :ok
+    end
 
+    private
+    def adventure_params
+        params.require(:adventure).permit(:title, :intro, :synopsis, :running_the_adventure, :map)
     end
 end
