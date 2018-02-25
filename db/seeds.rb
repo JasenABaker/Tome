@@ -339,7 +339,7 @@ forge_of_fury.chapters.create!({
 
 stone_tooth = forge_of_fury.chapters.create!({
     title: "The Stone Tooth",
-    intro: "When the characters set forth on their journey. read: decription.
+    intro: "When the characters set forth on their journey. read: description.
     Refer to map 2.1. The characters have several options:
 follow the path, scout the area, or wait and watch.",
 descriptions:["As you travel north from the mining town of Blasingdell,
