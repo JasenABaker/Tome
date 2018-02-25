@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180224212818) do
+ActiveRecord::Schema.define(version: 20180225010058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20180224212818) do
     t.string "map_content_type"
     t.integer "map_file_size"
     t.datetime "map_updated_at"
+    t.string "hooks_intro"
   end
 
   create_table "chapter_instructions", force: :cascade do |t|
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 20180224212818) do
     t.bigint "encounter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "monster"
     t.index ["encounter_id"], name: "index_creatures_on_encounter_id"
   end
 
@@ -82,6 +84,7 @@ ActiveRecord::Schema.define(version: 20180224212818) do
     t.bigint "encounter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "info"
     t.index ["encounter_id"], name: "index_en_additional_infos_on_encounter_id"
   end
 
@@ -92,6 +95,8 @@ ActiveRecord::Schema.define(version: 20180224212818) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "descriptions", default: [], array: true
+    t.integer "map"
+    t.string "intro"
     t.index ["chapter_id"], name: "index_encounters_on_chapter_id"
   end
 
@@ -102,6 +107,16 @@ ActiveRecord::Schema.define(version: 20180224212818) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["adventure_id"], name: "index_hooks_on_adventure_id"
+  end
+
+  create_table "sub_locations", force: :cascade do |t|
+    t.string "title"
+    t.string "map_location"
+    t.string "instructions"
+    t.bigint "encounter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["encounter_id"], name: "index_sub_locations_on_encounter_id"
   end
 
   create_table "treasures", force: :cascade do |t|
@@ -121,5 +136,6 @@ ActiveRecord::Schema.define(version: 20180224212818) do
   add_foreign_key "en_additional_infos", "encounters"
   add_foreign_key "encounters", "chapters"
   add_foreign_key "hooks", "adventures"
+  add_foreign_key "sub_locations", "encounters"
   add_foreign_key "treasures", "encounters"
 end

@@ -4,4 +4,5 @@ class Encounter < ApplicationRecord
   has_many :dangers, dependent: :destroy
   has_many :creatures,  dependent: :destroy
   has_many :treasures, dependent: :destroy
+  has_many :sub_locations, dependent: :destroy
 end
