@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom' 
 import axios from 'axios'
 import {ContainerOne, LeftSide, AdvCard, InsideLeft, CardContainer, ButtonContainer, RightSide} from './styled components/Containers'
-import { AddButton, EditButton, DeleteButton} from './styled components/Buttons'
+import { AddButton, EditButton, DeleteButton, PlayButton} from './styled components/Buttons'
 import AdventureShow from './AdventureShow'
 
 
@@ -30,20 +30,25 @@ class AdventureSelect extends Component {
                     <InsideLeft>
                     
             {this.props.adventures.map((adven)=>{
-                 
                 return(
                     <CardContainer>
                 <AdvCard onClick={()=>this.adventureFind(adven.id)}>
                 {adven.title}
                 </AdvCard>
+                { this.state.showAdventure ?
                 <ButtonContainer>
+                    <Link to={`/adventures/${adven.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <PlayButton>Play</PlayButton>
+                    </Link> 
                 <EditButton>
                 edit
                 </EditButton>
                 <DeleteButton>
                 delete
                 </DeleteButton>
-                </ButtonContainer>
+                </ButtonContainer> :
+                null
+                }
                 </CardContainer>
                 )
             })}

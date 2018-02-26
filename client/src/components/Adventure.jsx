@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {AdvPageContainer, AdvView, MapView} from './styled components/Containers'
 
 
 
@@ -8,9 +9,10 @@ class Adventure extends Component {
 
     render(){
         return(
-            <div>
-                hello from adventure
-            </div>
+            <AdvPageContainer>
+                <AdvView />
+                <MapView />
+            </AdvPageContainer>
         )
     }
 }

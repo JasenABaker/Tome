@@ -125,14 +125,12 @@ export const AdvCard = styled.button`
     border: none;
     outline-style:none;
 
-    @media screen and (min-width: 500px) {
         :hover {
             background-color:#09E0C4;
         }
         :focus {
             background-color:#09E0C4;
         }
-    }
 
 `
 
@@ -151,7 +149,37 @@ export const AdvShowPage = styled.div `
         overflow: scroll;
     }
 `
+export const AdvPageContainer = styled.div`
+    height: 90vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    @media screen and (min-width: 500px) {
+        flex-direction: row;
+    }
 
+`
+
+export const AdvView = styled.div`
+    height: 43vh;
+    width: 95vw;
+    display: flex;
+    flex-direction: column;
+    background-color: #F9F5D9;
+    border: 5px solid black;
+
+    @media screen and (min-width: 500px) {
+        height: 87vh;
+        width: 49vw;
+    }
+
+`
+export const MapView = AdvView.extend`
+    background-color: #E0E0E0;
+
+`
 
 
 

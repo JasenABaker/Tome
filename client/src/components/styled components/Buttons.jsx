@@ -60,6 +60,15 @@ export const EditButton = styled.div`
     }
 
 `
+export const PlayButton = EditButton.extend`
+        background-color: #3F88C5;
+
+        :hover {
+            background: linear-gradient(to bottom, #83a7c4 0%,#3f88c5 80%);
+            color: rgba(255, 255, 255, 1);
+            box-shadow: 0 5px 15px rgba(63,136,197, .4)
+        }
+`
 
 export const DeleteButton = EditButton.extend`
     background-color:#D00000;
