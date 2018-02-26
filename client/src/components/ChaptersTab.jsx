@@ -25,12 +25,14 @@ const ChaptersTab = (props)=>{
                 </details>
                 )
             })}
+            <details>
+                <summary><h3>Encounters</h3></summary>
             {props.encounters.map((enc =>{
                 return(
-                    <EncountersTab encounter={enc}/>
+                    <EncountersTab encounter={enc} creatures={props.creatures}/>
                 )
             }))}
-            
+            </details>
         </details>
     )
 }

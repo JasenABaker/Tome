@@ -182,5 +182,13 @@ export const MapView = AdvView.extend`
 
 `
 
+export const MonsterCardContainer = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    overflow: scroll;
+
+`
+
 
 

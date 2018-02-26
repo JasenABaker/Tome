@@ -1,9 +1,18 @@
 import React from 'react'
+import CreatureList from './CreatureList'
+import {MonsterCardContainer} from './styled components/Containers'
 
 
-
-
+const creatureArray = []
 const EncountersTab = (props) => {
+    { props.creatures.find((creature)=>{
+        if (creature.encounter_id === props.encounter.id) {
+        creatureArray.push(creature)
+        } else {
+            return creature
+        }
+        console.log(creatureArray)
+    })}
     return (
         <details>
             <summary>{props.encounter.location}</summary>
@@ -35,7 +44,7 @@ const EncountersTab = (props) => {
                 )
 
             })}
-             {props.encounter.treasures.map((tru)=>{
+            {props.encounter.treasures.map((tru)=>{
                 return(
                     <details>
                 <summary>Treasure</summary>
@@ -48,7 +57,16 @@ const EncountersTab = (props) => {
                 <summary>Developments</summary>
                 <p>{props.encounter.developements}</p>
             </details>
-
+            <details>
+                <summary>Creatures</summary>
+            <MonsterCardContainer>
+            {creatureArray.map((creature)=>{
+                return(
+                    <CreatureList creature={creature}/>
+                )
+            })}
+            </MonsterCardContainer>
+            </details>
         </details>
     )
 
