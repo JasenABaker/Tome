@@ -1,25 +1,25 @@
 class Api::EncounterCreaturesController < ApplicationController
     def index
-        @encounter_creatures = Encounter_Creature.all
+        @encounter_creatures = EncounterCreature.all
         
         render json: @encounter_creatures
         end
     
         def create
-        @encounter_creature = Encounter_Creatures.create!(encounter_creature_params)
+        @encounter_creature = EncounterCreature.create!(encounter_creature_params)
     
         render json: @encounter_creature
         end
     
         def update
-        @encounter_creature = Encounter_Creatures.find(params[:id])
+        @encounter_creature = EncounterCreature.find(params[:id])
         @encounter_creature.update!(encounter_creature_params)
     
         render json: @encounter_creature
         end
     
         def destroy
-        @encounter_creature = Encounter_Creatures.find(params[:id]).destroy
+        @encounter_creature = EncounterCreature.find(params[:id]).destroy
         render status: :ok
         end
     

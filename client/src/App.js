@@ -35,9 +35,9 @@ class App extends Component {
                 <Route exact path='/adventures' render={AdSelect}/>
                 <Route exact path='/adventures/:id' component={Adventure}/>
                 </Switch>
-         </div>
+        </div>
         </Router>
-       </PageContainer>
+      </PageContainer>
       </div>
           );
         }

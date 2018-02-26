@@ -169,6 +169,7 @@ export const AdvView = styled.div`
     flex-direction: column;
     background-color: #F9F5D9;
     border: 5px solid black;
+    overflow: scroll;
 
     @media screen and (min-width: 500px) {
         height: 87vh;
