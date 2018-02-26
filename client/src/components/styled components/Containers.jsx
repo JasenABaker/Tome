@@ -79,7 +79,7 @@ export const RightSide = styled.div`
     width: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
     @media screen and (max-width: 500px){
@@ -105,7 +105,16 @@ export const ButtonContainer = styled.div`
     }
 `
 
-export const AdvCard = styled.div`
+export const ButtonContainer2 = styled.div`
+        margin-left: 20px;
+        width: 40vw;
+        height: 60px;
+        display: flex;
+        justify-content: space-around;
+
+`
+
+export const AdvCard = styled.button`
     height: 50px;
     width: 200px;
     background-color: #136F63;
@@ -113,13 +122,34 @@ export const AdvCard = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    border: none;
+    outline-style:none;
 
     @media screen and (min-width: 500px) {
         :hover {
             background-color:#09E0C4;
         }
+        :focus {
+            background-color:#09E0C4;
+        }
     }
 
+`
+
+export const AdvShowPage = styled.div `
+    margin: 20px;
+    height: 65vh;
+    width: 40vw;
+    border: 4px solid black;
+    background-color:#F9F5D9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p{
+        margin: 10px 10px;
+        overflow: scroll;
+    }
 `
 
 

@@ -6,6 +6,7 @@ import Header from './components/styled components/Header'
 import { PageContainer } from './components/styled components/Containers'
 import Home from './components/Home'
 import AdventureSelect from './components/AdventureSelect'
+import Adventure from './components/Adventure'
 
 
 class App extends Component {
@@ -33,6 +34,7 @@ class App extends Component {
               <Switch>
                 <Route exact path='/' component={Home}/>
                 <Route exact path='/adventures' render={AdSelect}/>
+                <Route exact path='/adventures/:id' component={Adventure}/>
                 </Switch>
          </div>
         </Router>

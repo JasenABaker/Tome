@@ -71,3 +71,15 @@ export const DeleteButton = EditButton.extend`
 
 `
 
+export const EditButtonSquare = EditButton.extend`
+        width: 200px;
+        border-radius: 0;
+`
+
+export const DeleteButtonSquare = DeleteButton.extend`
+        width: 200px;
+        border-radius: 0;
+`
+
+
+
