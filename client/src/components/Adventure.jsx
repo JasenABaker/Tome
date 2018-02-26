@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import {AdvPageContainer, AdvView, MapView} from './styled components/Containers'
 import AdventureTab from './AdventureTab'
+import ChaptersTab from './ChaptersTab'
 
 
 
@@ -34,11 +35,27 @@ class Adventure extends Component {
     render(){
         const adventure = this.state.adventure
         return(
+            this.state.stateNotLoaded ? <div></div> :
             <AdvPageContainer>
                 <AdvView>
-                    {this.state.stateNotLoaded ? <div></div> :
                     <AdventureTab adventure={this.state.adventure}/>
-                    } 
+                    <h2>Chapters</h2>
+                    {this.state.chapters.map((chapter)=>{ 
+                        const encounter = this.state.encounters.filter(encounter =>
+                                encounter.chapter_id === chapter.id
+                        )
+                        console.log(encounter)
+    
+
+                        
+                        return(
+                        <ChaptersTab chapter={chapter} 
+                        encounters={encounter} 
+                        creatures={this.state.creatures}/>
+                        )
+                        
+                    })}
+
                 </AdvView>
                 <MapView />
             </AdvPageContainer>
