@@ -1,6 +1,6 @@
 class Api::EncounterCreaturesController < ApplicationController
     def index
-        @encounter_creatures = Encounter_Creatures.all
+        @encounter_creatures = Encounter.find(:encounter_id).encounter_creatures
         
         render json: @encounter_creatures
         end

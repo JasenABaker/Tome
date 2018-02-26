@@ -1,8 +1,8 @@
 class Api::ChaptersController < ApplicationController
     def index
-        @Chapters = Chapter.all
+        @chapters = Adventure.find(params[:adventure_id]).chapters
         
-        render json: @Chapters
+        render json: @chapters
         end
     
         def create
