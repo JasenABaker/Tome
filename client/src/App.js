@@ -15,7 +15,6 @@ class App extends Component {
     }
     async componentWillMount () {
       const res = await axios.get('/api/adventures')
-      console.log(res.data)
       this.setState({adventures: res.data})
     }
 

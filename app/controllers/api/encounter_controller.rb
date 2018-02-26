@@ -1,6 +1,6 @@
 class Api::EncounterController < ApplicationController
     def index
-        @encounters = Chapter.find(:chapter_id).encounters
+        @encounters = Encounter.all
         
         render json: @encounters
         end
