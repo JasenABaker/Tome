@@ -31,7 +31,10 @@ const ChaptersTab = (props)=> {
         
         {props.encounters.map((enc =>{
             return(
-                <EncountersTab encounter={enc} creatures={props.creatures}/>
+                <EncountersTab encounter={enc} 
+                creatures={props.creatures}
+                handleMonsterOpen={props.handleMonsterOpen}
+                handleMonsterClose={props.handleMonsterClose}/>
             )
         }))}
             </details> 

@@ -5,6 +5,12 @@ class Api::EncounterCreaturesController < ApplicationController
         render json: @encounter_creatures
         end
     
+    def show
+        @encounter_creature = EncounterCreature.find(:id)
+
+        render json: @encounter_creature
+
+    end
         def create
         @encounter_creature = EncounterCreature.create!(encounter_creature_params)
     

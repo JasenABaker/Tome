@@ -9,6 +9,7 @@
     "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
   },
   "dependencies": {
-    "react-accessible-accordion": "^2.0.0"
+    "react-accessible-accordion": "^2.0.0",
+    "react-dialog": "^1.0.2"
   }
 }
