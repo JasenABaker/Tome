@@ -21,7 +21,7 @@ export const AdventureShow = (props) =>{
         </AdvShowPage>
         <ButtonContainer2>
             <EditButtonSquare>Edit</EditButtonSquare>
-            <DeleteButtonSquare>Delete</DeleteButtonSquare>
+            <DeleteButtonSquare onClick={()=>props.handleDelete(adventure.id)}>Delete</DeleteButtonSquare>
         </ButtonContainer2>
         </div>
     )

@@ -17,7 +17,16 @@ class AdventureSelect extends Component {
         console.log(res.data)
         this.setState({adventure: res.data, showAdventure: true})
     }
-    
+    removeAdventure = async (advenId) => {
+        const res = await axios.delete(`/api/adventures/${advenId}`)
+        const adventure = this.state.adventure
+        this.props.removeAdv(adventure)
+    }
+
+    handleDelete = (advenId) => {
+        this.removeAdventure(advenId)
+        this.setState({showAdventure: false})
+    }
     render(){
     
     
@@ -44,7 +53,7 @@ class AdventureSelect extends Component {
                 <EditButton>
                 edit
                 </EditButton>
-                <DeleteButton>
+                <DeleteButton onClick={()=>this.handleDelete(adven.id)} >
                 delete
                 </DeleteButton>
                 </ButtonContainer> :
@@ -58,7 +67,7 @@ class AdventureSelect extends Component {
             </LeftSide>
             <RightSide>
                 {
-                    this.state.showAdventure ? <AdventureShow adventure={this.state.adventure}/> : null
+                    this.state.showAdventure ? <AdventureShow adventure={this.state.adventure} handleDelete={this.handleDelete}/> : null
                 }
             </RightSide>
         </ContainerOne>

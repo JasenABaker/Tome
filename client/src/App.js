@@ -23,10 +23,18 @@ class App extends Component {
       adventures.push(newAdv)
       this.setState({adventures})
     }
+    removeAdv = (adv) => {
+      const AdvToRemove = this.state.adventures.indexOf(adv)
+      const adventures = [...this.state.adventures]
+      adventures.splice(AdvToRemove, 1)
+      this.componentWillMount()
+      this.setState({ adventures })
+    }
+
   render() {
     const AdSelect = () =>{
       return(
-        <AdventureSelect adventures={this.state.adventures}/>
+        <AdventureSelect adventures={this.state.adventures} removeAdv={this.removeAdv}/>
       )
     }
     const NewPageComp = () => {
@@ -34,6 +42,8 @@ class App extends Component {
         <NewPage addNewAdv={this.addNewAdv}/>
       )
     }
+
+    
     return (
   
         
