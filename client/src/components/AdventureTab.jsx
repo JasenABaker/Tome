@@ -52,6 +52,7 @@ const AdventureTab = (props) => {
                         </div>
                     )
                 })}
+                
         </Accordion>
     )
 

@@ -7,6 +7,7 @@ import { PageContainer } from './components/styled components/Containers'
 import Home from './components/Home'
 import AdventureSelect from './components/AdventureSelect'
 import Adventure from './components/Adventure'
+import NewPage from './components/NewPage'
 
 
 class App extends Component {
@@ -34,6 +35,7 @@ class App extends Component {
                 <Route exact path='/' component={Home}/>
                 <Route exact path='/adventures' render={AdSelect}/>
                 <Route exact path='/adventures/:id' component={Adventure}/>
+                <Route exact path='/new' component={NewPage} />
                 </Switch>
         </div>
         </Router>
