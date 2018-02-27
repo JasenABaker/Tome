@@ -86,3 +86,25 @@ export const ButtonDiv = styled.div`
     justify-content: center;
     align-items: center;
 `
+
+export const SubmitButton = styled.button`
+height: 40px;
+width: 100px;
+border-radius: 10px;
+color: rgba(255, 255, 255, 0.8);
+font-size: .9em;
+font-weight: 700;
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: #3F88C5;
+text-align: center;
+border: none;
+outline-style:none;
+
+:hover {
+    background: linear-gradient(to bottom, #83a7c4 0%,#3f88c5 80%);
+    color: rgba(255, 255, 255, 1);
+    box-shadow: 0 5px 15px rgba(63,136,197, .4)
+}
+`

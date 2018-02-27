@@ -18,11 +18,20 @@ class App extends Component {
       const res = await axios.get('/api/adventures')
       this.setState({adventures: res.data})
     }
-
+    addNewAdv = (newAdv) =>{
+      const adventures = [...this.state.adventures]
+      adventures.push(newAdv)
+      this.setState({adventures})
+    }
   render() {
     const AdSelect = () =>{
       return(
         <AdventureSelect adventures={this.state.adventures}/>
+      )
+    }
+    const NewPageComp = () => {
+      return (
+        <NewPage addNewAdv={this.addNewAdv}/>
       )
     }
     return (
@@ -36,7 +45,7 @@ class App extends Component {
                 <Route exact path='/' component={Home}/>
                 <Route exact path='/adventures' render={AdSelect}/>
                 <Route exact path='/adventures/:id' component={Adventure}/>
-                <Route exact path='/new' component={NewPage} />
+                <Route exact path='/new' render={NewPageComp} />
                 </Switch>
         </div>
         </Router>

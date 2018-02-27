@@ -10,7 +10,7 @@ class NewPage extends Component {
     render(){
         return(
             <NewPageContainer>
-                <NewAdventure />
+                <NewAdventure addNewAdv={this.props.addNewAdv} />
                 <div> ChapterForm</div>
                 <div> EncounterForm</div>
             </NewPageContainer>
