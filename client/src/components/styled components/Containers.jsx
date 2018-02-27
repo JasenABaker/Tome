@@ -4,7 +4,7 @@ import image from './images/dnd.jpg'
 
 
 export const PageContainer = styled.div`
-    height: 90vh;
+    min-height: 100vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -187,6 +187,18 @@ export const MonsterCardContainer = styled.div`
     display: flex;
     justify-content: space-between;
     overflow: scroll;
+
+`
+
+export const NewPageContainer = styled.div`
+    min-height: 90vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @media screen and (min-width: 500px){
+        flex-direction: row;
+    }
 
 `
 

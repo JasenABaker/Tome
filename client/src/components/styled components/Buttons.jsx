@@ -33,6 +33,7 @@ export  const AddButton = styled.div`
     align-items: center;
     justify-content: center;
     background-color: #3F88C5;
+    text-align: center;
 
     :hover {
         background: linear-gradient(to bottom, #83a7c4 0%,#3f88c5 80%);

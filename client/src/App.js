@@ -26,9 +26,10 @@ class App extends Component {
       )
     }
     return (
-      <div>
-        <Header />
+  
+        
         <PageContainer>
+          <Header />
           <Router>
             <div>
               <Switch>
@@ -40,7 +41,7 @@ class App extends Component {
         </div>
         </Router>
       </PageContainer>
-      </div>
+  
           );
         }
       }
