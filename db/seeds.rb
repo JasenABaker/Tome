@@ -723,8 +723,8 @@ wait = stone_tooth.encounters.create!({
 #     totaling 4d6 sp and ld4 gp."
 # })
 
-4.times do
     wait.encounter_creatures.create!({
+        count: 4,
     creatures:{
         _id: "5a52bc6f559f00418e53328a",
 index: 216,
@@ -777,7 +777,7 @@ name: "Javelin",
 url: "http://www.dnd5eapi.co/api/monsters/216",
 }
 })
-end
+
 
 
 

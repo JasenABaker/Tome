@@ -1,11 +1,14 @@
 {
-    "name": "Tome",
-    "engines": {
-      "node": "8.7.0"
-    },
-    "scripts": {
-      "build": "cd client && npm install && npm run build && cd ..",
-      "deploy": "cp -a client/build/. public/",
-      "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
-    }
+  "name": "Tome",
+  "engines": {
+    "node": "8.7.0"
+  },
+  "scripts": {
+    "build": "cd client && npm install && npm run build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
+  },
+  "dependencies": {
+    "react-accessible-accordion": "^2.0.0"
   }
+}

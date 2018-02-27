@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {Component} from 'react'
 import EncountersTab from './EncountersTab'
 
 
+const ChaptersTab = (props)=> {
 
-const ChaptersTab = (props)=>{
+
     return(
         <details>
             <summary>{props.chapter.title}</summary>
@@ -24,17 +25,19 @@ const ChaptersTab = (props)=>{
                     <p>{des}</p>
                 </details>
                 )
-            })}
-            <details>
-                <summary><h3>Encounters</h3></summary>
-            {props.encounters.map((enc =>{
-                return(
-                    <EncountersTab encounter={enc} creatures={props.creatures}/>
-                )
-            }))}
-            </details>
+            })} 
+                <details>
+            <summary><h3>Encounters</h3></summary>
+        
+        {props.encounters.map((enc =>{
+            return(
+                <EncountersTab encounter={enc} creatures={props.creatures}/>
+            )
+        }))}
+            </details> 
         </details>
+    
     )
-}
+    }
 
 export default ChaptersTab

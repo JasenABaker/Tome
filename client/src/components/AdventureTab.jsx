@@ -1,17 +1,27 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
+import {
+    Accordion,
+    AccordionItem,
+    AccordionItemTitle,
+    AccordionItemBody,
+} from 'react-accessible-accordion';
+
 
 
 
 
 const AdventureTab = (props) => {
     return (
-        <details>
-            <summary><h1>{props.adventure.title}</h1></summary>
-            <div>
-                <details>
-                    <summary>Intro</summary>
+        <Accordion>
+            <AccordionItem>
+            <AccordionItemTitle>
+            <h1>{props.adventure.title}</h1>
+            </AccordionItemTitle>
+                    <AccordionItemBody>
                     <p>{props.adventure.intro}</p>
-                </details>
+                </AccordionItemBody>
+            </AccordionItem>
                 <details>
                     <summary><h2>Adventure Synopsis</h2></summary>
                     <p>{props.adventure.synopsis}</p>
@@ -42,8 +52,7 @@ const AdventureTab = (props) => {
                         </div>
                     )
                 })}
-            </div>
-        </details>
+        </Accordion>
     )
 
 }
