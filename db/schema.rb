@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180227145944) do
+ActiveRecord::Schema.define(version: 20180228172726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20180227145944) do
     t.jsonb "dangers", default: [], array: true
     t.jsonb "additional_info", default: [], array: true
     t.jsonb "sub_locations", default: [], array: true
-    t.jsonb "treasures", default: [], array: true
+    t.string "treasures", default: "string"
     t.bigint "chapter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

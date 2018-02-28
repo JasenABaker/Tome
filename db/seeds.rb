@@ -685,12 +685,11 @@ wait = stone_tooth.encounters.create!({
         surface. These vents are individually too small for any but
         Tiny creatures to navigate."
     }],
-    treasures: [{
-        description:"Each ore carries a sack of mundane sup-
+    treasures: "Each ore carries a sack of mundane sup-
         plies looted from the countryside, as well as coinage
         
         totaling 4d6 sp and ld4 gp."
-    }]
+
 })
 
 # wait.en_additional_infos.create!({

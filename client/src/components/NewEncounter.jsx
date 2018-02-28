@@ -7,27 +7,26 @@ import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle
 class NewEncounter extends Component {
     state = {
         newEncounter: {},
-        hooks: [],
+        descritptions: [],
+        desc: "",
         infos: [],
-        hook: {},
         info: {},
-        redirect: false
+        subs: [],
+        sub: {},
     }
 
     handleInput = (event) => {
         const attr = event.target.name
         const val = event.target.value
-        const newAdv = { ...this.state.newAdventure }
-        newAdv[attr] = val
-        this.setState({ newAdventure: newAdv })
+        const newEnc = { ...this.state.newEncounter }
+        newEnc[attr] = val
+        this.setState({ newAdventure: newEnc })
 
     }
-    handleHookInput = (event) => {
-        const attr = event.target.name
-        const val = event.target.value
-        const hook = { ...this.state.hook }
-        hook[attr] = val
-        this.setState({ hook })
+    handleDescInput = (event) => {
+        let desc = this.state.desc 
+        desc = event.target.value
+        this.setState({ desc })
 
     }
     handleInfoInput = (event) => {
@@ -38,21 +37,13 @@ class NewEncounter extends Component {
         this.setState({ info })
 
     }
+    handleSubInput = (event) => {
+        const attr = event.target.name
+        const val = event.target.value
+        const sub= { ...this.state.sub }
+        sub[attr] = val
+        this.setState({ sub })
 
-    handleNewHookSubmit = (event) => {
-        event.preventDefault()
-        if ((Object.keys(this.state.hook).length === 2) &&
-            (this.state.hook.title !== "") &&
-            (this.state.hook.description !== "")) {
-            this.state.hooks.push(this.state.hook)
-            const newAdv = { ...this.state.newAdventure }
-            newAdv.hooks = this.state.hooks
-            event.target.reset()
-            this.setState({ newAdventure: newAdv })
-        } else {
-
-            return this.state.hook
-        }
     }
 
     handleNewInfoSubmit = (event) => {
@@ -62,19 +53,45 @@ class NewEncounter extends Component {
             (this.state.info.description !== "")) {
 
             this.state.infos.push(this.state.info)
-            const newAdv = { ...this.state.newAdventure }
-            newAdv.additional_info = this.state.infos
+            const newEnc = { ...this.state.newEncounter }
+            newEnc.additional_info = this.state.infos
             event.target.reset()
-            this.setState({ newAdventure: newAdv })
+            this.setState({ newEncounter: newEnc})
         } else {
             return this.state.info
         }
     }
 
-    handleAdvSubmit = async (event) => {
+    handleNewDescSubmit = (event) => {
         event.preventDefault()
-        this.props.setAdventure(this.state.newAdventure)
+        if (this.state.desc !== "") {
+            this.state.descs.push(this.state.desc)
+            const newEnc = { ...this.state.newEncounter }
+            newEnc.descriptions = this.state.descs
+            event.target.reset()
+            this.setState({ newEncounter: newEnc})
+        } else {
+            return this.state.desc
+        }
     }
+
+    handleNewSubSubmit = (event) => {
+        event.preventDefault()
+        if ((Object.keys(this.state.sub).length === 3) &&
+            (this.state.sub.title !== "") &&
+            (this.state.sub.map_location !== "") &&
+            (this.state.sub.instructions !== "")) {
+
+            this.state.subs.push(this.state.sub)
+            const newEnc = { ...this.state.newEncounter }
+            newEnc.sub_locations = this.state.subs
+            event.target.reset()
+            this.setState({ newEncounter: newEnc})
+        } else {
+            return this.state.info
+        }
+    }
+
 
     render() {
 
@@ -82,13 +99,18 @@ class NewEncounter extends Component {
         return (
             this.state.redirect ? <Redirect to="/adventures"/> : 
             <FormContainer>
-                <h1>New Adventure</h1>
+                <h1>New Encounter</h1>
                 <FormStyled onSubmit={this.handleAdvSubmit} id="FormAd">
                     <FormDiv>
                         <TitleDiv>
-                            <LabelStyle htmlFor="title">Title:</LabelStyle>
-                            <InputStyle type="text" name="title" placeholder="Title" onChange={this.handleInput} />
+                            <LabelStyle htmlFor="location">Location: </LabelStyle>
+                            <InputStyle type="text" name="location" placeholder="Location" onChange={this.handleInput} />
                         </TitleDiv>
+                        <TitleDiv>
+                            <LabelStyle htmlFor="map_location_number">Location Number: </LabelStyle>
+                            <InputStyle type="number" name="map_location_number" onChange={this.handleInput} />
+                        </TitleDiv>
+                        
                         <div>
                             <div>
                                 <LabelStyle htmlFor="intro">Introduction: </LabelStyle>
@@ -97,47 +119,52 @@ class NewEncounter extends Component {
                         </div>
                         <div>
                             <div>
-                                <LabelStyle htmlFor="synopsis">Adventure Synopsis: </LabelStyle>
+                                <LabelStyle htmlFor="developments">devlopments: </LabelStyle>
                             </div>
-                            <TextAreaStyle name="synopsos" id="" cols="30" rows="10" placeholder="Write a synopsis of the adventure." onChange={this.handleInput}></TextAreaStyle >
+                            <TextAreaStyle name="developments" id="" cols="30" rows="10" placeholder="What happens after your encounter is finished?" onChange={this.handleInput}></TextAreaStyle >
                         </div>
                         <div>
                             <div>
-                                <LabelStyle htmlFor="running_the_adventure">How to run the Adventure: </LabelStyle>
+                                <LabelStyle htmlFor="treasure">treasure: </LabelStyle>
                             </div>
-                            <TextAreaStyle name="running_the_adventure" id="" cols="30" rows="10" placeholder="Notes on how to run the adventure" onChange={this.handleInput}></TextAreaStyle >
-                        </div>
-                        <TitleDiv>
-                            <LabelStyle htmlFor="map">Stater Map for the Adventure: </LabelStyle>
-                            <FileUpload type="file" name="map" placeholder="upload" onChange={this.handleInput} />
-                        </TitleDiv>
-                        <div>
-                            <div>
-                                <LabelStyle htmlFor="hooks_intro">For your hooks to the adventure write a short paragrah about what options the DM may have: </LabelStyle>
-                            </div>
-                            <TextAreaStyle name="hooks_intro" id="" cols="30" rows="10" placeholder="Short paragrah introduction your hooks" onChange={this.handleInput}></TextAreaStyle >
+                            <TextAreaStyle name="treasure" id="" cols="30" rows="10" placeholder="Describe what treasure can be found and any checks needed to find it." onChange={this.handleInput}></TextAreaStyle >
                         </div>
 
                     </FormDiv>
                 </FormStyled>
-                <h2>Hooks</h2>
-                <FormStyled onSubmit={this.handleNewHookSubmit} id="hook">
+                <h2>Descriptions!</h2>
+                <FormStyled onSubmit={this.handleNewDescSubmit} id="info">
+                    <FormDiv>
+                        
+                        <div>
+                            <div>
+                                <LabelStyle htmlFor="description">Description: </LabelStyle>
+                            </div>
+                            <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Infomation" onChange={this.handleDescInput}></TextAreaStyle >
+                        </div>
+                        <p>Add more descirptions after clicking add</p>
+                        <ButtonDiv>
+                            <SubmitButton type="submit">Add Description</SubmitButton>
+                        </ButtonDiv>
+                    </FormDiv>
+                </FormStyled>
+                <h2>Dangers</h2>
+                <FormStyled onSubmit={this.handleNewInfoSubmit} id="info">
                     <FormDiv>
                         <TitleDiv>
-                            <LabelStyle htmlFor="title">Title of hook :</LabelStyle>
-                            <InputStyle type="text" name="title" placeholder="Title of Hook" onChange={this.handleHookInput} />
+                            <LabelStyle htmlFor="title">Type of Danger</LabelStyle>
+                            <InputStyle type="text" name="title" placeholder="Type of Danger" onChange={this.handleInfoInput} />
                         </TitleDiv>
                         <div>
                             <div>
-                                <LabelStyle htmlFor="description">Description of the hook: </LabelStyle>
+                                <LabelStyle htmlFor="description">Danger information: </LabelStyle>
                             </div>
-                            <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Text for the hook" onChange={this.handleHookInput}></TextAreaStyle >
+                            <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Infomation on the Danger" onChange={this.handleInfoInput}></TextAreaStyle >
                         </div>
-                        <p>Once A hook is submitted the form will be refreshed. Add more hooks!</p>
+                        <p>Same with the information. Once submitted, you can Add more</p>
                         <ButtonDiv>
-                            <SubmitButton type="submit">Add Hook</SubmitButton>
+                            <SubmitButton type="submit">Add Danger</SubmitButton>
                         </ButtonDiv>
-
                     </FormDiv>
                 </FormStyled>
                 <h2>Additonal Infomation</h2>
@@ -156,6 +183,29 @@ class NewEncounter extends Component {
                         <p>Same with the information. Once submitted, you can Add more</p>
                         <ButtonDiv>
                             <SubmitButton type="submit">Add Info</SubmitButton>
+                        </ButtonDiv>
+                    </FormDiv>
+                </FormStyled>
+                <h2>Sub Locations</h2>
+                <FormStyled onSubmit={this.handleNewSubSubmit} id="info">
+                    <FormDiv>
+                        <TitleDiv>
+                            <LabelStyle htmlFor="title">Sub Location Name:</LabelStyle>
+                            <InputStyle type="text" name="title" placeholder="Sub location name" onChange={this.handleSubInput} />
+                        </TitleDiv>
+                        <TitleDiv>
+                            <LabelStyle htmlFor="map_location">Map Location Marker:</LabelStyle>
+                            <InputStyle type="text" name="map_location" placeholder="Marker for location i.e.(A,B,C,D etc..)" onChange={this.handleSubInput} />
+                        </TitleDiv>
+                        <div>
+                            <div>
+                                <LabelStyle htmlFor="instructions">Instructions for this location: </LabelStyle>
+                            </div>
+                            <TextAreaStyle name="instructions" id="" cols="30" rows="10" placeholder="Instructions about the sublocation." onChange={this.handleSubInput}></TextAreaStyle >
+                        </div>
+                        <p>You can always add more</p>
+                        <ButtonDiv>
+                            <SubmitButton type="submit">Add Sub Location</SubmitButton>
                         </ButtonDiv>
                     </FormDiv>
                 </FormStyled>

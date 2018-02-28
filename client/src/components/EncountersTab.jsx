@@ -22,6 +22,7 @@ handleMonsterClose = () =>{
         const creatureArray = []
         let developments = null
         let creatures = null
+        let treasures = null
     {
         this.props.creatures.find((creature) => {
             if (creature.encounter_id === this.props.encounter.id) {
@@ -33,7 +34,7 @@ handleMonsterClose = () =>{
         })
     }
 
-    if (this.props.encounter.developments){
+    if (this.props.encounter.developments !==""){
         developments = ()=>{ return (
             <details>
             <summary>Developments</summary>
@@ -41,8 +42,21 @@ handleMonsterClose = () =>{
         </details>
 
         )}
+        developments()
     } else {
         developments = null
+    }
+
+    if(this.props.encounter.treasures !== ""){
+        treasures = 
+                <details>
+                <summary>Treasure</summary>
+                <p>{this.props.encounter.treasures}</p>
+            </details>
+    
+       
+    }else {
+        treasures = null
     }
 
     if (creatureArray.length < 1) {
@@ -104,15 +118,9 @@ handleMonsterClose = () =>{
                 )
 
             })}
-            {this.props.encounter.treasures.map((tru) => {
-                return (
-                    <details>
-                        <summary>Treasure</summary>
-                        <p>{tru.description}</p>
-                    </details>
-                )
 
-            })}
+
+        {treasures}
         {developments}
         {creatures}
         
