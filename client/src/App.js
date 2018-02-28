@@ -22,6 +22,7 @@ class App extends Component {
       const adventures = [...this.state.adventures]
       adventures.push(newAdv)
       this.componentWillMount()
+      this.setState({adventures})
     }
     removeAdv = (adv) => {
       const AdvToRemove = this.state.adventures.indexOf(adv)

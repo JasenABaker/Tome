@@ -18,19 +18,19 @@ class NewPage extends Component {
         
     }
     handleSubmitAll = async () =>{
-        this.state.chapters.encounters = this.state.encounters
-        this.state.adventure.chapters = this.state.chapters
-        const res = axios.post('api/adventures',  this.state.adventure)
-        this.state.chapters.map((chapter)=>{
-            axios.post(`api/adventures/${this.state.adventure.id}/chapters`, chapter)
-        })
-        this.props.addNewAdv(res.data)
+        const adventure = {...this.state.adventure}
+        const resAdv = await axios.post('api/adventures',  this.state.adventure)
+        adventure.id = resAdv.data.id
+        await this.state.chapters.map((chapter)=>{
+        const resChap = axios.post(`api/adventures/${adventure.id}/chapters`, chapter)
+            })
+        this.props.addNewAdv(resAdv.data)
         this.setState({redirect: true})
 
 
     }
     pushChapter = (chapter)=>{
-        this.state.chapters.push(chapter)
+        this.state.chapters.unshift(chapter)
     }
     setAdventure = (adventure) =>{
         this.setState({adventure: adventure, showChapterForm: true, showAdvForm: false})
