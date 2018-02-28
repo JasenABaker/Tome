@@ -26,7 +26,7 @@ class Api::EncounterController < ApplicationController
         private
         def encounter_params
             params.require(:encounter).permit(:locations, :map_location_number, :developments, :intro, :descriptions, :dangers,
-            :additional_info, :sub_locations, :treasures)
+            :additional_info, :sub_locations, :treasures, :chapter_id)
         end
 
 end
