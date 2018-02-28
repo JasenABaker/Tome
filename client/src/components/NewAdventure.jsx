@@ -73,15 +73,11 @@ class NewAdventure extends Component {
 
     handleAdvSubmit = async (event) => {
         event.preventDefault()
-        const res = await axios.post('api/adventures',  this.state.newAdventure)
-        this.props.addNewAdv(res.data)
-        this.setState({redirect: true})
-
+        this.props.setAdventure(this.state.newAdventure)
     }
 
     render() {
-        console.log(this.state.info)
-        console.log(this.state.hook)
+
         null
         return (
             this.state.redirect ? <Redirect to="/adventures"/> : 

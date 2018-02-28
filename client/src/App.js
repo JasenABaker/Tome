@@ -21,7 +21,7 @@ class App extends Component {
     addNewAdv = (newAdv) =>{
       const adventures = [...this.state.adventures]
       adventures.push(newAdv)
-      this.setState({adventures})
+      this.componentWillMount()
     }
     removeAdv = (adv) => {
       const AdvToRemove = this.state.adventures.indexOf(adv)
