@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton } from './styled components/Forms'
-import {AdvCard} from './styled components/Containers'
+import { AdvCard } from './styled components/Containers'
 
 
 class NewEncounter extends Component {
@@ -19,11 +19,11 @@ class NewEncounter extends Component {
         subs: [],
         sub: {},
     }
-    handleChapterId =(chapterId, chapterTitle)=>{
-        const newEnc = {...this.state.newEncounter}
+    handleChapterId = (chapterId, chapterTitle) => {
+        const newEnc = { ...this.state.newEncounter }
         newEnc.chapter_id = chapterId
-    
-        this.setState({newEncounter: newEnc, chapterTitle: chapterTitle, chapterId: chapterId})
+
+        this.setState({ newEncounter: newEnc, chapterTitle: chapterTitle, chapterId: chapterId })
     }
     handleInput = (event) => {
         const attr = event.target.name
@@ -34,7 +34,7 @@ class NewEncounter extends Component {
 
     }
     handleDescInput = (event) => {
-        let desc = this.state.desc 
+        let desc = this.state.desc
         desc = event.target.value
         this.setState({ desc })
 
@@ -58,7 +58,7 @@ class NewEncounter extends Component {
     handleSubInput = (event) => {
         const attr = event.target.name
         const val = event.target.value
-        const sub= { ...this.state.sub }
+        const sub = { ...this.state.sub }
         sub[attr] = val
         this.setState({ sub })
 
@@ -73,7 +73,7 @@ class NewEncounter extends Component {
             const newEnc = { ...this.state.newEncounter }
             newEnc.dangers = this.state.dangers
             event.target.reset()
-            this.setState({ newEncounter: newEnc})
+            this.setState({ newEncounter: newEnc })
         } else {
             return this.state.info
         }
@@ -89,7 +89,7 @@ class NewEncounter extends Component {
             const newEnc = { ...this.state.newEncounter }
             newEnc.additional_info = this.state.infos
             event.target.reset()
-            this.setState({ newEncounter: newEnc})
+            this.setState({ newEncounter: newEnc })
         } else {
             return this.state.info
         }
@@ -102,7 +102,7 @@ class NewEncounter extends Component {
             const newEnc = { ...this.state.newEncounter }
             newEnc.descriptions = this.state.descs
             event.target.reset()
-            this.setState({ newEncounter: newEnc})
+            this.setState({ newEncounter: newEnc })
         } else {
             return this.state.desc
         }
@@ -119,15 +119,20 @@ class NewEncounter extends Component {
             const newEnc = { ...this.state.newEncounter }
             newEnc.sub_locations = this.state.subs
             event.target.reset()
-            this.setState({ newEncounter: newEnc})
+            this.setState({ newEncounter: newEnc })
         } else {
             return this.state.info
         }
     }
+    newEncounterPost = async () => {
+        const resEnc = await axios.post(`api/encounter`, this.state.newEncounter)
+        const updateEnc = { ...this.state.newEncounter }
+        updateEnc.id = resEnc.data.id
+        this.props.pushEncounter(updateEnc)
+    }
     handleEncSubmit = async (event) => {
         event.preventDefault()
-        this.props.pushEncounter(this.state.newEncounter)
-        
+        this.newEncounterPost()
         event.target.reset()
 
     }
@@ -139,10 +144,11 @@ class NewEncounter extends Component {
         return (
             <FormContainer>
                 <h1>New Encounter</h1>
-                {this.props.chapters.map((chapter)=>{
-                    return(
+                {this.props.chapters.map((chapter) => {
+                    console.log(chapter.id)
+                    return (
                         <div>
-                        <AdvCard onClick={()=>this.handleChapterId(chapter._id, chapter.title)}>{chapter.title}</AdvCard>
+                            <AdvCard onClick={() => this.handleChapterId(chapter.id, chapter.title)}>{chapter.title}</AdvCard>
                         </div>
                     )
                 })}
@@ -160,7 +166,7 @@ class NewEncounter extends Component {
                             <LabelStyle htmlFor="map_location_number">Location Number: </LabelStyle>
                             <InputStyle type="number" name="map_location_number" onChange={this.handleInput} />
                         </TitleDiv>
-                        
+
                         <div>
                             <div>
                                 <LabelStyle htmlFor="intro">Introduction: </LabelStyle>
@@ -185,7 +191,7 @@ class NewEncounter extends Component {
                 <h2>Descriptions!</h2>
                 <FormStyled onSubmit={this.handleNewDescSubmit} id="info">
                     <FormDiv>
-                        
+
                         <div>
                             <div>
                                 <LabelStyle htmlFor="description">Description: </LabelStyle>
@@ -259,9 +265,9 @@ class NewEncounter extends Component {
                         </ButtonDiv>
                     </FormDiv>
                 </FormStyled>
-                        <ButtonDiv>
-                            <SubmitButton type="submit" form="FormAd">Add Encounter</SubmitButton>
-                        </ButtonDiv>
+                <ButtonDiv>
+                    <SubmitButton type="submit" form="FormAd">Add Encounter</SubmitButton>
+                </ButtonDiv>
             </FormContainer>
         )
 
