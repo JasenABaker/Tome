@@ -11,7 +11,6 @@ class NewAdventure extends Component {
         instructions: [],
         inp: {},
         desc: "",
-        redirect: false
     }
 
     handleInput = (event) => {
@@ -65,11 +64,17 @@ class NewAdventure extends Component {
             return this.state.desc
         }
     }
+    newChapterPost = async () =>{
+        const resChap = await axios.post(`api/adventures/${this.props.advenId}/chapters`, this.state.newChapter)
+        const updateChapter = {...this.state.newChapter}
+        updateChapter.id = resChap.data.id
+        console.log(updateChapter.id)
+        this.props.pushChapter(updateChapter)
 
+    }
     handleChapSubmit = async (event) => {
         event.preventDefault()
-        this.props.pushChapter(this.state.newChapter)
-        
+        this.newChapterPost()
         event.target.reset()
 
     }
@@ -135,6 +140,7 @@ class NewAdventure extends Component {
                 </FormStyled>
                         <ButtonDiv>
                             <SubmitButton type="submit" form="FormAd">Add Chapter</SubmitButton>
+                            <SubmitButton onClick={()=>this.props.setChapter()}>Finished</SubmitButton>
                         </ButtonDiv>
             </FormContainer>
         )

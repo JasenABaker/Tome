@@ -71,9 +71,17 @@ class NewAdventure extends Component {
         }
     }
 
+    newAdventurePost = async () =>{
+        const res = await axios.post('/api/adventures', this.state.newAdventure)
+        const updateNewAdv = {...this.state.newAdventure}
+        updateNewAdv.id = res.data.id
+        this.props.setAdventure(updateNewAdv)
+    }
+
     handleAdvSubmit = async (event) => {
         event.preventDefault()
-        this.props.setAdventure(this.state.newAdventure)
+        this.newAdventurePost()
+       
     }
 
     render() {

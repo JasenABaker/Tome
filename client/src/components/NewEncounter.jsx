@@ -2,31 +2,49 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import {Redirect} from 'react-router-dom'
 import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton } from './styled components/Forms'
+import {AdvCard} from './styled components/Containers'
 
 
 class NewEncounter extends Component {
     state = {
         newEncounter: {},
-        descritptions: [],
+        chapterTitle: "",
+        chapterId: "",
+        descs: [],
         desc: "",
+        dangers: [],
+        danger: {},
         infos: [],
         info: {},
         subs: [],
         sub: {},
     }
-
+    handleChapterId =(chapterId, chapterTitle)=>{
+        const newEnc = {...this.state.newEncounter}
+        newEnc.chapter_id = chapterId
+    
+        this.setState({newEncounter: newEnc, chapterTitle: chapterTitle, chapterId: chapterId})
+    }
     handleInput = (event) => {
         const attr = event.target.name
         const val = event.target.value
         const newEnc = { ...this.state.newEncounter }
         newEnc[attr] = val
-        this.setState({ newAdventure: newEnc })
+        this.setState({ newEncounter: newEnc })
 
     }
     handleDescInput = (event) => {
         let desc = this.state.desc 
         desc = event.target.value
         this.setState({ desc })
+
+    }
+    handleDangInput = (event) => {
+        const attr = event.target.name
+        const val = event.target.value
+        const danger = { ...this.state.danger }
+        danger[attr] = val
+        this.setState({ danger })
 
     }
     handleInfoInput = (event) => {
@@ -44,6 +62,21 @@ class NewEncounter extends Component {
         sub[attr] = val
         this.setState({ sub })
 
+    }
+    handleNewDangerSubmit = (event) => {
+        event.preventDefault()
+        if ((Object.keys(this.state.danger).length === 2) &&
+            (this.state.danger.title !== "") &&
+            (this.state.danger.description !== "")) {
+
+            this.state.dangers.push(this.state.danger)
+            const newEnc = { ...this.state.newEncounter }
+            newEnc.dangers = this.state.dangers
+            event.target.reset()
+            this.setState({ newEncounter: newEnc})
+        } else {
+            return this.state.info
+        }
     }
 
     handleNewInfoSubmit = (event) => {
@@ -91,20 +124,37 @@ class NewEncounter extends Component {
             return this.state.info
         }
     }
+    handleEncSubmit = async (event) => {
+        event.preventDefault()
+        this.props.pushEncounter(this.state.newEncounter)
+        
+        event.target.reset()
+
+    }
 
 
     render() {
 
         null
         return (
-            this.state.redirect ? <Redirect to="/adventures"/> : 
             <FormContainer>
                 <h1>New Encounter</h1>
-                <FormStyled onSubmit={this.handleAdvSubmit} id="FormAd">
+                {this.props.chapters.map((chapter)=>{
+                    return(
+                        <div>
+                        <AdvCard onClick={()=>this.handleChapterId(chapter._id, chapter.title)}>{chapter.title}</AdvCard>
+                        </div>
+                    )
+                })}
+                <FormStyled onSubmit={this.handleEncSubmit} id="FormAd">
                     <FormDiv>
                         <TitleDiv>
                             <LabelStyle htmlFor="location">Location: </LabelStyle>
                             <InputStyle type="text" name="location" placeholder="Location" onChange={this.handleInput} />
+                        </TitleDiv>
+                        <TitleDiv>
+                            <LabelStyle htmlFor="chapter">chapter title: </LabelStyle>
+                            <h4>{this.state.chapterTitle}</h4>
                         </TitleDiv>
                         <TitleDiv>
                             <LabelStyle htmlFor="map_location_number">Location Number: </LabelStyle>
@@ -149,17 +199,17 @@ class NewEncounter extends Component {
                     </FormDiv>
                 </FormStyled>
                 <h2>Dangers</h2>
-                <FormStyled onSubmit={this.handleNewInfoSubmit} id="info">
+                <FormStyled onSubmit={this.handleNewDangerSubmit} id="info">
                     <FormDiv>
                         <TitleDiv>
                             <LabelStyle htmlFor="title">Type of Danger</LabelStyle>
-                            <InputStyle type="text" name="title" placeholder="Type of Danger" onChange={this.handleInfoInput} />
+                            <InputStyle type="text" name="title" placeholder="Type of Danger" onChange={this.handleDangInput} />
                         </TitleDiv>
                         <div>
                             <div>
                                 <LabelStyle htmlFor="description">Danger information: </LabelStyle>
                             </div>
-                            <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Infomation on the Danger" onChange={this.handleInfoInput}></TextAreaStyle >
+                            <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Infomation on the Danger" onChange={this.handleDangInput}></TextAreaStyle >
                         </div>
                         <p>Same with the information. Once submitted, you can Add more</p>
                         <ButtonDiv>
@@ -210,7 +260,7 @@ class NewEncounter extends Component {
                     </FormDiv>
                 </FormStyled>
                         <ButtonDiv>
-                            <SubmitButton type="submit" form="FormAd">Add Adventure</SubmitButton>
+                            <SubmitButton type="submit" form="FormAd">Add Encounter</SubmitButton>
                         </ButtonDiv>
             </FormContainer>
         )

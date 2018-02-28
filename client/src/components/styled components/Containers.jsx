@@ -136,6 +136,12 @@ export const AdvCard = styled.button`
         :focus {
             background-color:#09E0C4;
         }
+        :active {
+            background-color:#09E0C4;
+        }
+        :target {
+            background-color:#09E0C4;
+        }
 
 `
 
