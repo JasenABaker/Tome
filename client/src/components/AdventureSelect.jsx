@@ -33,6 +33,7 @@ class AdventureSelect extends Component {
         return(
             <ContainerOne>
                 <LeftSide>
+                    
                 <Link to={'/new'} style={{ textDecoration: 'none', color: 'inherit' }}><AddButton>
                         Add
                     </AddButton>
@@ -53,7 +54,7 @@ class AdventureSelect extends Component {
                 <EditButton>
                 edit
                 </EditButton>
-                <DeleteButton onClick={()=>this.handleDelete(adven.id)} >
+                <DeleteButton onClick={()=>this.handleDelete} >
                 delete
                 </DeleteButton>
                 </ButtonContainer> :

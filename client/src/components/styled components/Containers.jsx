@@ -63,11 +63,12 @@ export const ContainerOne = styled.div`
 `
 
 export const LeftSide = styled.div`
+    margin-top: 20px;
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
 
     @media screen and (min-width: 500px){
@@ -86,13 +87,16 @@ export const RightSide = styled.div`
         display: none;
     }
 `
-export const InsideLeft = LeftSide.extend`
-    height: 80%;
-    justify-content: space-between;
+export const InsideLeft = styled.div`
+    min-height: 50%;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 
 `
 export const CardContainer = InsideLeft.extend`
-    height: 25%;
+    height: 30%;
     justify-content: space-between;
 `
 export const ButtonContainer = styled.div`
@@ -115,6 +119,7 @@ export const ButtonContainer2 = styled.div`
 `
 
 export const AdvCard = styled.button`
+    margin-bottom: 10px;
     height: 50px;
     width: 200px;
     background-color: #136F63;

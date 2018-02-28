@@ -1,6 +1,7 @@
 Adventure.destroy_all
 
 
+
 forge_of_fury = Adventure.create!({
     title: "The Forge of Fury",
     intro: "TWO CENTURIES AGO, THE GREAT DWARF
