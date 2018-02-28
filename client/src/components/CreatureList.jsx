@@ -13,7 +13,7 @@ let legend = null
 
 
 const CreatureList = (props) => {
-    const creature = props.creature.creatures
+    const creature = props.creature
     
     if(!(creature.damage_immunities === "")){
         prop1 =  <PropertyLineFirst>

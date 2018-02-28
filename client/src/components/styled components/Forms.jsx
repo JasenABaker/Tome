@@ -108,3 +108,16 @@ outline-style:none;
     box-shadow: 0 5px 15px rgba(63,136,197, .4)
 }
 `
+
+export const MonsterContainer = styled.div`
+    margin: 10px 0 5px 11px;
+    height: 300px;
+    width: 95%;
+    background-color: #F9F5D9;
+    border: 1px: solid black;
+    display: flex;
+    justify-content: space-between:
+    align-items: center;
+    overflow: scroll;
+
+`

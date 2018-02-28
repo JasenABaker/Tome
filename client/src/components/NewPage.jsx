@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Redirect} from 'react-router-dom'
 import axios from 'axios'
 import {NewPageContainer, NewContainer} from './styled components/Containers'
-import {EditButtonSquare} from './styled components/Buttons'
+import {SubmitButton} from './styled components/Buttons'
 import NewAdventure from './NewAdventure'
 import NewChapter from './NewChapter'
 import NewEncounter from './NewEncounter'
@@ -13,7 +13,7 @@ class NewPage extends Component {
         adventure:{},
         chapters: [],
         encounters: [],
-        showEncounterForm: false,
+        showEncounterForm: true,
         showChapterForm: false,
         showAdvForm: true,
         redirect: false
@@ -51,9 +51,9 @@ class NewPage extends Component {
             
             this.state.redirect ? <Redirect to="/adventures" /> :
             <NewPageContainer>
-                <div>
-                <EditButtonSquare onClick={this.handleSubmitAll}>Submit</EditButtonSquare>
-                </div>
+                
+                <SubmitButton onClick={this.handleSubmitAll}>Submit</SubmitButton>
+               
             <NewContainer>
                 {this.state.showAdvForm ?
                 <NewAdventure addNewAdv={this.props.addNewAdv} setAdventure={this.setAdventure}/> : 

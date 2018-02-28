@@ -38,7 +38,7 @@ stroke: #922610;
 `
 
 export const CreatureHeading = styled.div`
-    h1{
+    h1 {
     font-family: 'Libre Baskerville', 'Lora', 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
     color: #922610;
     font-size: 23px;

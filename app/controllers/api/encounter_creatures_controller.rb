@@ -31,7 +31,7 @@ class Api::EncounterCreaturesController < ApplicationController
     
         private
         def encounter_creature_params
-            params.require(:encounter_creature).permit(:creatures)
+            params.require(:encounter_creature).permit(:encounter_id, :count, creatures: {})
         end
 
 

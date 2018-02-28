@@ -91,5 +91,14 @@ export const DeleteButtonSquare = DeleteButton.extend`
         border-radius: 0;
 `
 
+export const SubmitButton = EditButtonSquare.extend`
+    order: 2;
+@media screen and (min-width: 500px){
+    order: 0;
+    
+}
+
+`
+
 
 
