@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom'
 import axios from 'axios'
 import {NewPageContainer, NewContainer} from './styled components/Containers'
 import {SubmitButton} from './styled components/Buttons'
+import EditAdventure from './EditAdventure'
 
 
 
@@ -21,21 +22,27 @@ class EditPage extends Component {
         const resEnc = await axios.get(`/api/encounter`)
         const resCrea = await axios.get(`/api/encounter_creatures`)
         let enc = null
+        let crea = null
+        
         resChap.data.map((chap)=>{
             enc = resEnc.data.filter((encz)=>{
                 encz.chapter_id === chap.id
                 return encz
-            })
-        })
-        let crea = null
+            })})
+        
+        if (enc) {
         enc.map((enc)=>{
             crea = resCrea.data.filter((cre)=>{
                 cre.encounter_id = enc.id
                 return cre
             })
         })
+        }else {
+            crea = null
+        }
         this.setState({pageNotLoaded: false, adventure: resAdv.data, chapters: resChap.data, encounters: enc, creatures: crea})
     }
+
     handleSubmitAll = async () =>{
         this.setState({redirect: true})
     }
@@ -46,6 +53,7 @@ class EditPage extends Component {
             <NewPageContainer>
                 <SubmitButton onClick={this.handleSubmitAll}>Submit</SubmitButton>
                 <NewContainer>
+                    <EditAdventure adventure={this.state.adventure} {...this.props}/>
                 </NewContainer>
             </NewPageContainer>
         )

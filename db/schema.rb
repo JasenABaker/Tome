@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228172726) do
+ActiveRecord::Schema.define(version: 20180301232507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20180228172726) do
     t.datetime "map_updated_at"
     t.jsonb "hooks", default: [], array: true
     t.jsonb "additional_info", default: [], array: true
+    t.string "mapUrl"
   end
 
   create_table "chapters", force: :cascade do |t|
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(version: 20180228172726) do
     t.string "map_content_type"
     t.integer "map_file_size"
     t.datetime "map_updated_at"
+    t.string "mapUrl"
     t.index ["adventure_id"], name: "index_chapters_on_adventure_id"
   end
 

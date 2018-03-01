@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {AdvShowPage, ButtonContainer2} from './styled components/Containers'
 import {AddButton, EditButtonSquare, DeleteButtonSquare} from './styled components/Buttons'
+import {ImgPreview} from './styled components/Forms'
 
 
 
@@ -13,6 +14,7 @@ export const AdventureShow = (props) =>{
         <AdvShowPage>
         <h1>{adventure.title}</h1>
         <p>{adventure.synopsis}</p>
+        <ImgPreview><img src={adventure.mapUrl} alt={adventure.title}/></ImgPreview>
         <Link to={`/adventures/${adventure.id}`} style={{ textDecoration: 'none', color: 'inherit' }}> 
             <AddButton>
             Play

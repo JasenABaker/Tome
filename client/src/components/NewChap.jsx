@@ -9,8 +9,8 @@ let additionalInfo = null
 
 const NewChap = (props) => {
     const chap = props.chapter
-    if (chap.image_base) {
-        map = <ImgPreview><img src={chap.image_base} alt={chap.title} /></ImgPreview>
+    if (chap.mapUrl) {
+        map = <ImgPreview><img src={chap.mapUrl} alt={chap.title} /></ImgPreview>
     } else {
         map = <Preview><p>none</p></Preview>
     }

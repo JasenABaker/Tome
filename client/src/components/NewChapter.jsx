@@ -16,18 +16,16 @@ class NewAdventure extends Component {
     }
     handleImageChange = (event) =>{
         event.preventDefault()
-        let reader = new FileReader()
-        let file = event.target.files[0]
+        const attr = event.target.name
+        const val = event.target.value
+        const newChap = { ...this.state.newChapter}
+        newChap[attr] = val
+        this.setState({ newChapter: newChap, imagePreviewUrl:event.target.value })
+
         
-        reader.onloadend = () => {
-            const chap = {...this.state.newChapter}
-            chap.image_base = reader.result
-        this.setState({file: file, imagePreviewUrl: reader.result, newChapter: chap})
-        } 
-        reader.readAsDataURL(file)
-
-
     }
+
+
 
     handleInput = (event) => {
         const attr = event.target.name
@@ -123,9 +121,9 @@ class NewAdventure extends Component {
                             <TextAreaStyle name="intro" id="" cols="30" rows="10" placeholder="Text for the introduction" onChange={this.handleInput}></TextAreaStyle >
                         </div>
                         <div>
-                            <LabelStyle htmlFor="image_base">Map for the Chapter: </LabelStyle>
+                            <LabelStyle htmlFor="mapUrl">Map for the Chapter: </LabelStyle>
                             </div>
-                            <FileUpload type="file" name="image_base" placeholder="upload" onChange={this.handleImageChange} />
+                            <FileUpload type="text" name="mapUrl" placeholder="upload" onChange={this.handleImageChange} />
                             <ImgPreview>{$imagePreview}</ImgPreview>
 
                             

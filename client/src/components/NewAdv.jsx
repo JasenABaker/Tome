@@ -9,8 +9,8 @@ let additionalInfo = null
 
 const NewAdv = (props) => {
     const adv = props.adventure
-    if (adv.image_base) {
-        map = <ImgPreview><img src={adv.image_base} alt={adv.title} /></ImgPreview>
+    if (adv.mapUrl) {
+        map = <ImgPreview><img src={adv.mapUrl} alt={adv.title} /></ImgPreview>
     } else {
         map = <Preview><p>none</p></Preview>
     }
