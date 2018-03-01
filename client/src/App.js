@@ -8,6 +8,7 @@ import Home from './components/Home'
 import AdventureSelect from './components/AdventureSelect'
 import Adventure from './components/Adventure'
 import NewPage from './components/NewPage'
+import EditPage from './components/EditPage'
 
 
 class App extends Component {
@@ -44,6 +45,12 @@ class App extends Component {
       )
     }
 
+    const EditPageComp = (props) =>{
+      return (
+        <EditPage {...props} />
+      )
+    }
+
     
     return (
   
@@ -56,6 +63,7 @@ class App extends Component {
                 <Route exact path='/' component={Home}/>
                 <Route exact path='/adventures' render={AdSelect}/>
                 <Route exact path='/adventures/:id' component={Adventure}/>
+                <Route exact path='/adventures/:id/edit' render={EditPageComp}/>
                 <Route exact path='/new' render={NewPageComp} />
                 </Switch>
         </div>
