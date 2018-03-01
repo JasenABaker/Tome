@@ -8,6 +8,8 @@ import NewChapter from './NewChapter'
 import NewEncounter from './NewEncounter'
 import NewMonsterForm from './NewMonsterForm'
 import NewAdv from './NewAdv'
+import NewChap from './NewChap'
+import NewEnc from './NewEnc'
 
 
 class NewPage extends Component {
@@ -40,11 +42,11 @@ class NewPage extends Component {
         this.state.encounters.unshift(encounter)
     }
     setChapter = () =>{
-        this.setState({showChapterForm: false, showEncounterForm: true})
+        this.setState({showChapterForm: false, chapFormComplete: true, showEncounterForm: true})
     }
     setEncounter = () => {
 
-        this.setState({showEncounterForm: false, showMonsterForm: true})
+        this.setState({showEncounterForm: false, encFormComplete: true, showMonsterForm: true})
     }
     render(){     
         return(
@@ -57,9 +59,19 @@ class NewPage extends Component {
                 {this.state.showAdvForm ?
                 <NewAdventure addNewAdv={this.props.addNewAdv} setAdventure={this.setAdventure}/> : <NewAdv adventure={this.state.adventure} /> }
                 {this.state.showChapterForm ?
-                <NewChapter pushChapter={this.pushChapter} setChapter={this.setChapter} advenId={this.state.adventure.id} /> : <h1>Chapters</h1> 
-                }
-                {this.state.showEncounterForm ? <NewEncounter  chapters={this.state.chapters} pushEncounter={this.pushEncounter}  setEncounter={this.setEncounter}/>: <h1>Encounters</h1>}
+                <NewChapter pushChapter={this.pushChapter} setChapter={this.setChapter} advenId={this.state.adventure.id} /> :
+                this.state.chapFormComplete ? 
+                this.state.chapters.map((chap)=> {
+                    return (<NewChap chapter={chap}/>
+                )}) : <h1>Chapter</h1>
+                } 
+                {this.state.showEncounterForm ? <NewEncounter  chapters={this.state.chapters} pushEncounter={this.pushEncounter}  setEncounter={this.setEncounter}/>: 
+                this.state.encFormComplete ?
+                this.state.encounters.map((enc)=>{
+                    return (
+                        <NewEnc encounters={enc} />
+                    )
+                }) : <h1>Encounters</h1>}
                 {this.state.showMonsterForm ? <NewMonsterForm encounters={this.state.encounters}/> : null}
             </NewContainer>
             </NewPageContainer>

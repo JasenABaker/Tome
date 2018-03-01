@@ -28,6 +28,6 @@ class Api::ChaptersController < ApplicationController
         private
         def chapter_params
             params[:chapter][:descriptions] ||=[]
-            params.require(:chapter).permit(:title, :intro,  :map, instructions:  [:title, :description], descriptions: [])
+            params.require(:chapter).permit(:title, :intro,  :image_base, instructions:  [:title, :description], descriptions: [])
         end
 end

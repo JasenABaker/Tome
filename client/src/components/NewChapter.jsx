@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import {Redirect} from 'react-router-dom'
-import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton } from './styled components/Forms'
+import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, ImgPreview } from './styled components/Forms'
 
 
 class NewAdventure extends Component {
@@ -11,6 +11,22 @@ class NewAdventure extends Component {
         instructions: [],
         inp: {},
         desc: "",
+        file: [],
+        imagePreviewUrl: ""
+    }
+    handleImageChange = (event) =>{
+        event.preventDefault()
+        let reader = new FileReader()
+        let file = event.target.files[0]
+        
+        reader.onloadend = () => {
+            const chap = {...this.state.newChapter}
+            chap.image_base = reader.result
+        this.setState({file: file, imagePreviewUrl: reader.result, newChapter: chap})
+        } 
+        reader.readAsDataURL(file)
+
+
     }
 
     handleInput = (event) => {
@@ -79,6 +95,17 @@ class NewAdventure extends Component {
     }
 
     render() {
+        let {imagePreviewUrl} = {
+            file: this.state.file,
+            imagePreviewUrl: this.state.imagePreviewUrl
+        }
+        let $imagePreview = null;
+        if (imagePreviewUrl) {
+            $imagePreview = (<img src={imagePreviewUrl} />)
+            
+        }  else {
+            $imagePreview = (<div>Please select an Image for Preview</div>);
+        } 
         return (
         
             <FormContainer>
@@ -95,10 +122,13 @@ class NewAdventure extends Component {
                             </div>
                             <TextAreaStyle name="intro" id="" cols="30" rows="10" placeholder="Text for the introduction" onChange={this.handleInput}></TextAreaStyle >
                         </div>
-                        <TitleDiv>
-                            <LabelStyle htmlFor="map">Map for this Chapter: </LabelStyle>
-                            <FileUpload type="file" name="map" placeholder="upload" onChange={this.handleInput} />
-                        </TitleDiv>
+                        <div>
+                            <LabelStyle htmlFor="image_base">Map for the Chapter: </LabelStyle>
+                            </div>
+                            <FileUpload type="file" name="image_base" placeholder="upload" onChange={this.handleImageChange} />
+                            <ImgPreview>{$imagePreview}</ImgPreview>
+
+                            
                     </FormDiv>
                 </FormStyled>
                 <h2>Instructions</h2>

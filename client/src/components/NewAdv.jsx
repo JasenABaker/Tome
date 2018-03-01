@@ -12,7 +12,7 @@ const NewAdv = (props) => {
     if (adv.image_base) {
         map = <ImgPreview><img src={adv.image_base} alt={adv.title} /></ImgPreview>
     } else {
-        map = <p>none</p>
+        map = <Preview><p>none</p></Preview>
     }
     if (adv.hooks) {
         hooks = <div>
@@ -30,7 +30,7 @@ const NewAdv = (props) => {
                 })}
             </Preview></div>
     }else {
-                hooks = <p>none</p>
+                hooks = <Preview><p>none</p></Preview>
         }
         if (adv.additional_info) {
             additionalInfo = <Preview>
@@ -44,7 +44,7 @@ const NewAdv = (props) => {
             })}
         </Preview>
         } else {
-            additionalInfo = <p>none</p>
+            additionalInfo = <Preview><p>none</p></Preview>
         }
             return (
         <FormContainer>
