@@ -54,7 +54,7 @@ class AdventureSelect extends Component {
                 <EditButton>
                 edit
                 </EditButton>
-                <DeleteButton onClick={()=>this.handleDelete} >
+                <DeleteButton onClick={()=>this.handleDelete(adven.id)} >
                 delete
                 </DeleteButton>
                 </ButtonContainer> :

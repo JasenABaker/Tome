@@ -21,6 +21,9 @@ export const FormContainer = styled.div`
     }
 
 `
+export const FormContainerTwo = FormContainer.extend`
+    justify-content: flex-start;
+`
 
 export const FormStyled = styled.form`
     min-height: 30vh;
@@ -111,7 +114,7 @@ outline-style:none;
 
 export const MonsterContainer = styled.div`
     margin: 10px 0 5px 11px;
-    height: 300px;
+    height: 80vh;
     width: 95%;
     background-color: #F9F5D9;
     border: 1px: solid black;

@@ -22,13 +22,7 @@ class NewEncounter extends Component {
         info: {},
         subs: [],
         sub: {},
-        search: "",
-        result: [],
-        resultCreature: {},
-        count: 0,
-        encounter_creature: {},
-        isCreatureFound: false,
-        falseMessage: "",
+        
     }
     handleChapterId = (chapterId, chapterTitle) => {
         const newEnc = { ...this.state.newEncounter }
@@ -145,47 +139,7 @@ class NewEncounter extends Component {
         event.preventDefault()
         this.newEncounterPost()
         event.target.reset()
-
     }
-    handleSearchInput = (event)=>{
-        let search = this.state.search
-        search = event.target.value
-        this.setState({ search})
-    }
-
-    handleSearchSubmit = async (event) =>{
-        event.preventDefault()
-        const search = this.state.search
-        const newSearc = search.replace(/\b[a-z]/g,(f)=>{return f.toUpperCase();})
-        const some = newSearc.split(" ").join("+")
-        const resSearch = await axios.get(`http://www.dnd5eapi.co/api/monsters/?name=${some}`)
-        if ((resSearch.data.count !==0)){
-        const resCrea = await axios.get(`${resSearch.data.results[0].url}`)
-    
-        this.setState({resultCreature: resCrea.data, isCreatureFound: true})
-        
-        
-        } else {
-            const creature = "Can't find creatute. Be more specific, i.e. adult blue dragon instead of adult dragon."
-            this.setState({isCreatureFound: false, falseMessage: creature})
-        }
-        
-    }
-
-    handleMonsterSubmit = () =>{
-        if((this.state.isCreatureFound) && (this.state.count > 0)){
-            const encounterCreature = {...this.state.encounter_creature}
-            encounterCreature.count = this.state.count
-            encounterCreature.creatures = this.state.resultCreature.creatures
-            this.setState({encounter_creature: encounterCreature})
-        } else {
-            return null
-        }
-    }
-
-
-
-
 
     render() {
 
@@ -194,7 +148,7 @@ class NewEncounter extends Component {
             <FormContainer>
                 <h1>New Encounter</h1>
                 {this.props.chapters.map((chapter) => {
-                    console.log(chapter.id)
+                    
                     return (
                         <div>
                             <AdvCard onClick={() => this.handleChapterId(chapter.id, chapter.title)}>{chapter.title}</AdvCard>
@@ -314,38 +268,10 @@ class NewEncounter extends Component {
                         </ButtonDiv>
                     </FormDiv>
                 </FormStyled>
-                <h2>Creatures!</h2>
-                <FormStyled onSubmit={this.handleSearchSubmit} id="info">
-                    <FormDiv>
-                        <TitleDiv>
-                            <LabelStyle htmlFor="srch">Search Monsters</LabelStyle>
-                            <InputStyle ref="srch" type="search" placeholder="Search..." onChange={this.handleSearchInput} />
-                        </TitleDiv>
-                        <ButtonDiv>
-                            <SubmitButton type="submit">Search</SubmitButton>
-                        </ButtonDiv>
-            
-                    </FormDiv>
-                </FormStyled>
-                <FormStyled onSubmit={this.handleNewSubSubmit} id="info">
-                    <FormDiv>
-                    <MonsterContainer>
-                        { this.state.isCreatureFound ?
-                        <CreatureList creature={this.state.resultCreature} /> : <p>{this.state.falseMessage}</p> }
-                    </MonsterContainer>
-                    <TitleDiv>
-                            <LabelStyle htmlFor="count">Number of Monsters</LabelStyle>
-                            <InputStyle name="count" type="number" placeholder="0" onChange={this.handleSubInput} />
-                        </TitleDiv>
-                        
-                        <ButtonDiv>
-                            <SubmitButton type="submit" form="FormAd">Add Monster</SubmitButton>
-                        </ButtonDiv>
-                    </FormDiv>
-                </FormStyled>
                 
                 <ButtonDiv>
                     <SubmitButton type="submit" form="FormAd">Add Encounter</SubmitButton>
+                    <SubmitButton onClick={()=>this.props.setEncounter()}>Finish</SubmitButton>
                 </ButtonDiv>
             </FormContainer>
         )

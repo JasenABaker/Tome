@@ -6,6 +6,7 @@ import {SubmitButton} from './styled components/Buttons'
 import NewAdventure from './NewAdventure'
 import NewChapter from './NewChapter'
 import NewEncounter from './NewEncounter'
+import NewMonsterForm from './NewMonsterForm'
 
 
 class NewPage extends Component {
@@ -13,22 +14,14 @@ class NewPage extends Component {
         adventure:{},
         chapters: [],
         encounters: [],
-        showEncounterForm: true,
+        showEncounterForm: false,
         showChapterForm: false,
         showAdvForm: true,
+        showMonsterForm: false,
         redirect: false
         
     }
     handleSubmitAll = async () =>{
-        // const adventure = {...this.state.adventure}
-        // const resAdv = await axios.post('api/adventures',  this.state.adventure)
-        // adventure.id = resAdv.data.id
-        // await this.state.chapters.map((chapter)=>{
-        // const resChap = axios.post(`api/adventures/${adventure.id}/chapters`, chapter)
-        //     })
-        // await this.state.encounters.map((enc)=>{
-        //     const resEnc = axios.post(`api/encounter`, enc)
-        // })
         this.props.addNewAdv(this.state.adventure)
         this.setState({redirect: true})
 
@@ -46,6 +39,10 @@ class NewPage extends Component {
     setChapter = () =>{
         this.setState({showChapterForm: false, showEncounterForm: true})
     }
+    setEncounter = () => {
+
+        this.setState({showEncounterForm: false, showMonsterForm: true})
+    }
     render(){     
         return(
             
@@ -53,7 +50,6 @@ class NewPage extends Component {
             <NewPageContainer>
                 
                 <SubmitButton onClick={this.handleSubmitAll}>Submit</SubmitButton>
-               
             <NewContainer>
                 {this.state.showAdvForm ?
                 <NewAdventure addNewAdv={this.props.addNewAdv} setAdventure={this.setAdventure}/> : 
@@ -61,8 +57,8 @@ class NewPage extends Component {
                 {this.state.showChapterForm ?
                 <NewChapter pushChapter={this.pushChapter} setChapter={this.setChapter} advenId={this.state.adventure.id} /> : <h1>Chapters</h1> 
                 }
-                {this.state.showEncounterForm ? <NewEncounter  chapters={this.state.chapters} pushEncounter={this.pushEncounter} />: <h1>Encounters</h1>}
-            
+                {this.state.showEncounterForm ? <NewEncounter  chapters={this.state.chapters} pushEncounter={this.pushEncounter}  setEncounter={this.setEncounter}/>: <h1>Encounters</h1>}
+                {this.state.showMonsterForm ? <NewMonsterForm encounters={this.state.encounters}/> : null}
             </NewContainer>
             </NewPageContainer>
         )

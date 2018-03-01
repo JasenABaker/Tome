@@ -57,7 +57,7 @@ export const HomeCard = styled.div`
 `
 
 export const ContainerOne = styled.div`
-    height: 90vh;
+    min-height: 90vh;
     width: 100vw;
     display: flex;
 `
@@ -88,7 +88,7 @@ export const RightSide = styled.div`
     }
 `
 export const InsideLeft = styled.div`
-    min-height: 50%;
+    min-height: 50vh;
     margin: 10px 0;
     display: flex;
     flex-direction: column;
@@ -96,7 +96,7 @@ export const InsideLeft = styled.div`
 
 `
 export const CardContainer = InsideLeft.extend`
-    height: 30%;
+    min-height:40%;
     justify-content: space-between;
 `
 export const ButtonContainer = styled.div`

@@ -10,6 +10,7 @@ let prop3 = null
 let prop4 = null
 let prop5 = null
 let legend = null
+let spec = null
 
 
 const CreatureList = (props) => {
@@ -65,6 +66,19 @@ const CreatureList = (props) => {
     }else {
         prop5 = null
     
+    }
+    if(creature.special_abilities){
+        spec = creature.special_abilities.map((abl)=>{
+            return (
+                <PropertyBlock>
+            <h4>{abl.name}. </h4>
+            <p>{abl.desc}</p>
+            </PropertyBlock>
+            )
+        }
+    )
+    } else {
+        spec = null
     }
 
     if (creature.legendary_actions){
@@ -158,15 +172,7 @@ const CreatureList = (props) => {
                     <polyline points="0,0 400,2.5 0,5"></polyline>
                 </TaperedRule>
 		
-                {creature.special_abilities.map((abl)=>{
-                    return (
-                        <PropertyBlock>
-                    <h4>{abl.name}. </h4>
-                    <p>{abl.desc}</p>
-                    </PropertyBlock>
-                    )
-                }
-            )}
+                
                 <Actions>
                     <h3>Actions</h3>
 
@@ -178,7 +184,7 @@ const CreatureList = (props) => {
                     </PropertyBlock> 
                         )
                 })}
-			
+			{spec}
 		</Actions>
 		{legend}
 	<OrangeBorderBottom />
