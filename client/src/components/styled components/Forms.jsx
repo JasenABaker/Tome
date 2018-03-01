@@ -9,7 +9,7 @@ export const FormContainer = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin: 30px 0;
+    margin: 30px 10px;
 
     h1, h2 {
         font-size: 1.5em;
@@ -74,9 +74,9 @@ export const LabelStyle = styled.label`
 `
 
 export const FileUpload = styled.input`
-    margin-right: 10px;
+    margin: 5px 10px;
     height: 50px;
-    width: 50%;
+    width: 90%;
     background-color: #003D5B;
     color: #FFFFFF;
     font-size: 18px;
@@ -122,5 +122,31 @@ export const MonsterContainer = styled.div`
     justify-content: space-between:
     align-items: center;
     overflow: scroll;
+
+`
+
+export const Preview = styled.div`
+    height: 20vh;
+    width: 90%;
+    color: #FFBA08;
+    overflow: scroll;
+    background-color: #10181B;
+    border: 1px solid black;
+     h4 {
+        color: #003D5B;
+     }
+
+`
+
+export const ImgPreview = styled.div`
+     margin-left: 11px;
+     margin-bottom: 5px;
+     height: 200px;
+     width: 95%;
+
+     img {
+         height:100%;
+         width: 100%;
+     }
 
 `

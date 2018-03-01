@@ -68,7 +68,6 @@ class NewAdventure extends Component {
         const resChap = await axios.post(`api/adventures/${this.props.advenId}/chapters`, this.state.newChapter)
         const updateChapter = {...this.state.newChapter}
         updateChapter.id = resChap.data.id
-        console.log(updateChapter.id)
         this.props.pushChapter(updateChapter)
 
     }

@@ -31,6 +31,6 @@ class Api::AdventuresController < ApplicationController
 
     private
     def adventure_params
-        params.require(:adventure).permit(:title, :intro, :synopsis, :running_the_adventure, :map, :hooks_intro, hooks: [:title, :description], additional_info: [:title, :description])
+        params.require(:adventure).permit(:title, :intro, :synopsis, :running_the_adventure, :image_base, :hooks_intro, hooks: [:title, :description], additional_info: [:title, :description])
     end
 end

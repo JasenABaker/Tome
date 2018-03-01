@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import {Redirect} from 'react-router-dom'
-import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton } from './styled components/Forms'
+import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, ImgPreview } from './styled components/Forms'
 
 
 class NewAdventure extends Component {
@@ -11,9 +11,23 @@ class NewAdventure extends Component {
         infos: [],
         hook: {},
         info: {},
-        redirect: false
+        file: [],
+        imagePreviewUrl: ""
     }
+    handleImageChange = (event) =>{
+        event.preventDefault()
+        let reader = new FileReader()
+        let file = event.target.files[0]
+        
+        reader.onloadend = () => {
+            const adv = {...this.state.newAdventure}
+            adv.image_base = reader.result
+        this.setState({file: file, imagePreviewUrl: reader.result, newAdventure: adv})
+        } 
+        reader.readAsDataURL(file)
 
+
+    }
     handleInput = (event) => {
         const attr = event.target.name
         const val = event.target.value
@@ -75,20 +89,37 @@ class NewAdventure extends Component {
         const res = await axios.post('/api/adventures', this.state.newAdventure)
         const updateNewAdv = {...this.state.newAdventure}
         updateNewAdv.id = res.data.id
+        console.log(res.data)
         this.props.setAdventure(updateNewAdv)
+    }
+
+    insertImage = (image) => {
+        const newAdv = {...this.state.newAdventure}
+        newAdv.image_base = image
+        this.setState({newAdventure: newAdv})
     }
 
     handleAdvSubmit = async (event) => {
         event.preventDefault()
         this.newAdventurePost()
-       
+
     }
 
-    render() {
 
-        null
+    render() {
+        let {imagePreviewUrl} = {
+            file: this.state.file,
+            imagePreviewUrl: this.state.imagePreviewUrl
+        }
+        let $imagePreview = null;
+        if (imagePreviewUrl) {
+            $imagePreview = (<img src={imagePreviewUrl} />)
+            
+        }  else {
+            $imagePreview = (<div>Please select an Image for Preview</div>);
+        }
+
         return (
-            this.state.redirect ? <Redirect to="/adventures"/> : 
             <FormContainer>
                 <h1>New Adventure</h1>
                 <FormStyled onSubmit={this.handleAdvSubmit} id="FormAd">
@@ -107,19 +138,20 @@ class NewAdventure extends Component {
                             <div>
                                 <LabelStyle htmlFor="synopsis">Adventure Synopsis: </LabelStyle>
                             </div>
-                            <TextAreaStyle name="synopsos" id="" cols="30" rows="10" placeholder="Write a synopsis of the adventure." onChange={this.handleInput}></TextAreaStyle >
+                            <TextAreaStyle name="synopsis" id="" cols="30" rows="10" placeholder="Write a synopsis of the adventure." onChange={this.handleInput}></TextAreaStyle >
                         </div>
                         <div>
                             <div>
                                 <LabelStyle htmlFor="running_the_adventure">How to run the Adventure: </LabelStyle>
                             </div>
                             <TextAreaStyle name="running_the_adventure" id="" cols="30" rows="10" placeholder="Notes on how to run the adventure" onChange={this.handleInput}></TextAreaStyle >
-                        </div>
-                        <TitleDiv>
-                            <LabelStyle htmlFor="map">Stater Map for the Adventure: </LabelStyle>
-                            <FileUpload type="file" name="map" placeholder="upload" onChange={this.handleInput} />
-                        </TitleDiv>
-                        <div>
+                       
+                            <div>
+                            <LabelStyle htmlFor="image_base">Stater Map for the Adventure: </LabelStyle>
+                            </div>
+                            <FileUpload type="file" name="image_base" placeholder="upload" onChange={this.handleImageChange} />
+                            <ImgPreview>{$imagePreview}</ImgPreview>
+
                             <div>
                                 <LabelStyle htmlFor="hooks_intro">For your hooks to the adventure write a short paragrah about what options the DM may have: </LabelStyle>
                             </div>

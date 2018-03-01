@@ -7,6 +7,7 @@ import NewAdventure from './NewAdventure'
 import NewChapter from './NewChapter'
 import NewEncounter from './NewEncounter'
 import NewMonsterForm from './NewMonsterForm'
+import NewAdv from './NewAdv'
 
 
 class NewPage extends Component {
@@ -18,7 +19,9 @@ class NewPage extends Component {
         showChapterForm: false,
         showAdvForm: true,
         showMonsterForm: false,
-        redirect: false
+        redirect: false,
+        chapFormComplete: false,
+        encFormComplete: false,
         
     }
     handleSubmitAll = async () =>{
@@ -52,8 +55,7 @@ class NewPage extends Component {
                 <SubmitButton onClick={this.handleSubmitAll}>Submit</SubmitButton>
             <NewContainer>
                 {this.state.showAdvForm ?
-                <NewAdventure addNewAdv={this.props.addNewAdv} setAdventure={this.setAdventure}/> : 
-                <h1>{this.state.adventure.title}</h1>  }
+                <NewAdventure addNewAdv={this.props.addNewAdv} setAdventure={this.setAdventure}/> : <NewAdv adventure={this.state.adventure} /> }
                 {this.state.showChapterForm ?
                 <NewChapter pushChapter={this.pushChapter} setChapter={this.setChapter} advenId={this.state.adventure.id} /> : <h1>Chapters</h1> 
                 }

@@ -21,11 +21,11 @@ class NewMonsterForm extends Component {
     }
 
     handleEncounterId = (encounId, encounterLocation) => {
-        const encounterCreature = {...this.state.encounter_creature}
+        const encounterCreature = { ...this.state.encounter_creature }
         encounterCreature.encounter_id = encounId
-        this.setState({encounter_creature: encounterCreature, encounterLocation: encounterLocation, encounterId: encounId})
+        this.setState({ encounter_creature: encounterCreature, encounterLocation: encounterLocation, encounterId: encounId })
     }
-    handleCountChange = (event) =>{
+    handleCountChange = (event) => {
         let count = this.state.count
         count = event.target.value
         this.setState({ count })
@@ -65,13 +65,12 @@ class NewMonsterForm extends Component {
     }
 
     newMonsterPost = async () => {
-       const payload = {
+        const payload = {
             count: this.state.count,
             creatures: this.state.resultCreature,
             encounter_id: this.state.encounterId
         }
         const resNew = await axios.post(`/api/encounter_creatures`, payload)
-        console.log(resNew.data)
     }
 
     submit = (event) => {
@@ -82,17 +81,16 @@ class NewMonsterForm extends Component {
     }
 
     render() {
-        console.log(this.props.encounters)
         return (
             <FormContainerTwo>
-            <h2>Creatures!</h2>
-            {this.props.encounters.map((encounter)=>{
-                return(
-                    <div>
-                    <AdvCard onClick={()=>this.handleEncounterId(encounter.id, encounter.location)}>{encounter.location}</AdvCard>
-                    </div>
-                )
-            })}
+                <h2>Creatures!</h2>
+                {this.props.encounters.map((encounter) => {
+                    return (
+                        <div>
+                            <AdvCard onClick={() => this.handleEncounterId(encounter.id, encounter.location)}>{encounter.location}</AdvCard>
+                        </div>
+                    )
+                })}
                 <FormStyled onSubmit={this.handleSearchSubmit} id="info">
                     <FormDiv>
                         <TitleDiv>
@@ -102,21 +100,21 @@ class NewMonsterForm extends Component {
                         <ButtonDiv>
                             <SubmitButton type="submit">Search</SubmitButton>
                         </ButtonDiv>
-            
+
                     </FormDiv>
                 </FormStyled>
                 <FormStyled onSubmit={this.submit}>
                     <FormDiv>
                         <h3>Add to Encouter {this.state.encounterLocation}</h3>
-                    <MonsterContainer>
-                        { this.state.isCreatureFound ?
-                        <CreatureList creature={this.state.resultCreature} /> : <p>{this.state.falseMessage}</p> }
-                    </MonsterContainer>
-                    <TitleDiv>
+                        <MonsterContainer>
+                            {this.state.isCreatureFound ?
+                                <CreatureList creature={this.state.resultCreature} /> : <p>{this.state.falseMessage}</p>}
+                        </MonsterContainer>
+                        <TitleDiv>
                             <LabelStyle htmlFor="count">Number of Monsters</LabelStyle>
                             <InputStyle name="count" type="number" placeholder="0" onChange={this.handleCountChange} />
                         </TitleDiv>
-                        
+
                         <ButtonDiv>
                             <SubmitButton type="submit">Add Monster</SubmitButton>
                         </ButtonDiv>
