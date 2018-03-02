@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import axios from 'axios'
 import logo from './logo.svg';
-import Header from './components/styled components/Header'
+import {Header, HeaderDiv, NavBar, NavButtons} from './components/styled components/Header'
 import { PageContainer } from './components/styled components/Containers'
 import Home from './components/Home'
 import AdventureSelect from './components/AdventureSelect'
 import Adventure from './components/Adventure'
 import NewPage from './components/NewPage'
 import EditPage from './components/EditPage'
+import {Dragon, Rules, Spells, Monster, Knight, Castle} from './components/styled components/Svg'
 
 
 class App extends Component {
@@ -56,7 +57,31 @@ class App extends Component {
   
         
         <PageContainer>
-          <Header />
+          <Header>
+          <HeaderDiv href="/"><Dragon /><h1>Tome</h1></HeaderDiv>
+          <NavBar>
+            <NavButtons>
+              <Rules />
+              <p>rules</p>
+            </NavButtons>
+            <NavButtons>
+              <Spells />
+              <p>spells</p>
+            </NavButtons>
+            <NavButtons>
+              <Monster />
+              <p>monsters</p>
+            </NavButtons>
+            <NavButtons>
+              <Knight />
+              <p>adventures</p>
+            </NavButtons>
+            <NavButtons>
+              <Castle />
+              <p>home</p>
+            </NavButtons>
+          </NavBar>
+          </Header>
           <Router>
             <div>
               <Switch>
