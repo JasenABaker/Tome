@@ -4,6 +4,7 @@ import axios from 'axios'
 import {NewPageContainer, NewContainer} from './styled components/Containers'
 import {SubmitButton} from './styled components/Buttons'
 import EditAdventure from './EditAdventure'
+import EditChapter from './EditChapter'
 
 
 
@@ -14,7 +15,8 @@ class EditPage extends Component {
         encounters: [],
         creatures: [],
         pageNotLoaded: true,
-        redirect: false
+        redirect: false,
+        selectedChapter: {},
     }
     async componentWillMount () {
         const resAdv = await axios.get(`/api/adventures/${this.props.match.params.id}`)
@@ -43,9 +45,15 @@ class EditPage extends Component {
         this.setState({pageNotLoaded: false, adventure: resAdv.data, chapters: resChap.data, encounters: enc, creatures: crea})
     }
 
+    updateAdventure = (adv)=>{
+        this.setState({adventure: adv})
+    }
+
     handleSubmitAll = async () =>{
         this.setState({redirect: true})
     }
+
+    
     render(){
         return(
             this.state.pageNotLoaded ? <div></div> :
@@ -53,7 +61,15 @@ class EditPage extends Component {
             <NewPageContainer>
                 <SubmitButton onClick={this.handleSubmitAll}>Submit</SubmitButton>
                 <NewContainer>
-                    <EditAdventure adventure={this.state.adventure} {...this.props}/>
+                    <EditAdventure adventure={this.state.adventure} {...this.props} upadateAdventure={this.upadateAdventure}/>
+                    
+                    {this.state.chapters.map((chap)=>{
+                        return(
+                            <EditChapter chapter={chap} />
+                        )
+                    })}
+                   
+                    
                 </NewContainer>
             </NewPageContainer>
         )

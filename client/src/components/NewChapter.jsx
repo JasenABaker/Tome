@@ -4,7 +4,7 @@ import {Redirect} from 'react-router-dom'
 import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, ImgPreview } from './styled components/Forms'
 
 
-class NewAdventure extends Component {
+class NewChapter extends Component {
     state = {
         newChapter: {},
         descs: [],
@@ -175,4 +175,4 @@ class NewAdventure extends Component {
     }
 }
 
-export default NewAdventure
+export default NewChapter

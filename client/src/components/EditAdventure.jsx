@@ -7,28 +7,20 @@ import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle
 class EditAventure extends Component {
     state = {
         editAdventure: this.props.adventure,
-        hooks: [],
-        infos: [],
+        hooks: this.props.adventure.hooks,
+        infos: this.props.adventure.additional_info,
         hook: {},
         info: {},
         file: [],
         imagePreviewUrl: "",
-        hasHooks: false,
+
         hasInfo: false,
     }
 
-    componentWillMount(){
-        if(this.props.adventure.hooks){
-            this.setState({hasHooks: true})
-        }
-        if(this.props.adventure.additional_info){
-            this.setState({hasInfo: true})
-        }
 
-    }
     
     
-    handleImageChange = (event) =>{
+handleImageChange = (event) =>{
         event.preventDefault()
         const attr = event.target.name
         const val = event.target.value
@@ -41,9 +33,9 @@ class EditAventure extends Component {
     handleInput = (event) => {
         const attr = event.target.name
         const val = event.target.value
-        const newAdv = { ...this.state.editAdventure }
-        newAdv[attr] = val
-        this.setState({ editAdventure: newAdv })
+        const editAdv = { ...this.state.editAdventure }
+        editAdv[attr] = val
+        this.setState({ editAdventure: editAdv })
 
     }
     handleHookInput = (event) => {
@@ -54,6 +46,24 @@ class EditAventure extends Component {
         this.setState({ hook })
 
     }
+    handleHookEdit = (event, i) => {
+        const attr = event.target.name
+        const val = event.target.value
+        const editAdv = {...this.state.editAdventure}
+        const editHook = [...editAdv.hooks]
+        editHook[i][attr] = val
+        this.setState({ editAdventure: editAdv })
+
+    }
+    handleInfoEdit = (event, i) => {
+        const attr = event.target.name
+        const val = event.target.value
+        const editAdv = {...this.state.editAdventure}
+        const editInfo = [...editAdv.additional_info]
+        editInfo[i][attr] = val
+        this.setState({ editAdventure: editAdv })
+
+    }
     handleInfoInput = (event) => {
         const attr = event.target.name
         const val = event.target.value
@@ -61,6 +71,34 @@ class EditAventure extends Component {
         info[attr] = val
         this.setState({ info })
 
+    }
+    
+    handleNewInfoSubmit = (event) => {
+        event.preventDefault()
+        if ((Object.keys(this.state.info).length === 2) &&
+            (this.state.info.title !== "") &&
+            (this.state.info.description !== "")) {
+            const editAdv = { ...this.state.editAdventure }
+            editAdv.additional_info.push(this.state.info)
+            event.target.reset()
+            this.setState({ ditAdventure: editAdv })
+        } else {
+            return this.state.info
+        }
+    }
+    handleNewHookSubmit = (event) => {
+        event.preventDefault()
+        if ((Object.keys(this.state.hook).length === 2) &&
+            (this.state.hook.title !== "") &&
+            (this.state.hook.description !== "")) {
+            const editAdv = { ...this.state.editAdventure }
+            editAdv.hooks.push(this.state.hook)
+            event.target.reset()
+            this.setState({ editAdventure: editAdv})
+        } else {
+
+            return this.state.hook
+        }
     }
 
     
@@ -85,6 +123,8 @@ class EditAventure extends Component {
 
 
     render() {
+        let hooks = null
+        let info = null
         const adventure = this.props.adventure
         let {imagePreviewUrl} = {
             file: this.state.file,
@@ -99,6 +139,48 @@ class EditAventure extends Component {
         } else {
             $imagePreview = (<div>Please select an Image for Preview</div>);
         }
+        if(this.props.adventure.hooks){
+            hooks = adventure.hooks.map((hook, index)=>{
+                return(
+                <FormStyled>
+                <FormDiv>
+                    <TitleDiv>
+                        <LabelStyle htmlFor="title">Title of hook :</LabelStyle>
+                        <InputStyle type="text" name="title" placeholder="Title of Hook" onChange={(event)=>this.handleHookEdit(event,index)}  value={hook.title}/>
+                    </TitleDiv>
+                    <div>
+                        <div>
+                            <LabelStyle htmlFor="description">Description of the hook: </LabelStyle>
+                        </div>
+                        <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Text for the hook" onChange={(event)=>this.handleHookEdit(event,index)}value={hook.description}></TextAreaStyle >
+                    </div>
+                </FormDiv>
+
+            </FormStyled>
+                )}) 
+            } else {
+                hooks = null
+            }
+            if(this.props.adventure.additional_info){
+                info = adventure.additional_info.map((info, index)=>{
+                    return(
+                <FormStyled onSubmit={this.handleNewInfoSubmit} id="info">
+                    <FormDiv>
+                        <TitleDiv>
+                            <LabelStyle htmlFor="title">Title of Additional Infomation :</LabelStyle>
+                            <InputStyle type="text" name="title" placeholder="Title of Additional Infomation" onChange={(event)=>this.handleInfoEdit(event,index)}  value={info.title}/>
+                        </TitleDiv>
+                        <div>
+                            <div>
+                                <LabelStyle htmlFor="description">The Infomation: </LabelStyle>
+                            </div>
+                            <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Infomation" onChange={(event)=>this.handleInfoEdit(event,index)} value={info.description}></TextAreaStyle >
+                        </div>
+                    </FormDiv>
+                </FormStyled>)})
+                }else {
+                    info = null
+                }
 
 
         return (
@@ -108,25 +190,25 @@ class EditAventure extends Component {
                     <FormDiv>
                         <TitleDiv>
                             <LabelStyle htmlFor="title">Title:</LabelStyle>
-                            <InputStyle type="text" name="title" placeholder="Title" onChange={this.handleInput} value={adventure.title} />
+                            <InputStyle type="text" name="title" placeholder="Title" onChange={this.handleInput} value={this.state.editAdventure.title} />
                         </TitleDiv>
                         <div>
                             <div>
                                 <LabelStyle htmlFor="intro">Introduction: </LabelStyle>
                             </div>
-                            <TextAreaStyle name="intro" id="" cols="30" rows="10" placeholder="Text for the introduction" onChange={this.handleInput} value={adventure.intro}></TextAreaStyle >
+                            <TextAreaStyle name="intro" id="" cols="30" rows="10" placeholder="Text for the introduction" onChange={this.handleInput} value={this.state.editAdventure.intro}></TextAreaStyle >
                         </div>
                         <div>
                             <div>
                                 <LabelStyle htmlFor="synopsis">Adventure Synopsis: </LabelStyle>
                             </div>
-                            <TextAreaStyle name="synopsis" id="" cols="30" rows="10" placeholder="Write a synopsis of the adventure." onChange={this.handleInput}value={adventure.synopsis}></TextAreaStyle >
+                            <TextAreaStyle name="synopsis" id="" cols="30" rows="10" placeholder="Write a synopsis of the adventure." onChange={this.handleInput}value={this.state.editAdventure.synopsis}></TextAreaStyle >
                         </div>
                         <div>
                             <div>
                                 <LabelStyle htmlFor="running_the_adventure">How to run the Adventure: </LabelStyle>
                             </div>
-                            <TextAreaStyle name="running_the_adventure" id="" cols="30" rows="10" placeholder="Notes on how to run the adventure" onChange={this.handleInput}value={adventure.running_the_adventure}></TextAreaStyle >
+                            <TextAreaStyle name="running_the_adventure" id="" cols="30" rows="10" placeholder="Notes on how to run the adventure" onChange={this.handleInput}value={this.state.editAdventure.running_the_adventure}></TextAreaStyle >
                             <div>
                             <LabelStyle htmlFor="mapUrl">Stater Map for the Adventure: </LabelStyle>
                             </div>
@@ -136,50 +218,54 @@ class EditAventure extends Component {
                             <div>
                                 <LabelStyle htmlFor="hooks_intro">For your hooks to the adventure write a short paragrah about what options the DM may have: </LabelStyle>
                             </div>
-                            <TextAreaStyle name="hooks_intro" id="" cols="30" rows="10" placeholder="Short paragrah introduction your hooks" onChange={this.handleInput} value={adventure.hooks_intro}></TextAreaStyle >
+                            <TextAreaStyle name="hooks_intro" id="" cols="30" rows="10" placeholder="Short paragrah introduction your hooks" onChange={this.handleInput} value={this.state.editAdventure.hooks_intro}></TextAreaStyle >
                         </div>
 
                     </FormDiv>
                 </FormStyled>
                 <h2>Hooks</h2>
-                {this.state.hasHooks ?
-                adventure.hooks.map((hook)=>{
-                    return(
-                    <FormStyled onSubmit={this.handleNewHookSubmit} id="hook">
-                    <FormDiv>
-                        <TitleDiv>
-                            <LabelStyle htmlFor="title">Title of hook :</LabelStyle>
-                            <InputStyle type="text" name="title" placeholder="Title of Hook" onChange={this.handleHookInput}  value={hook.title}/>
-                        </TitleDiv>
+                {hooks}
+                
+                <FormStyled onSubmit={this.handleNewHookSubmit} id="hook">
+                <FormDiv>
+                    <TitleDiv>
+                        <LabelStyle htmlFor="title">Title of hook :</LabelStyle>
+                        <InputStyle type="text" name="title" placeholder="Title of Hook" onChange={this.handleHookInput} />
+                    </TitleDiv>
+                    <div>
                         <div>
-                            <div>
-                                <LabelStyle htmlFor="description">Description of the hook: </LabelStyle>
-                            </div>
-                            <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Text for the hook" onChange={this.handleHookInput}value={hook.description}></TextAreaStyle >
+                            <LabelStyle htmlFor="description">Description of the hook: </LabelStyle>
                         </div>
-                    </FormDiv>
+                        <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Text for the hook" onChange={this.handleHookInput}></TextAreaStyle >
+                    </div>
+                    <ButtonDiv>
+                        <SubmitButton type="submit">Add Hook</SubmitButton>
+                    </ButtonDiv>
+                        </FormDiv>
+                </FormStyled> 
 
-                </FormStyled>
-                )}) : <p>No Hooks</p> }
+
+                
                 <h2>Additonal Infomation</h2>
-                {this.state.hasInfo ?
-                adventure.additional_info.map((info)=>{
-                    return(
+                {info}
                 <FormStyled onSubmit={this.handleNewInfoSubmit} id="info">
                     <FormDiv>
                         <TitleDiv>
                             <LabelStyle htmlFor="title">Title of Additional Infomation :</LabelStyle>
-                            <InputStyle type="text" name="title" placeholder="Title of Additional Infomation" onChange={this.handleInfoInput}  value={info.title}/>
+                            <InputStyle type="text" name="title" placeholder="Title of Additional Infomation" onChange={this.handleInfoInput} />
                         </TitleDiv>
                         <div>
                             <div>
                                 <LabelStyle htmlFor="description">The Infomation: </LabelStyle>
                             </div>
-                            <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Infomation" onChange={this.handleInfoInput} value={info.description}></TextAreaStyle >
+                            <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Infomation" onChange={this.handleInfoInput}></TextAreaStyle >
                         </div>
+                    
+                        <ButtonDiv>
+                            <SubmitButton type="submit">Add Info</SubmitButton>
+                        </ButtonDiv>
                     </FormDiv>
                 </FormStyled>
-                )}):<p>No additional info</p>}
                         <ButtonDiv>
                             <SubmitButton type="submit" form="FormAd">Add Adventure</SubmitButton>
                         </ButtonDiv>
