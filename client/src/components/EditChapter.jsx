@@ -6,12 +6,13 @@ import { FormContainerTwo, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaSt
 
 class EditChapter extends Component {
     state = {
-        editChapter: this.props.chapter,
+        editChapter: {},
         descs: [],
         desc: "",
         instructions: [],
         inp: {},
         imagePreviewUrl: "",
+        chapterNotSelected: true,
     }
 
 
@@ -49,12 +50,15 @@ class EditChapter extends Component {
 
     }
 
+    handleChapSelect = (chap)=> {
+        this.setState({editChapter: chap, chapterNotSelected: false})
+    }
 
 
     editChapterPatch = async () => {
-        const res = await axios.patch(`/api/adventures/${this.props.match.params.id}/chapters/${this.props.index}`, this.state.editChapter)
-        // console.log(this.state.editChapter.title)
-        this.setState({editChapter: res.data})
+        const res = await axios.patch(`/api/adventures/${this.props.match.params.id}/chapters/${this.state.editChapter.id}`, this.state.editChapter)
+        
+        this.props.updateChapter(res.data)
 
     }
 
@@ -171,8 +175,17 @@ class EditChapter extends Component {
         console.log(this.props.index)
         return (
             <FormContainerTwo>
-                <h1>Edit {chapter.title}</h1>
-                <FormStyled onSubmit={this.handleChapSubmit} id={this.props.index}>
+                <div>
+                {this.props.chapters.map((chap)=>{
+                    return (
+                        <SubmitButton onClick={()=>this.handleChapSelect(chap)}>{chap.title}</SubmitButton>
+                    )
+                })}
+                </div>
+                {this.state.chapterNotSelected ?  <div></div> :
+                <div>
+                <h1>Edit {this.state.editChapter.title}</h1>
+                <FormStyled onSubmit={this.handleChapSubmit} id={this.state.editChapter}>
                     <FormDiv>
                         <TitleDiv>
                             <LabelStyle htmlFor="title">Title:</LabelStyle>
@@ -233,9 +246,10 @@ class EditChapter extends Component {
                     </FormDiv>
                 </FormStyled>
                 <ButtonDiv>
-                    <SubmitButton type="submit" form={this.props.index}>Edit Chapter</SubmitButton>
+                    <SubmitButton type="submit" form={this.state.editChapter}>Edit Chapter</SubmitButton>
                 </ButtonDiv>
-            
+                </div>
+                }
             </FormContainerTwo>
         )
 

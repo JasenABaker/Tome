@@ -52,6 +52,14 @@ class EditPage extends Component {
     handleSubmitAll = async () =>{
         this.setState({redirect: true})
     }
+    updateChapter = (chap) =>{
+        const upchap = this.state.chapters.indexOf(chap)
+        const chapters = [...this.state.chapters]
+        chapters.splice(upchap, 1, chap)
+        this.componentWillMount()
+        this.setState({chapters})
+        
+    }
 
     
     render(){
@@ -62,14 +70,7 @@ class EditPage extends Component {
                 <SubmitButton onClick={this.handleSubmitAll}>Submit</SubmitButton>
                 <NewContainer>
                     <EditAdventure adventure={this.state.adventure} {...this.props} upadateAdventure={this.upadateAdventure}/>
-                    
-                    {this.state.chapters.map((chap, index)=>{
-                        console.log(chap.id)
-                        return(
-                            
-                            <EditChapter chapter={chap}  index ={chap.id} {...this.props} />
-                        )
-                    })}
+                    <EditChapter chapters={this.state.chapters}  {...this.props}  updateChapter={this.updateChapter}/>
                                     
                 </NewContainer>
             </NewPageContainer>
