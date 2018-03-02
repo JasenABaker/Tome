@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20180301232507) do
     t.jsonb "dangers", default: [], array: true
     t.jsonb "additional_info", default: [], array: true
     t.jsonb "sub_locations", default: [], array: true
-    t.string "treasures", default: "string"
+    t.string "treasures",
     t.bigint "chapter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

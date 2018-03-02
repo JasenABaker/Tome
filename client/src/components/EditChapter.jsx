@@ -172,7 +172,6 @@ class EditChapter extends Component {
             int = null
         }
 
-        console.log(this.props.index)
         return (
             <FormContainerTwo>
                 <div>

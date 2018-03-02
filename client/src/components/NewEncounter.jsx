@@ -80,7 +80,7 @@ class NewEncounter extends Component {
             event.target.reset()
             this.setState({ newEncounter: newEnc })
         } else {
-            return this.state.info
+            return this.state.danger
         }
     }
 
@@ -126,7 +126,7 @@ class NewEncounter extends Component {
             event.target.reset()
             this.setState({ newEncounter: newEnc })
         } else {
-            return this.state.info
+            return this.state.sub
         }
     }
     newEncounterPost = async () => {

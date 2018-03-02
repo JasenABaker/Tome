@@ -5,7 +5,7 @@ import {NewPageContainer, NewContainer} from './styled components/Containers'
 import {SubmitButton} from './styled components/Buttons'
 import EditAdventure from './EditAdventure'
 import EditChapter from './EditChapter'
-
+import EditEncounter from './EditEncounter'
 
 
 class EditPage extends Component {
@@ -23,26 +23,8 @@ class EditPage extends Component {
         const resChap = await axios.get(`/api/adventures/${this.props.match.params.id}/chapters`)
         const resEnc = await axios.get(`/api/encounter`)
         const resCrea = await axios.get(`/api/encounter_creatures`)
-        let enc = null
-        let crea = null
-        
-        resChap.data.map((chap)=>{
-            enc = resEnc.data.filter((encz)=>{
-                encz.chapter_id === chap.id
-                return encz
-            })})
-        
-        if (enc) {
-        enc.map((enc)=>{
-            crea = resCrea.data.filter((cre)=>{
-                cre.encounter_id = enc.id
-                return cre
-            })
-        })
-        }else {
-            crea = null
-        }
-        this.setState({pageNotLoaded: false, adventure: resAdv.data, chapters: resChap.data, encounters: enc, creatures: crea})
+        console.log(resEnc.data)
+        this.setState({pageNotLoaded: false, adventure: resAdv.data, chapters: resChap.data, encounters: resEnc.data, creatures: resCrea.data})
     }
 
     updateAdventure = (adv)=>{
@@ -60,6 +42,14 @@ class EditPage extends Component {
         this.setState({chapters})
         
     }
+    updateEncounter = (enc) => {
+        const upEnc = this.state.encounters.indexOf(enc)
+        const encounters = [...this.state.encounters]
+        encounters.splice(upEnc, 1, enc)
+        this.componentWillMount()
+        this.setState({encounters})
+
+    }
 
     
     render(){
@@ -71,6 +61,7 @@ class EditPage extends Component {
                 <NewContainer>
                     <EditAdventure adventure={this.state.adventure} {...this.props} upadateAdventure={this.upadateAdventure}/>
                     <EditChapter chapters={this.state.chapters}  {...this.props}  updateChapter={this.updateChapter}/>
+                    <EditEncounter chapters={this.state.chapters} encounters={this.state.encounters} updateEncounter={this.updateEncounter} />
                                     
                 </NewContainer>
             </NewPageContainer>
