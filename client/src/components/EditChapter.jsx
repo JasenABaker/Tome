@@ -52,8 +52,8 @@ class EditChapter extends Component {
 
 
     editChapterPatch = async () => {
-        const res = await axios.patch(`/api/adventures/${this.props.match.params.id}/chapters/${this.state.editChapter.id}`, this.state.editChapter)
-        console.log(this.state.editChapter.title)
+        const res = await axios.patch(`/api/adventures/${this.props.match.params.id}/chapters/${this.props.index}`, this.state.editChapter)
+        // console.log(this.state.editChapter.title)
         this.setState({editChapter: res.data})
 
     }
@@ -168,11 +168,11 @@ class EditChapter extends Component {
             int = null
         }
 
-
+        console.log(this.props.index)
         return (
             <FormContainerTwo>
                 <h1>Edit {chapter.title}</h1>
-                <FormStyled onSubmit={this.handleChapSubmit} id="FormEd">
+                <FormStyled onSubmit={this.handleChapSubmit} id={this.props.index}>
                     <FormDiv>
                         <TitleDiv>
                             <LabelStyle htmlFor="title">Title:</LabelStyle>
@@ -233,7 +233,7 @@ class EditChapter extends Component {
                     </FormDiv>
                 </FormStyled>
                 <ButtonDiv>
-                    <SubmitButton type="submit" form="FormEd">Edit Chapter</SubmitButton>
+                    <SubmitButton type="submit" form={this.props.index}>Edit Chapter</SubmitButton>
                 </ButtonDiv>
             
             </FormContainerTwo>
