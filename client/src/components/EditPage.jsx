@@ -63,13 +63,12 @@ class EditPage extends Component {
                 <NewContainer>
                     <EditAdventure adventure={this.state.adventure} {...this.props} upadateAdventure={this.upadateAdventure}/>
                     
-                    {this.state.chapters.map((chap)=>{
+                    {this.state.chapters.map((chap, index)=>{
                         return(
-                            <EditChapter chapter={chap} />
+                            <EditChapter chapter={chap}  index ={index} {...this.props} />
                         )
                     })}
-                   
-                    
+                                    
                 </NewContainer>
             </NewPageContainer>
         )
