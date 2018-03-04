@@ -30,31 +30,30 @@ export const HeaderDiv = styled.a`
 `
 
 export const NavBar = styled.div`
-    height: 8vh;
-    width: 28vw;
+    height: 15vh;
+    width: 50vw;
     margin-right: 20px;
     display flex;
     justify-content: space-around;
     align-self: flex-end;
-
-
 `
 
 export const NavButtons = styled.div`
-    height: 90%;
-    width: 5vw;
-    background-color: rgba(0,0,0,0.8);
+    height: 85px;
+    width: 85px;
+    background-color: rgba(0,0,0,0.6);
     display-flex;
     flex-direction-column;
     justify-content: center;
     align-items: center;
-    color:rgba(255, 255, 255, 0.5);
+    color:rgba(255, 255, 255, 1);
 
     p{
         margin: 0;
-        font-size: .68em;
+        font-size: .75em;
         text-align: center;
         text-transform: uppercase;
+        font-weight: bold;
     }
 
     :hover {

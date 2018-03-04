@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import image from './images/dnd.jpg'
+import Splash from './images/splash.jpg'
 
 
 
@@ -8,7 +9,7 @@ export const PageContainer = styled.div`
     min-width: 100vw;
     display: flex;
     flex-direction: column;
-    background-color:#22333B;
+    background-color:#F6F7EB;
 `
 
 export const HomeContainer = styled.div`
@@ -122,25 +123,26 @@ export const AdvCard = styled.button`
     margin-bottom: 10px;
     height: 50px;
     width: 200px;
-    background-color: #136F63;
+    background: radial-gradient(ellipse at center, rgba(93,145,128,1) 23%,rgba(19,111,99,1) 88%);
     color: rgba(255,255,255,0.8);
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
     border: none;
     outline-style:none;
 
         :hover {
-            background-color:#09E0C4;
+            background: radial-gradient(ellipse at center, rgba(135,229,227,1) 23%,rgba(9,224,196,1) 88%);
         }
         :focus {
-            background-color:#09E0C4;
+            background: radial-gradient(ellipse at center, rgba(135,229,227,1) 23%,rgba(9,224,196,1) 88%);
         }
         :active {
-            background-color:#09E0C4;
+            background: radial-gradient(ellipse at center, rgba(135,229,227,1) 23%,rgba(9,224,196,1) 88%);
         }
         :target {
-            background-color:#09E0C4;
+            background: radial-gradient(ellipse at center, rgba(135,229,227,1) 23%,rgba(9,224,196,1) 88%);
         }
 
 `
@@ -172,14 +174,19 @@ export const AdvPageContainer = styled.div`
     }
 
 `
+export const AdvPageContainerTwo = styled.div`
+    min-height: 90vh;
+    width:100vw;
+    display: flex;
+    flex-direction: column;
+
+`
 
 export const AdvView = styled.div`
     height: 43vh;
     width: 95vw;
     display: flex;
     flex-direction: column;
-    background-color: #F9F5D9;
-    border: 5px solid black;
     overflow: scroll;
 
     @media screen and (min-width: 500px) {
@@ -220,6 +227,21 @@ justify-content: space-between;
     flex-direction: row;
 }
 
+`
+
+export const AdvHeader = styled.div`
+    height: 20vh;
+    width: 100vw;
+    display: flex;
+    background: linear-gradient(0deg, rgba(34,51,59,0.8), rgba(34,51,59,0.8)), url(${Splash}) center no-repeat;
+    color: white;
+    justify-content: space-between;
+
+    h1{
+        font-family: 'MedievalSharp', cursive;
+        margin: 30px 0 0 20px;
+        font-size: 48px;
+    }
 `
 
 

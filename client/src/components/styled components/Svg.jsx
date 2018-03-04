@@ -12,9 +12,9 @@ const SvgDrag = styled.svg`
 `
 
 const SvgRule = SvgDrag.extend`
-    fill:rgba(255, 255, 255, 0.5);
-    height: 2em;
-    margin: 0;
+    fill:rgba(255, 255, 255, 1);
+    height: 3em;
+    margin: 5px 0;
     transform: translateX(15px);
     :hover {
         fill:rgba(255, 255, 255, 1);

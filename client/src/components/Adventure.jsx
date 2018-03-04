@@ -1,21 +1,23 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import {SkyLightStateless} from 'react-skylight'
+import { SkyLightStateless } from 'react-skylight'
 import Draggable from 'react-draggable';
-import {AdvPageContainer, AdvView, MapView} from './styled components/Containers'
+import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo } from './styled components/Containers'
 import AdventureTab from './AdventureTab'
 import ChaptersTab from './ChaptersTab'
 import CreatureList from './CreatureList'
+import { Dragon, Rules, Spells, Monster, Knight, Castle } from './styled components/Svg'
+import { NavBar, NavButtons } from './styled components/Header'
 
 
 
 
 class Adventure extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        }
-    
-    state ={
+    }
+
+    state = {
         adventure: {},
         chapters: [],
         encounters: [],
@@ -25,7 +27,7 @@ class Adventure extends Component {
         isDialogOpen: false,
 
     }
-    async componentWillMount () {
+    async componentWillMount() {
         const resAdv = await axios.get(`/api/adventures/${this.props.match.params.id}`)
         // console.log(resAdv.data)
         const resChap = await axios.get(`/api/adventures/${this.props.match.params.id}/chapters`)
@@ -33,55 +35,82 @@ class Adventure extends Component {
         const resEnc = await axios.get('/api/encounter')
         // console.log(resEnc.data)
         const resCre = await axios.get('/api/encounter_creatures')
-        
-        this.setState({adventure: resAdv.data, 
-            chapters: resChap.data, 
-            encounters: resEnc.data, 
+
+        this.setState({
+            adventure: resAdv.data,
+            chapters: resChap.data,
+            encounters: resEnc.data,
             creatures: resCre.data,
-            stateNotLoaded: false})
+            stateNotLoaded: false
+        })
 
     }
-    handleMonsterOpen =  (creature) => {
+    handleMonsterOpen = (creature) => {
         this.simpleDialog.show()
-        this.setState({ isDialogOpen: true, creature: creature})
+        this.setState({ isDialogOpen: true, creature: creature })
     }
     handleMonsterClose = () => {
-        this.setState({isDialogOpen: false})
+        this.setState({ isDialogOpen: false })
     }
 
-    render(){
+    render() {
         const adventure = this.state.adventure
-        return(
-    
-            
+        return (
+
+
             this.state.stateNotLoaded ? <div></div> :
-            <AdvPageContainer>
-
-                <AdvView>
-                    <AdventureTab adventure={this.state.adventure}/>
-                    <h2>Chapters</h2>
-                    {this.state.chapters.map((chapter)=>{ 
-                        const encounter = this.state.encounters.filter(encounter =>
+            <AdvPageContainerTwo>
+                <AdvHeader>
+                        <h1>{this.state.adventure.title}</h1>
+                        <NavBar>
+                            <NavButtons>
+                                <Rules />
+                                <p>rules</p>
+                            </NavButtons>
+                            <NavButtons>
+                                <Spells />
+                                <p>spells</p>
+                            </NavButtons>
+                            <NavButtons>
+                                <Monster />
+                                <p>monsters</p>
+                            </NavButtons>
+                            <NavButtons>
+                                <Knight />
+                                <p>adventures</p>
+                            </NavButtons>
+                            <NavButtons>
+                                <Castle />
+                                <p>home</p>
+                            </NavButtons>
+                        </NavBar>
+                    </AdvHeader>
+                <AdvPageContainer>
+                    <AdvView>
+                        <AdventureTab adventure={this.state.adventure} />
+                        <h2>Chapters</h2>
+                        {this.state.chapters.map((chapter) => {
+                            const encounter = this.state.encounters.filter(encounter =>
                                 encounter.chapter_id === chapter.id
-                        )
-                        console.log(encounter)
-    
+                            )
+                            console.log(encounter)
 
-                        
-                        return(
-                        <ChaptersTab chapter={chapter} 
-                        encounters={encounter} 
-                        creatures={this.state.creatures}
-                        handleMonsterOpen={this.handleMonsterOpen}
-                        handleMonsterClose={this.handleMonsterClose}/>
-                        
-                        )
-                        
-                    })}
 
-                </AdvView>
-                <MapView />
-                {/* {this.state.isDialogOpen ?
+
+                            return (
+                                <ChaptersTab chapter={chapter}
+                                    encounters={encounter}
+                                    creatures={this.state.creatures}
+                                    handleMonsterOpen={this.handleMonsterOpen}
+                                    handleMonsterClose={this.handleMonsterClose} />
+
+                            )
+
+                        })}
+
+                    </AdvView>
+                    <MapView />
+                    {/* {this.state.isDialogOpen ?
                 <Draggable>
                 <SkyLight
                 isVisible=
@@ -91,7 +120,8 @@ class Adventure extends Component {
             </Draggable>
                     : null} */}
 
-            </AdvPageContainer>
+                </AdvPageContainer>
+                </AdvPageContainerTwo>
         )
     }
 }
