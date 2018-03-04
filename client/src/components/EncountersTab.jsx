@@ -11,12 +11,16 @@ class EncountersTab extends Component {
         isDialogOpen: false
     }
     
-   handleMonsterOpen = () =>{
-      this.setState({isDialogOpen: true})
-   } 
-handleMonsterClose = () =>{
-    this.setState({isDialogOpen: false})
+handleMonsterClick = (creature) => {
+    if (this.state.isDialogOpen){
+        this.props.handleMonsterClose()
+        this.setState({isDialogOpen: false})
+    } else{
+    this.props.handleMonsterOpen(creature)
+    this.setState({isDialogOpen: true})
+    } 
 }
+
     
     render() {
         const creatureArray = []
@@ -54,7 +58,6 @@ handleMonsterClose = () =>{
                 <p>{this.props.encounter.treasures}</p>
             </details>
     
-       
     }else {
         treasures = null
     }
@@ -73,7 +76,7 @@ handleMonsterClose = () =>{
                         <h4>Number of {creature.creatures.name}: {creature.count}</h4>
                         <h4><span>HP: </span>{creature.creatures.hit_points}</h4>
                         <h4><span>AC: </span>{creature.creatures.armor_class}</h4>
-                        <button onClick={this.props.handleMonsterOpen}>Monter stats </button>
+                        <button onClick={()=>this.handleMonsterClick(creature.creatures)}>Monter stats </button>
                     </div>
                 )
             })

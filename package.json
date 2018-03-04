@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "react-accessible-accordion": "^2.0.0",
-    "react-dialog": "^1.0.2"
+    "react-dialog": "^1.0.2",
+    "react-skylight": "^0.5.0"
   }
 }

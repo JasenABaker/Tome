@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import Dialog from 'react-dialog'
+import {SkyLightStateless} from 'react-skylight'
+import Draggable from 'react-draggable';
 import {AdvPageContainer, AdvView, MapView} from './styled components/Containers'
 import AdventureTab from './AdventureTab'
 import ChaptersTab from './ChaptersTab'
@@ -10,6 +11,10 @@ import CreatureList from './CreatureList'
 
 
 class Adventure extends Component {
+    constructor(props){
+        super(props);
+        }
+    
     state ={
         adventure: {},
         chapters: [],
@@ -36,40 +41,22 @@ class Adventure extends Component {
             stateNotLoaded: false})
 
     }
-    handleMonsterOpen =  () => {
-
-        this.setState({ isDialogOpen: true})
+    handleMonsterOpen =  (creature) => {
+        this.simpleDialog.show()
+        this.setState({ isDialogOpen: true, creature: creature})
     }
     handleMonsterClose = () => {
         this.setState({isDialogOpen: false})
     }
 
-   
     render(){
         const adventure = this.state.adventure
         return(
+    
             
             this.state.stateNotLoaded ? <div></div> :
             <AdvPageContainer>
-        {/* { this.state.isDialogOpen ?   
-    
-            
-    <Dialog
-    title="Monster"
-    modal={true}
-    closeOnEscape={true}
-    onClose={this.handleMonsterClose}
-    isDraggable={true}
-    buttons={
-        [{
-            text: "Close",
-            onClick: () => this.handleMonsterClose()
-        }]
-    }>
-    {/* <CreatureList creature={this.state.creature}/> */}
-{/* </Dialog>
-: null
-} */} 
+
                 <AdvView>
                     <AdventureTab adventure={this.state.adventure}/>
                     <h2>Chapters</h2>
@@ -94,7 +81,16 @@ class Adventure extends Component {
 
                 </AdvView>
                 <MapView />
-              
+                {/* {this.state.isDialogOpen ?
+                <Draggable>
+                <SkyLight
+                isVisible=
+                title={this.state.creature.name}>
+                <CreatureList creature={this.state.creature}/> 
+                </SkyLight>
+            </Draggable>
+                    : null} */}
+
             </AdvPageContainer>
         )
     }

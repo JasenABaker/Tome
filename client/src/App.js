@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import axios from 'axios'
-import logo from './logo.svg';
 import {Header, HeaderDiv, NavBar, NavButtons} from './components/styled components/Header'
 import { PageContainer } from './components/styled components/Containers'
 import Home from './components/Home'
@@ -14,7 +13,8 @@ import {Dragon, Rules, Spells, Monster, Knight, Castle} from './components/style
 
 class App extends Component {
     state = {
-      adventures: []
+      adventures: [],
+
     }
     async componentWillMount () {
       const res = await axios.get('/api/adventures')
