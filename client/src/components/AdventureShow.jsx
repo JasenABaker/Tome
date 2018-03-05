@@ -14,7 +14,6 @@ export const AdventureShow = (props) =>{
         <AdvShowPage>
         <h1>{adventure.title}</h1>
         <p>{adventure.synopsis}</p>
-        <ImgPreview><img src={adventure.mapUrl} alt={adventure.title}/></ImgPreview>
         <Link to={`/adventures/${adventure.id}`} style={{ textDecoration: 'none', color: 'inherit' }}> 
             <AddButton>
             Play
