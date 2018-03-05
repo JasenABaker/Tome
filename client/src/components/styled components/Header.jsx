@@ -14,6 +14,7 @@ export const Header = styled.header`
     h1 {
         font-size: 2.5em;
     }
+    
 
 
 `
@@ -40,6 +41,12 @@ export const NavBar = styled.div`
         display: none;
     }
 `
+export const HomeNav = styled.div`
+    height: 10vh;
+    width: 20vw;
+    margin-right: 20px;
+
+`
 
 export const NavButtons = styled.div`
     height: 85px;
@@ -60,9 +67,46 @@ export const NavButtons = styled.div`
     }
 
     :hover {
-        color: rgba(255, 255, 255, 1);
         background: linear-gradient(to bottom, #ffeab5 0%, #ffba08  10%);
         box-shadow: 0 5px 15px rgba(255,186,8, .4);
+
+    }
+
+
+`
+
+export const NavSpell =  NavButtons.extend`
+    :hover {
+        background: linear-gradient(to bottom, #8BD6F6 0%, #00A6ED  10%);
+        box-shadow: 0 5px 15px rgba(0,166,237, .4);
+
+    }
+
+
+`
+export const NavMon =  NavButtons.extend`
+    :hover {
+        background: linear-gradient(to bottom, #F39F91 0%, #E94F37  10%);
+        box-shadow: 0 5px 15px rgba(233,79,55, .4);
+
+    }
+
+
+`
+export const NavAdv =  NavButtons.extend`
+    :hover {
+        background: linear-gradient(to bottom, #B9D873 0%, #7FB800  10%);
+        box-shadow: 0 5px 15px rgba(127,184,0, .4);
+
+    }
+
+
+`
+
+export const NavEdit =  NavButtons.extend`
+    :hover {
+        background: linear-gradient(to bottom, #B898C0 0%, #631D76 10%);
+        box-shadow: 0 5px 15px rgba(99,29,118, .4);
 
     }
 

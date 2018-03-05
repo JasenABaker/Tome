@@ -59,6 +59,7 @@ class App extends Component {
         <PageContainer>
           <Header>
           <HeaderDiv href="/"><Dragon /><h1>Tome</h1></HeaderDiv>
+          <HeaderDiv href="/new"><h2>New</h2></HeaderDiv>
           </Header>
           <Router>
             <div>

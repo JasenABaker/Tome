@@ -7,7 +7,7 @@ import AdventureTab from './AdventureTab'
 import ChaptersTab from './ChaptersTab'
 import CreatureList from './CreatureList'
 import { Dragon, Rules, Spells, Monster, Knight, Castle } from './styled components/Svg'
-import { NavBar, NavButtons } from './styled components/Header'
+import { NavBar, NavButtons, NavSpell, NavMon, NavAdv, NavEdit } from './styled components/Header'
 
 
 
@@ -67,22 +67,22 @@ class Adventure extends Component {
                                 <Rules />
                                 <p>rules</p>
                             </NavButtons>
-                            <NavButtons>
+                            <NavSpell>
                                 <Spells />
                                 <p>spells</p>
-                            </NavButtons>
-                            <NavButtons>
+                            </NavSpell>
+                            <NavMon>
                                 <Monster />
                                 <p>monsters</p>
-                            </NavButtons>
-                            <NavButtons>
+                            </NavMon>
+                            <NavAdv>
                                 <Knight />
                                 <p>adventures</p>
-                            </NavButtons>
-                            <NavButtons>
+                            </NavAdv>
+                            <NavEdit>
                                 <Castle />
-                                <p>home</p>
-                            </NavButtons>
+                                <p>Edit</p>
+                            </NavEdit>
                         </NavBar>
                     </AdvHeader>
                 <AdvPageContainer>
