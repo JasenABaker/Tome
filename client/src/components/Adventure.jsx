@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { SkyLightStateless } from 'react-skylight'
 import Draggable from 'react-draggable';
-import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, } from './styled components/Containers'
+import {ThemeProvider} from 'styled-components'
+import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, HeadingContainer} from './styled components/Containers'
 import AdventureTab from './AdventureTab'
 import ChaptersTab from './ChaptersTab'
 import CreatureList from './CreatureList'
 import { Dragon, Rules, Spells, Monster, Knight, Castle } from './styled components/Svg'
 import { NavBar, NavButtons, NavSpell, NavMon, NavAdv, NavEdit } from './styled components/Header'
+import {HeaderTab, active} from './styled components/Tabs'
 
 
 
@@ -53,6 +55,9 @@ class Adventure extends Component {
     handleMonsterClose = () => {
         this.setState({ isDialogOpen: false })
     }
+    handleChange = (event)=>{
+
+    }
 
     render() {
         const adventure = this.state.adventure
@@ -60,8 +65,8 @@ class Adventure extends Component {
 
 
             this.state.stateNotLoaded ? <div></div> :
-            <AdvPageContainerTwo>
-                <AdvHeader>
+                <AdvPageContainerTwo>
+                    <AdvHeader>
                         <h1>{this.state.adventure.title}</h1>
                         <NavBar>
                             <NavButtons>
@@ -80,36 +85,45 @@ class Adventure extends Component {
                                 <Knight />
                                 <p>adventures</p>
                             </NavAdv></Link>
-<Link to={`/adventures/${this.state.adventure.id}/edit`} style={{ textDecoration: 'none', color: 'inherit' }}><NavEdit>
+                            <Link to={`/adventures/${this.state.adventure.id}/edit`} style={{ textDecoration: 'none', color: 'inherit' }}><NavEdit>
                                 <Castle />
                                 <p>Edit</p>
                             </NavEdit></Link>
                         </NavBar>
                     </AdvHeader>
-                <AdvPageContainer>
-                    <AdvView>
-                        <AdventureTab adventure={this.state.adventure} />
-                        <h2>Chapters</h2>
-                        {this.state.chapters.map((chapter) => {
-                            const encounter = this.state.encounters.filter(encounter =>
-                                encounter.chapter_id === chapter.id
-                            )
-                            console.log(encounter)
+                    <AdvPageContainer>
+                        <AdvView>
+                            <AdventureTab adventure={this.state.adventure} />
+                        
+                            <HeadingContainer>
+                            {this.state.chapters.map((chapter)=>{
+                                return(
+            
+                                <HeaderTab>{chapter.title}</HeaderTab>
+                                )
+                            })}
+                            </HeadingContainer>
+                            {/* {this.state.chapters.map((chapter) => {
 
-                        return (
-                                <ChaptersTab chapter={chapter}
-                                    encounters={encounter}
-                                    creatures={this.state.creatures}
-                                    handleMonsterOpen={this.handleMonsterOpen}
-                                    handleMonsterClose={this.handleMonsterClose} />
+                                const encounter = this.state.encounters.filter(encounter =>
+                                    encounter.chapter_id === chapter.id
+                                )
+                                console.log(encounter)
 
-                            )
+                                return (
+                                    <ChaptersTab chapter={chapter}
+                                        encounters={encounter}
+                                        creatures={this.state.creatures}
+                                        handleMonsterOpen={this.handleMonsterOpen}
+                                        handleMonsterClose={this.handleMonsterClose} />
 
-                        })}
+                                )
 
-                    </AdvView>
-                    <MapView />
-                    {/* {this.state.isDialogOpen ?
+                            })} */}
+
+                        </AdvView>
+                        <MapView />
+                        {/* {this.state.isDialogOpen ?
                 <Draggable>
                 <SkyLight
                 isVisible=
@@ -119,7 +133,7 @@ class Adventure extends Component {
             </Draggable>
                     : null} */}
 
-                </AdvPageContainer>
+                    </AdvPageContainer>
                 </AdvPageContainerTwo>
         )
     }

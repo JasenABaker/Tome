@@ -183,14 +183,14 @@ export const AdvPageContainerTwo = styled.div`
 `
 
 export const AdvView = styled.div`
-    height: 43vh;
+    min-height: 43vh;
     width: 95vw;
     display: flex;
     flex-direction: column;
     overflow: scroll;
 
     @media screen and (min-width: 500px) {
-        height: 87vh;
+        min-height: 87vh;
         width: 50vw;
         overflow: hidden;
         align-items: center;
@@ -270,6 +270,20 @@ export const AdvInfoSection = styled.div`
         flex-wrap: wrap;
         overflow: hidden;
     
+    }
+
+`
+export const HeadingContainer = styled.div`
+    height: 20vh;
+    width: 95vw;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    @media screen and (min-width: 500px){
+        height: 10vh;
+        width: 25vw;
+        overflow:scroll;
+
     }
 
 `

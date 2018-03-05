@@ -50,3 +50,33 @@ export const Content = styled.div`
         }
 
 `
+
+export const HeaderTab = styled.div`
+        height: 30px;
+        width: 150px;
+        background: ${props => props.theme.main};
+        color: white;
+        font-weight: 800;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: .5em;
+
+        :hover {
+            backgound:#D8315B;
+
+        }
+
+`
+HeaderTab.defaultProps = {
+    theme:{
+        main:'#3E92CC'
+    }
+}
+
+export const active = {
+    theme:{ 
+        main:"#D8315B"
+    }
+}
