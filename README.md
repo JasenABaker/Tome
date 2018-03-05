@@ -13,3 +13,19 @@ As a Dungeon Master, you are charged with keeping the story going which can be d
 [Trello](https://trello.com/b/TBUmpkNk/project-four)
 
 ## Wireframes
+![wireframe1](https://github.com/JasenABaker/Tome/blob/master/wireframes/Screen%20Shot%202018-03-04%20at%2010.02.21%20PM.png)
+![wireframe2](https://github.com/JasenABaker/Tome/blob/master/wireframes/Screen%20Shot%202018-03-04%20at%2010.02.38%20PM.png)
+![wireframe3](https://github.com/JasenABaker/Tome/blob/master/wireframes/Screen%20Shot%202018-03-04%20at%2010.02.46%20PM.png)
+![wireframe4](https://github.com/JasenABaker/Tome/blob/master/wireframes/Screen%20Shot%202018-03-04%20at%2010.02.54%20PM.png)
+![wireframe5](https://github.com/JasenABaker/Tome/blob/master/wireframes/Screen%20Shot%202018-03-04%20at%2010.03.05%20PM.png)
+
+
+##Technologies Used
+* React
+* Ruby
+* Rails
+* PostgreSQl
+* styled-component
+* axios
+* react-collaspse
+* http://www.dnd5eapi.co/ api
