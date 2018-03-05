@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 import { SkyLightStateless } from 'react-skylight'
 import Draggable from 'react-draggable';
 import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, } from './styled components/Containers'
@@ -75,14 +76,14 @@ class Adventure extends Component {
                                 <Monster />
                                 <p>monsters</p>
                             </NavMon>
-                            <NavAdv>
+                            <Link to={`/adventures`} style={{ textDecoration: 'none', color: 'inherit' }}> <NavAdv>
                                 <Knight />
                                 <p>adventures</p>
-                            </NavAdv>
-                            <NavEdit>
+                            </NavAdv></Link>
+<Link to={`/adventures/${this.state.adventure.id}/edit`} style={{ textDecoration: 'none', color: 'inherit' }}><NavEdit>
                                 <Castle />
                                 <p>Edit</p>
-                            </NavEdit>
+                            </NavEdit></Link>
                         </NavBar>
                     </AdvHeader>
                 <AdvPageContainer>
@@ -95,9 +96,7 @@ class Adventure extends Component {
                             )
                             console.log(encounter)
 
-
-
-                            return (
+                        return (
                                 <ChaptersTab chapter={chapter}
                                     encounters={encounter}
                                     creatures={this.state.creatures}
