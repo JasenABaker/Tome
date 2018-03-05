@@ -36,6 +36,9 @@ export const NavBar = styled.div`
     display flex;
     justify-content: space-around;
     align-self: flex-end;
+    @media screen and (max-width: 500px){
+        display: none;
+    }
 `
 
 export const NavButtons = styled.div`

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { SkyLightStateless } from 'react-skylight'
 import Draggable from 'react-draggable';
-import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo } from './styled components/Containers'
+import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, } from './styled components/Containers'
 import AdventureTab from './AdventureTab'
 import ChaptersTab from './ChaptersTab'
 import CreatureList from './CreatureList'

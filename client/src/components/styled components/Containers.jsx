@@ -191,7 +191,9 @@ export const AdvView = styled.div`
 
     @media screen and (min-width: 500px) {
         height: 87vh;
-        width: 49vw;
+        width: 50vw;
+        overflow: hidden;
+        align-items: center;
     }
 
 `
@@ -240,8 +242,36 @@ export const AdvHeader = styled.div`
     h1{
         font-family: 'MedievalSharp', cursive;
         margin: 30px 0 0 20px;
-        font-size: 48px;
+        font-size: 34px;
     }
+
+    @media screen and (min-width: 500px) {
+        h1{
+            font-size: 48px;
+        }
+    }
+`
+
+export const AdvInfoSection = styled.div`
+    min-height: 50vh;
+    width: 95vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+
+    @media screen and (min-width: 500px){
+        padding: 0 30px;
+        min-height: 50vh;
+        width: 49vw;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: row;
+        flex-wrap: wrap;
+        overflow: hidden;
+    
+    }
+
 `
 
 
