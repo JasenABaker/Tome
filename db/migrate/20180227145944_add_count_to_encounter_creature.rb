@@ -7,7 +7,5 @@ class AddCountToEncounterCreature < ActiveRecord::Migration[5.1]
     t.integer "count"
     t.index ["encounter_id"], name: "index_encounter_creatures_on_encounter_id"
   end
-  def change
-    add_column :encounter_creatures, :count, :integer
-  end
+
 end
