@@ -163,7 +163,8 @@ export const AdvShowPage = styled.div `
     }
 `
 export const AdvPageContainer = styled.div`
-    height: 90vh;
+    margin-top: 10px;
+    min-height: 90vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -192,7 +193,7 @@ export const AdvView = styled.div`
     @media screen and (min-width: 500px) {
         min-height: 87vh;
         width: 50vw;
-        overflow: hidden;
+        overflow: scroll;
         align-items: center;
     }
 
@@ -237,7 +238,8 @@ export const AdvHeader = styled.div`
     display: flex;
     background: linear-gradient(0deg, rgba(34,51,59,0.8), rgba(34,51,59,0.8)), url(${Splash}) center no-repeat;
     color: white;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
 
     h1{
         font-family: 'MedievalSharp', cursive;
@@ -246,6 +248,7 @@ export const AdvHeader = styled.div`
     }
 
     @media screen and (min-width: 500px) {
+        justify-content: space-between;
         h1{
             font-size: 48px;
         }

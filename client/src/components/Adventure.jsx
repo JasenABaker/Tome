@@ -23,11 +23,13 @@ class Adventure extends Component {
     state = {
         adventure: {},
         chapters: [],
+        chapter: {},
         encounters: [],
         creatures: [],
         creature: {},
         stateNotLoaded: true,
         isDialogOpen: false,
+        isChapterSet: false
 
     }
     async componentWillMount() {
@@ -57,6 +59,10 @@ class Adventure extends Component {
     }
     handleChange = (event)=>{
 
+    }
+
+    setChapter = (chapter) =>{
+        this.setState({chapter: chapter, isChapterSet: true})
     }
 
     render() {
@@ -99,28 +105,17 @@ class Adventure extends Component {
                             {this.state.chapters.map((chapter)=>{
                                 return(
             
-                                <HeaderTab>{chapter.title}</HeaderTab>
+                                <HeaderTab onClick={()=>this.setChapter(chapter)}>{chapter.title}</HeaderTab>
                                 )
                             })}
                             </HeadingContainer>
-                            {/* {this.state.chapters.map((chapter) => {
-
-                                const encounter = this.state.encounters.filter(encounter =>
-                                    encounter.chapter_id === chapter.id
-                                )
-                                console.log(encounter)
-
-                                return (
-                                    <ChaptersTab chapter={chapter}
-                                        encounters={encounter}
+                            {this.state.isChapterSet ?
+                                    <ChaptersTab chapter={this.state.chapter}
+                                        encounters={this.state.encounters}
                                         creatures={this.state.creatures}
                                         handleMonsterOpen={this.handleMonsterOpen}
                                         handleMonsterClose={this.handleMonsterClose} />
-
-                                )
-
-                            })} */}
-
+                                        : null}
                         </AdvView>
                         <MapView />
                         {/* {this.state.isDialogOpen ?
