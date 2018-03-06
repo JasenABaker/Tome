@@ -54,7 +54,7 @@ export const Content = styled.div`
 export const HeaderTab = styled.div`
         height: 30px;
         width: 150px;
-        background: ${props => props.theme.main};
+        background-color: #3E92cc;
         color: white;
         font-weight: 800;
         text-transform: uppercase;
@@ -64,19 +64,20 @@ export const HeaderTab = styled.div`
         font-size: .5em;
 
         :hover {
-            backgound:#D8315B;
+            background-color: #D8315B;
 
         }
 
 `
-HeaderTab.defaultProps = {
-    theme:{
-        main:'#3E92CC'
-    }
-}
 
-export const active = {
-    theme:{ 
-        main:"#D8315B"
-    }
-}
+
+export const AdvTab = MainTab.extend`
+        height: 20px;
+        width: 95vw;
+        margin-bottom: 10px;
+
+        @media screen and (min-width: 500px){
+            width: 45vw;
+        }
+
+`

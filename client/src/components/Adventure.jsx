@@ -3,14 +3,14 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { SkyLightStateless } from 'react-skylight'
 import Draggable from 'react-draggable';
-import {ThemeProvider} from 'styled-components'
+import { Collapse } from 'react-collapse'
 import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, HeadingContainer} from './styled components/Containers'
 import AdventureTab from './AdventureTab'
 import ChaptersTab from './ChaptersTab'
 import CreatureList from './CreatureList'
 import { Dragon, Rules, Spells, Monster, Knight, Castle } from './styled components/Svg'
 import { NavBar, NavButtons, NavSpell, NavMon, NavAdv, NavEdit } from './styled components/Header'
-import {HeaderTab, active} from './styled components/Tabs'
+import {HeaderTab, AdvTab} from './styled components/Tabs'
 
 
 
@@ -29,22 +29,29 @@ class Adventure extends Component {
         creature: {},
         stateNotLoaded: true,
         isDialogOpen: false,
-        isChapterSet: false
+        isChapterSet: false,
+        isOpened: true
 
     }
     async componentWillMount() {
         const resAdv = await axios.get(`/api/adventures/${this.props.match.params.id}`)
         // console.log(resAdv.data)
         const resChap = await axios.get(`/api/adventures/${this.props.match.params.id}/chapters`)
-        // console.log(resChap.data)
+        console.log(resChap.data)
         const resEnc = await axios.get('/api/encounter')
         // console.log(resEnc.data)
         const resCre = await axios.get('/api/encounter_creatures')
+        let chap = resChap.data.sort((a,b)=>{
+            return a.id - b.id
+        })
+        let enc = resEnc.data.sort((a,b)=>{
+            return a.id - b.id
+        })
 
         this.setState({
             adventure: resAdv.data,
-            chapters: resChap.data,
-            encounters: resEnc.data,
+            chapters: chap,
+            encounters: enc,
             creatures: resCre.data,
             stateNotLoaded: false
         })
@@ -57,12 +64,12 @@ class Adventure extends Component {
     handleMonsterClose = () => {
         this.setState({ isDialogOpen: false })
     }
-    handleChange = (event)=>{
-
-    }
 
     setChapter = (chapter) =>{
         this.setState({chapter: chapter, isChapterSet: true})
+    }
+    handleOpen = () => {
+        this.setState({ isOpened: !this.state.isOpened })
     }
 
     render() {
@@ -99,13 +106,19 @@ class Adventure extends Component {
                     </AdvHeader>
                     <AdvPageContainer>
                         <AdvView>
+                        <AdvTab onClick={this.handleOpen}>
+                            Adventure
+                        </AdvTab>
+                        <Collapse isOpened={this.state.isOpened} hasNestedCollapse={true}>
                             <AdventureTab adventure={this.state.adventure} />
+                        </Collapse>
                         
                             <HeadingContainer>
                             {this.state.chapters.map((chapter)=>{
                                 return(
-            
+                        
                                 <HeaderTab onClick={()=>this.setChapter(chapter)}>{chapter.title}</HeaderTab>
+            
                                 )
                             })}
                             </HeadingContainer>
