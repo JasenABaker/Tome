@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 export const MainTab = styled.div`
         height: 60px;
-        width: 95vw;
+        width: 90vw;
         background: radial-gradient(ellipse at center, rgba(62,76,84,1) 23%,rgba(34,51,59,1) 88%);
         color: white;
         text-transform: uppercase;
@@ -15,27 +15,27 @@ export const MainTab = styled.div`
         padding-left: 10px;
         cursor: pointer;
         @media screen and (min-width: 500px) {
-            width: 300px;
+            width: 255px;
             height: 40px;
         }
 `
 
 export const ContentDiv = styled.div`
         max-height: 50vh;
-        width: 95vw;
+        width: 90vw;
         margin-bottom: 10px;
         display: flex;
         flex-direction: column;
         align-items: center;
         @media screen and (min-width: 500px) {
-            width: 300px;
+            width: 255px;
         }
 
 `
 
 export const Content = styled.div`
         height: 50vh;
-        width: 95vw;
+        width: 90vw;
         overflow: scroll;
         border-right: 1px solid grey;
         border-left: 1px solid grey;
@@ -46,7 +46,7 @@ export const Content = styled.div`
 
         @media screen and (min-width: 500px) {
             height: 20vh;
-            width: 295px;
+            width: 255px;
         }
 
 `

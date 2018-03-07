@@ -34,7 +34,7 @@ handleMonsterClick = (creature) => {
             } else {
                 return creature
             }
-            console.log(creatureArray)
+            // console.log(creatureArray)
         })
     }
 

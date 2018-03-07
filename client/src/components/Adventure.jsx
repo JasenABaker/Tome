@@ -7,6 +7,7 @@ import { Collapse } from 'react-collapse'
 import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, HeadingContainer} from './styled components/Containers'
 import AdventureTab from './AdventureTab'
 import ChaptersTab from './ChaptersTab'
+import EncountersTab from './EncountersTab'
 import CreatureList from './CreatureList'
 import { Dragon, Rules, Spells, Monster, Knight, Castle } from './styled components/Svg'
 import { NavBar, NavButtons, NavSpell, NavMon, NavAdv, NavEdit } from './styled components/Header'
@@ -25,12 +26,15 @@ class Adventure extends Component {
         chapters: [],
         chapter: {},
         encounters: [],
+        encounterPass:[],
         creatures: [],
         creature: {},
         stateNotLoaded: true,
         isDialogOpen: false,
         isChapterSet: false,
-        isOpened: true
+        isOpened: true,
+        hasEncounters: false,
+        isOpenedChap: true,
 
     }
     async componentWillMount() {
@@ -57,6 +61,10 @@ class Adventure extends Component {
         })
 
     }
+    handleChapterOpen = () =>{
+        this.setState({isOpenedChap: !this.state.isOpenedChap})
+    }
+
     handleMonsterOpen = (creature) => {
         this.simpleDialog.show()
         this.setState({ isDialogOpen: true, creature: creature })
@@ -66,17 +74,32 @@ class Adventure extends Component {
     }
 
     setChapter = (chapter) =>{
+        this.handleEncounter(chapter)
         this.setState({chapter: chapter, isChapterSet: true})
     }
     handleOpen = () => {
         this.setState({ isOpened: !this.state.isOpened })
     }
+    handleEncounter = (chapter) => {
+        let enc = this.state.encounters.filter((enc)=>{
+        return enc.chapter_id === chapter.id
+            
+        })
+        
+        if(enc !==[]){
+            this.setState({encounterPass: enc, hasEncounters: true})
+        }else {
+            this.setState({hasEncounters: false})
+        }
+
+    }
 
     render() {
         const adventure = this.state.adventure
+        let enc = null
+        
+        
         return (
-
-
             this.state.stateNotLoaded ? <div></div> :
                 <AdvPageContainerTwo>
                     <AdvHeader>
@@ -122,13 +145,32 @@ class Adventure extends Component {
                                 )
                             })}
                             </HeadingContainer>
-                            {this.state.isChapterSet ?
+                            {this.state.isChapterSet ? <AdvTab onClick={this.handleChapterOpen}>{this.state.chapter.title}</AdvTab> :
+                            null }
+                            {this.state.isChapterSet ? 
+                            
+                            <Collapse isOpened={this.state.isOpenedChap} hasNestedCollapse={true}>
+                                    
                                     <ChaptersTab chapter={this.state.chapter}
                                         encounters={this.state.encounters}
                                         creatures={this.state.creatures}
                                         handleMonsterOpen={this.handleMonsterOpen}
                                         handleMonsterClose={this.handleMonsterClose} />
-                                        : null}
+                                        
+                            </Collapse> : null}
+                            {this.state.hasEncounters ? 
+                            
+                            this.state.encounterPass.map((enc) => {
+                                return (
+                                    <EncountersTab encounter={enc}
+                                        creatures={this.state.creatures}
+                                        handleMonsterOpen={this.props.handleMonsterOpen}
+                                        handleMonsterClose={this.props.handleMonsterClose} />
+                                )
+                                }) : null }
+        
+                        
+                        
                         </AdvView>
                         <MapView />
                         {/* {this.state.isDialogOpen ?

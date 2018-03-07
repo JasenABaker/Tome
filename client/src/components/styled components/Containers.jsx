@@ -194,6 +194,7 @@ export const AdvView = styled.div`
         min-height: 87vh;
         width: 50vw;
         overflow: scroll;
+        justify-content: center;
         align-items: center;
     }
 
@@ -262,11 +263,11 @@ export const AdvInfoSection = styled.div`
     flex-direction: column;
     align-items: center;
     overflow: scroll;
-
+    margin: 0 10px;
     @media screen and (min-width: 500px){
-        padding: 0 30px;
-        min-height: 50vh;
-        width: 49vw;
+        padding: 0 20px;
+        min-height: 45vh;
+        width: 46vw;
         justify-content: space-between;
         align-items: flex-start;
         flex-direction: row;
@@ -277,13 +278,13 @@ export const AdvInfoSection = styled.div`
 
 `
 export const HeadingContainer = styled.div`
-    height: 20vh;
+    min-height: 10vh;
     width: 95vw;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    margin-bottom: 0;
     @media screen and (min-width: 500px){
-        height: 10vh;
         width: 25vw;
         overflow:scroll;
 
