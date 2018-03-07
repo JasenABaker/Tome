@@ -73,11 +73,15 @@ export const HeaderTab = styled.div`
 
 export const AdvTab = MainTab.extend`
         height: 20px;
-        width: 95vw;
+        width: 99vw;
         margin-bottom: 10px;
+        background: radial-gradient(ellipse at center, rgba(51,66,79,1) 28%,rgba(1,22,39,1) 99%);
+        border-radius: 0;
+        padding-left: 30px;
+
 
         @media screen and (min-width: 500px){
-            width: 45vw;
+            width: 50vw;
         }
 
 `

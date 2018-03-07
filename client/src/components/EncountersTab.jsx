@@ -76,7 +76,7 @@ handleMonsterClick = (creature) => {
                         <h4>Number of {creature.creatures.name}: {creature.count}</h4>
                         <h4><span>HP: </span>{creature.creatures.hit_points}</h4>
                         <h4><span>AC: </span>{creature.creatures.armor_class}</h4>
-                        <button onClick={()=>this.handleMonsterClick(creature.creatures)}>Monter stats </button>
+                        <button onClick={()=>this.props.findCreature(creature.creatures)}>Monter stats </button>
                     </div>
                 )
             })

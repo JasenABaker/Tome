@@ -194,7 +194,7 @@ export const AdvView = styled.div`
         min-height: 87vh;
         width: 50vw;
         overflow: scroll;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
     }
 

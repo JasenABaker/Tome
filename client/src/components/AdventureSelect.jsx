@@ -51,7 +51,6 @@ class AdventureSelect extends Component {
                     <Link to={`/adventures/${adven.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                     <PlayButton>Play</PlayButton>
                     </Link> 
-                    tonContainer>
                 <Link to={`/adventures/${adven.id}/edit`} style={{ textDecoration: 'none', color: 'inherit' }}> 
                 <EditButton>
                 edit

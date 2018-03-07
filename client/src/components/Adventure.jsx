@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { SkyLightStateless } from 'react-skylight'
-import Draggable from 'react-draggable';
 import { Collapse } from 'react-collapse'
 import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, HeadingContainer} from './styled components/Containers'
 import AdventureTab from './AdventureTab'
@@ -27,14 +25,16 @@ class Adventure extends Component {
         chapter: {},
         encounters: [],
         encounterPass:[],
+        encounter: {},
         creatures: [],
-        creature: {},
         stateNotLoaded: true,
         isDialogOpen: false,
         isChapterSet: false,
         isOpened: true,
         hasEncounters: false,
         isOpenedChap: true,
+        isEncSet: false,
+        isEncOpen: false
 
     }
     async componentWillMount() {
@@ -92,6 +92,12 @@ class Adventure extends Component {
             this.setState({hasEncounters: false})
         }
 
+    }
+    selectedEnc = (enc)=> {
+        this.setState({encounter: enc, isEncSet: true})
+    }
+    handleEncounterOpen = () => {
+        this.setState({isEncOpen: !this.state.isEncOpen})
     }
 
     render() {
@@ -159,29 +165,32 @@ class Adventure extends Component {
                                         
                             </Collapse> : null}
                             {this.state.hasEncounters ? 
-                            
-                            this.state.encounterPass.map((enc) => {
-                                return (
-                                    <EncountersTab encounter={enc}
-                                        creatures={this.state.creatures}
-                                        handleMonsterOpen={this.props.handleMonsterOpen}
-                                        handleMonsterClose={this.props.handleMonsterClose} />
+                            <HeadingContainer>
+                            {this.state.encounterPass.map((enc)=>{
+                                return(
+                                    <HeaderTab onClick={()=>this.selectedEnc(enc)}>{enc.location}</HeaderTab>
                                 )
-                                }) : null }
+
+                            })}
+                            </HeadingContainer> : null }
+                            {this.state.isEncSet ? 
+                            <AdvTab onClick={this.handleEncounterOpen}>{this.state.encounter.location}</AdvTab> :
+                            null }
+                            
+                            {this.state.isEncSet ?
+                            <Collapse isOpened={this.state.isEncOpen} hasNestedCollapse={true}>
+                                    <EncountersTab encounter={this.state.encounter}
+                                        creatures={this.state.creatures}
+                                        findCreature={this.props.findCreature} />
+                            </Collapse>
+                                
+                            : null }
         
                         
                         
                         </AdvView>
                         <MapView />
-                        {/* {this.state.isDialogOpen ?
-                <Draggable>
-                <SkyLight
-                isVisible=
-                title={this.state.creature.name}>
-                <CreatureList creature={this.state.creature}/> 
-                </SkyLight>
-            </Draggable>
-                    : null} */}
+
 
                     </AdvPageContainer>
                 </AdvPageContainerTwo>
