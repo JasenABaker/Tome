@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-import { Link } from 'react-router-dom'
-import Dialog from 'react-dialog'
+import Collapse from 'react-collapse'
+import {AdvInfoSection, HeadingContainer} from './styled components/Containers'
+import {MainTab,Content,ContentDiv, HeaderTab, AdvTab} from './styled components/Tabs'
 import { MonsterCardContainer } from './styled components/Containers'
 
 
@@ -8,18 +9,23 @@ import { MonsterCardContainer } from './styled components/Containers'
 
 class EncountersTab extends Component {
     state = {
-        isDialogOpen: false
+        isIntroOpen: false,
+        sub_locations: [],
+        subLocation: {},
+        isSubSet: false,
+        isSubOpen: false
+        
     }
-    
-handleMonsterClick = (creature) => {
-    if (this.state.isDialogOpen){
-        this.props.handleMonsterClose()
-        this.setState({isDialogOpen: false})
-    } else{
-    this.props.handleMonsterOpen(creature)
-    this.setState({isDialogOpen: true})
-    } 
-}
+    handleIntroOpen = () =>{
+        this.setState({isIntroOpen: !this.state.isIntroOpen})
+    }
+    setSub = (sub)=>{
+        this.setState({subLocation: sub, isSubSet: true})
+    }
+    openSub = () => {
+        this.setState({isSubOpen: !this.state.isSubOpen})
+    }
+
 
     
     render() {
@@ -27,6 +33,7 @@ handleMonsterClick = (creature) => {
         let developments = null
         let creatures = null
         let treasures = null
+        let sub = null
     {
         this.props.creatures.find((creature) => {
             if (creature.encounter_id === this.props.encounter.id) {
@@ -51,7 +58,7 @@ handleMonsterClick = (creature) => {
         developments = null
     }
 
-    if(this.props.encounter.treasures !== ""){
+    if(this.props.encounter.treasures){
         treasures = 
                 <details>
                 <summary>Treasure</summary>
@@ -87,15 +94,46 @@ handleMonsterClick = (creature) => {
     } else {
         creatures = null
     }
+    if(this.props.encounter.sub_locations){
+        sub = <ContentDiv>
+            <HeadingContainer>
+            {this.props.encounter.sub_locations.map((sub)=>{
+                return(
+                <HeaderTab onClick={()=>this.setSub(sub)}>{sub.title}</HeaderTab>
+                )
+            })}
+            </HeadingContainer>
+            {this.state.isSubSet ?
+            <ContentDiv>
+            <AdvTab onClick={this.openSub}>
+            {this.state.subLocation.title}
+            </AdvTab>
+            <Collapse isOpened={this.state.isSubOpen}>
+            <p>{this.state.subLocation.map_location}</p>
+            <p>{this.state.subLocation.instructions}</p>
+
+            </Collapse>
+            </ContentDiv> : null }
+            </ContentDiv>
+    } else {
+        sub = null
+    }
 
     
     return ( 
     
-        <details>
-            <summary>{this.props.encounter.location}</summary>
-            <details>
+        <AdvInfoSection>
+                <ContentDiv>
+                <MainTab onClick={this.handleIntroOpen}>
+                    Introduction
+                </MainTab>
+                <Collapse isOpened={this.state.isIntroOpen}>
+                <Content>
                 <p>{this.props.encounter.intro}</p>
-            </details>
+                </Content>
+                </Collapse>
+                </ContentDiv>
+
             { this.props.encounter.descriptions.map((des) => {
                 return (
                     <details>
@@ -122,12 +160,12 @@ handleMonsterClick = (creature) => {
 
             })}
 
-
+        {sub}
         {treasures}
         {developments}
         {creatures}
         
-        </details>
+        </AdvInfoSection>
 
 
 )
