@@ -83,7 +83,15 @@ export const AdvTab = MainTab.extend`
 
 
         @media screen and (min-width: 500px){
-            width: 50vw;
+            width: 45vw;
         }
+
+`
+
+export const SubTab = AdvTab.extend`
+        border-radius: 10px;
+    @media screen and (min-width: 500px){
+        width: 20vw;
+    }
 
 `

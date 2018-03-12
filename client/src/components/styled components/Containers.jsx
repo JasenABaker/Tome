@@ -263,7 +263,6 @@ export const AdvInfoSection = styled.div`
     flex-direction: column;
     align-items: center;
     overflow: scroll;
-    margin: 0 10px;
     @media screen and (min-width: 500px){
         padding: 0 20px;
         min-height: 45vh;
@@ -278,7 +277,7 @@ export const AdvInfoSection = styled.div`
 
 `
 export const HeadingContainer = styled.div`
-    min-height: 10vh;
+    min-height: 15vh;
     width: 95vw;
     display: flex;
     justify-content: space-around;
@@ -286,12 +285,20 @@ export const HeadingContainer = styled.div`
     margin-bottom: 0;
     @media screen and (min-width: 500px){
         width: 25vw;
-        overflow:scroll;
 
     }
 
 `
+export const SectionSelction = HeadingContainer.extend`
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    @media screen and (min-width: 500px) {
+        width: 45vw;
 
+    }
+
+`
 
 
 

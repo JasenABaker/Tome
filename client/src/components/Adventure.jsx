@@ -174,7 +174,7 @@ class Adventure extends Component {
                             })}
                             </HeadingContainer> : null }
                             {this.state.isEncSet ? 
-                            <AdvTab onClick={this.handleEncounterOpen}>{this.state.encounter.location}</AdvTab> :
+                            <AdvTab onClick={this.handleEncounterOpen}>{this.state.encounter.map_location_number} {this.state.encounter.location}</AdvTab> :
                             null }
                             
                             {this.state.isEncSet ?
