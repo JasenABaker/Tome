@@ -39,6 +39,7 @@ export const FormDiv = styled.div`
     align-content: center;
     background-color:#162126;
     border: 1px solid black;
+    color: white;
 
 `
 

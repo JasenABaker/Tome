@@ -237,7 +237,7 @@ flex-direction: column;
 justify-content: space-between;
 @media screen and (min-width: 500px){
     flex-direction: row;
-    overflow:scroll;
+    overflowY: scroll;
 }
 
 `

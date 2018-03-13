@@ -132,14 +132,14 @@ class NewChapter extends Component {
                 <FormStyled onSubmit={this.handleNewInpSubmit} id="hook">
                     <FormDiv>
                         <TitleDiv>
-                            <LabelStyle htmlFor="title">Title of instruction :</LabelStyle>
-                            <InputStyle type="text" name="title" placeholder="Title of Hook" onChange={this.handleInpInput} />
+                            <LabelStyle htmlFor="title">Title of Instruction :</LabelStyle>
+                            <InputStyle type="text" name="title" placeholder="Title of Instruction" onChange={this.handleInpInput} />
                         </TitleDiv>
                         <div>
                             <div>
                                 <LabelStyle htmlFor="description">Description of the instruction: </LabelStyle>
                             </div>
-                            <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Text for the hook" onChange={this.handleInpInput}></TextAreaStyle >
+                            <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Description" onChange={this.handleInpInput}></TextAreaStyle >
                         </div>
                         <p>Once an instruction is submitted the form will be refreshed. Add more instructions!</p>
                         <ButtonDiv>
@@ -166,7 +166,7 @@ class NewChapter extends Component {
                 </FormStyled>
                         <ButtonDiv>
                             <SubmitButton type="submit" form="FormAd">Add Chapter</SubmitButton>
-                            <SubmitButton onClick={()=>this.props.setChapter()}>Finished</SubmitButton>
+                            <SubmitButton onClick={()=>this.props.setChapter()}>Finished Adding Chapters</SubmitButton>
                         </ButtonDiv>
             </FormContainer>
         )

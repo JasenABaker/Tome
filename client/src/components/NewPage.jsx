@@ -63,7 +63,7 @@ class NewPage extends Component {
                 this.state.chapFormComplete ? 
                 this.state.chapters.map((chap)=> {
                     return (<NewChap chapter={chap}/>
-                )}) : <h1>Chapter</h1>
+                )}) : <h1>Chapters</h1>
                 } 
                 {this.state.showEncounterForm ? <NewEncounter  chapters={this.state.chapters} pushEncounter={this.pushEncounter}  setEncounter={this.setEncounter}/>: 
                 this.state.encFormComplete ?

@@ -33,12 +33,7 @@ class AdventureSelect extends Component {
         return(
             <ContainerOne>
                 <LeftSide>
-                    
-                <Link to={'/new'} style={{ textDecoration: 'none', color: 'inherit' }}><AddButton>
-                        Add
-                    </AddButton>
-                </Link>
-                    <InsideLeft>
+                
                     
             {this.props.adventures.map((adven)=>{
                 return(
@@ -66,7 +61,6 @@ class AdventureSelect extends Component {
                 )
             })}
                 
-            </InsideLeft>
             </LeftSide>
             <RightSide>
                 {

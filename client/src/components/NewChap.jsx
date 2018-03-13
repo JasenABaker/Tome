@@ -15,7 +15,7 @@ const NewChap = (props) => {
         map = <Preview><p>none</p></Preview>
     }
     if (chap.instructions) {
-        hooks = <div>
+        hooks =
     
             <Preview>
                 {chap.instructions.map((int) => {
@@ -26,7 +26,7 @@ const NewChap = (props) => {
                         </div>
                     )
                 })}
-            </Preview></div>
+            </Preview>
     }else {
                 hooks =<Preview><p>none</p></Preview>
         }

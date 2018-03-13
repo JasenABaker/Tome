@@ -4,6 +4,7 @@ import { FormContainer, Preview, ImgPreview } from './styled components/Forms'
 
 let map = null
 let hooks = null
+let hooksIntro = null
 let additionalInfo = null
 
 
@@ -15,11 +16,10 @@ const NewAdv = (props) => {
         map = <Preview><p>none</p></Preview>
     }
     if (adv.hooks) {
-        hooks = <div>
-            <Preview>
-            <p>{adv.hooks_intro}</p>
-            </Preview>
-            <Preview>
+        hooksIntro = <Preview>
+        <p>{adv.hooks_intro}</p>
+        </Preview>
+        hooks = <Preview>
                 {adv.hooks.map((hook) => {
                     return (
                         <div>
@@ -28,8 +28,9 @@ const NewAdv = (props) => {
                         </div>
                     )
                 })}
-            </Preview></div>
+            </Preview>
     }else {
+                hooksIntro = <Preview><p>none</p></Preview>
                 hooks = <Preview><p>none</p></Preview>
         }
         if (adv.additional_info) {
@@ -59,7 +60,7 @@ const NewAdv = (props) => {
 
                 {map}
                 <h2>Hooks: </h2>
-        
+                {hooksIntro}
                 {hooks}
             <h2>Additonal Info: </h2>
             
