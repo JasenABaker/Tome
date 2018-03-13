@@ -10,6 +10,7 @@ export const PageContainer = styled.div`
     display: flex;
     flex-direction: column;
     background-color:#F7F9F9;
+    overflow: auto;
 `
 
 export const HomeContainer = styled.div`
@@ -227,11 +228,12 @@ export const NewPageContainer = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    overflow: auto;
 `
 
 export const NewContainer = styled.div`
 min-height: 90vh;
-min-width: 100vw;
+min-width: 100%;
 display: flex;
 flex-direction: column;
 justify-content: space-between;

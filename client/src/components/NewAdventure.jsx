@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, ImgPreview } from './styled components/Forms'
+import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, ImgPreview, SubmitForm } from './styled components/Forms'
 
 
 class NewAdventure extends Component {
@@ -198,7 +198,7 @@ class NewAdventure extends Component {
                     </FormDiv>
                 </FormStyled>
                         <ButtonDiv>
-                            <SubmitButton type="submit" form="FormAd">Add Adventure</SubmitButton>
+                            <SubmitForm type="submit" form="FormAd">Add Adventure</SubmitForm>
                         </ButtonDiv>
             </FormContainer>
         )

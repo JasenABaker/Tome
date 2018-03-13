@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, MonsterContainer } from './styled components/Forms'
+import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, MonsterContainer, SubmitForm, FinishButton } from './styled components/Forms'
 import { AdvCard } from './styled components/Containers'
 import CreatureList from './CreatureList'
 
@@ -269,8 +269,8 @@ class NewEncounter extends Component {
                 </FormStyled>
                 
                 <ButtonDiv>
-                    <SubmitButton type="submit" form="FormAd">Add Encounter</SubmitButton>
-                    <SubmitButton onClick={()=>this.props.setEncounter()}>Finish</SubmitButton>
+                    <SubmitForm type="submit" form="FormAd">Add Encounter</SubmitForm>
+                    <FinishButton onClick={()=>this.props.setEncounter()}>Finish</FinishButton>
                 </ButtonDiv>
             </FormContainer>
         )

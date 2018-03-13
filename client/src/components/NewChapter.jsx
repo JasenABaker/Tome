@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, ImgPreview } from './styled components/Forms'
+import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, ImgPreview, SubmitForm, FinishButton } from './styled components/Forms'
 
 
 class NewChapter extends Component {
@@ -165,8 +165,8 @@ class NewChapter extends Component {
                     </FormDiv>
                 </FormStyled>
                         <ButtonDiv>
-                            <SubmitButton type="submit" form="FormAd">Add Chapter</SubmitButton>
-                            <SubmitButton onClick={()=>this.props.setChapter()}>Finished Adding Chapters</SubmitButton>
+                            <SubmitForm type="submit" form="FormAd">Add Chapter</SubmitForm>
+                            <FinishButton onClick={()=>this.props.setChapter()}>Finished Adding Chapters</FinishButton>
                         </ButtonDiv>
             </FormContainer>
         )

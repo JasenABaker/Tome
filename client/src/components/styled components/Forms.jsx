@@ -84,10 +84,11 @@ export const FileUpload = styled.input`
 `
 
 export const ButtonDiv = styled.div`
-    height: 60px;
+    height: 200px;
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
 `
 
@@ -111,6 +112,35 @@ outline-style:none;
     color: rgba(255, 255, 255, 1);
     box-shadow: 0 5px 15px rgba(63,136,197, .4)
 }
+`
+
+export const SubmitForm = styled.button`
+    height: 50px;
+    width: 150px;
+    background-color:#011627;
+    color: white;
+    font-size: .8em;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: none;
+    outline-style:none;
+
+    :hover {
+        background-color:#182B3A;
+        box-shadow: 0 5px 15px rgba(1,22,39, .4)
+    }
+`
+
+export const FinishButton = SubmitForm.extend`
+    background-color: #D00000;
+
+    :hover {
+        background-color: #DC4545;
+        box-shadow: 0 5px 15px rgba(208,0,0, .4);
+    }
 `
 
 export const MonsterContainer = styled.div`
