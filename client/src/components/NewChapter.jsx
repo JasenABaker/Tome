@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import {Redirect} from 'react-router-dom'
 import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, ImgPreview } from './styled components/Forms'
 
 
@@ -99,7 +98,7 @@ class NewChapter extends Component {
         }
         let $imagePreview = null;
         if (imagePreviewUrl) {
-            $imagePreview = (<img src={imagePreviewUrl} />)
+            $imagePreview = (<img src={imagePreviewUrl} alt="nothing"/>)
             
         }  else {
             $imagePreview = (<div>Please select an Image for Preview</div>);

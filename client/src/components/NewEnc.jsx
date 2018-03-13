@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormContainer, Preview, ImgPreview } from './styled components/Forms'
+import { FormContainer, Preview} from './styled components/Forms'
 
 
 let hooks = null

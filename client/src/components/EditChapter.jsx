@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Redirect } from 'react-router-dom'
 import { FormContainerTwo, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, ImgPreview } from './styled components/Forms'
 
 
@@ -115,17 +114,16 @@ class EditChapter extends Component {
     render() {
         let desc = null
         let int = null
-        const chapter = this.props.chapter
         let { imagePreviewUrl } = {
             file: this.state.file,
             imagePreviewUrl: this.state.imagePreviewUrl
         }
         let $imagePreview = null;
         if (imagePreviewUrl) {
-            $imagePreview = (<img src={imagePreviewUrl} />)
+            $imagePreview = (<img src={imagePreviewUrl}  alt="nothing"/>)
 
         } else if (this.state.editChapter.mapUrl) {
-            $imagePreview = (<img src={this.state.editChapter.mapUrl} />);
+            $imagePreview = (<img src={this.state.editChapter.mapUrl} alt={this.state.chapterNotSelected.title} />);
         } else {
             $imagePreview = (<div>Please select an Image for Preview</div>);
         }

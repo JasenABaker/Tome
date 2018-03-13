@@ -18,7 +18,7 @@ class AdventureSelect extends Component {
         this.setState({adventure: res.data, showAdventure: true})
     }
     removeAdventure = async (advenId) => {
-        const res = await axios.delete(`/api/adventures/${advenId}`)
+        await axios.delete(`/api/adventures/${advenId}`)
         const adventure = this.state.adventure
         this.props.removeAdv(adventure)
     }

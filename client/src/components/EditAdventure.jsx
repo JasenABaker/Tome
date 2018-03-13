@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import {Redirect} from 'react-router-dom'
 import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, ImgPreview } from './styled components/Forms'
 
 
@@ -104,7 +103,7 @@ handleImageChange = (event) =>{
     
 
     editAdventurePatch = async () =>{
-        const res = await axios.patch(`/api/adventures/${this.props.match.params.id}`, this.state.editAdventure)
+        await axios.patch(`/api/adventures/${this.props.match.params.id}`, this.state.editAdventure)
 
     }
 
@@ -132,10 +131,10 @@ handleImageChange = (event) =>{
         }
         let $imagePreview = null;
         if (imagePreviewUrl) {
-            $imagePreview = (<img src={imagePreviewUrl} />)
+            $imagePreview = (<img src={imagePreviewUrl} alt="nothing" />)
             
         }  else if (adventure.mapUrl) {
-            $imagePreview = (<img src={adventure.mapUrl} />);
+            $imagePreview = (<img src={adventure.mapUrl} alt={adventure.title} />);
         } else {
             $imagePreview = (<div>Please select an Image for Preview</div>);
         }
