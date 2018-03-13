@@ -268,15 +268,14 @@ class EditEncounter extends Component {
 
         if(!this.state.chapNotSelected){
             const filteredEncounters = this.props.encounters.filter((encounter)=>{
-                return encounter.chapter_id = this.state.chapter.id
+                return encounter.chapter_id === this.state.chapter.id
             })
-            if(filteredEncounters){
+            if(filteredEncounters.length > 0){
             displayBlock = filteredEncounters.map((encounter) => {
                 return <SubmitButton onClick={()=>this.handleEncSelect(encounter)}>{encounter.location}</SubmitButton>
             })
             }  else {
                 displayBlock = null
-                this.setState({encNotSelected: true})
             }
         }
 

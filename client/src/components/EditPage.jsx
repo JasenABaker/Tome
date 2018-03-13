@@ -24,7 +24,13 @@ class EditPage extends Component {
         const resEnc = await axios.get(`/api/encounter`)
         const resCrea = await axios.get(`/api/encounter_creatures`)
         console.log(resEnc.data)
-        this.setState({pageNotLoaded: false, adventure: resAdv.data, chapters: resChap.data, encounters: resEnc.data, creatures: resCrea.data})
+        let chap = resChap.data.sort((a, b) => {
+            return a.id - b.id
+        })
+        let enc = resEnc.data.sort((a, b) => {
+            return a.id - b.id
+        })
+        this.setState({pageNotLoaded: false, adventure: resAdv.data, chapters: chap, encounters: enc, creatures: resCrea.data})
     }
 
     updateAdventure = (adv)=>{

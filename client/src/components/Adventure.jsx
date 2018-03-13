@@ -13,12 +13,16 @@ import CreatureList from './CreatureList'
 import { Dragon, Rules, Spells, Monster, Knight, Castle } from './styled components/Svg'
 import { NavBar, NavButtons, NavSpell, NavMon, NavAdv, NavEdit } from './styled components/Header'
 import { HeaderTab, AdvTab } from './styled components/Tabs'
+import SearchInput from './SearchInput'
 
 const cardStyle = {
+    padding: "20px 0",
     height: "65vh",
     width: "30vw",
     backgroundColor: "#F9F5D9",
     display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around",
     alignItems: "center",
     overflow: "scroll",
 }
@@ -127,6 +131,9 @@ class Adventure extends Component {
         this.refs.simpleDialog.show()
         this.setState({isDialogOpen: true})
     }
+    searchMonster = () => {
+        this.refs.monsterSearch.show()
+    }
 
     render() {
         const adventure = this.state.adventure
@@ -147,7 +154,7 @@ class Adventure extends Component {
                                 <Spells />
                                 <p>spells</p>
                             </NavSpell>
-                            <NavMon>
+                            <NavMon onClick={this.searchMonster}>
                                 <Monster />
                                 <p>monsters</p>
                             </NavMon>
@@ -225,6 +232,12 @@ class Adventure extends Component {
 
 
                     </AdvPageContainer>
+                    <Skylight
+                        dialogStyles={cardStyle}
+                        showOverlay={false}
+                        ref="monsterSearch">
+                        <SearchInput />
+                    </Skylight>
 
                         <Skylight
                             dialogStyles={cardStyle}

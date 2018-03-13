@@ -48,7 +48,7 @@ class NewMonsterForm extends Component {
 
 
         } else {
-            const creature = "Can't find creatute. Be more specific, i.e. adult blue dragon instead of adult dragon."
+            const creature = "Can't find creature. Be more specific, i.e. adult blue dragon instead of adult dragon."
             this.setState({ isCreatureFound: false, falseMessage: creature })
         }
 
