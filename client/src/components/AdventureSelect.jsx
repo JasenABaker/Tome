@@ -22,6 +22,11 @@ class AdventureSelect extends Component {
         const adventure = this.state.adventure
         this.props.removeAdv(adventure)
     }
+    beforeDelete = (advenId, adven) => {
+        if(window.confirm(`Do you wish to delete ${adven.title}?`)){
+            this.handleDelete(advenId)
+        }
+    }
 
     handleDelete = (advenId) => {
         this.removeAdventure(advenId)
@@ -51,7 +56,7 @@ class AdventureSelect extends Component {
                 edit
                 </EditButton>
                 </Link>
-                <DeleteButton onClick={()=>this.handleDelete(adven.id)} >
+                <DeleteButton onClick={()=>this.beforeDelete(adven.id, adven)} >
                 delete
                 </DeleteButton>
                 </ButtonContainer> :
@@ -64,7 +69,7 @@ class AdventureSelect extends Component {
             </LeftSide>
             <RightSide>
                 {
-                    this.state.showAdventure ? <AdventureShow adventure={this.state.adventure} handleDelete={this.handleDelete}/> : null
+                    this.state.showAdventure ? <AdventureShow adventure={this.state.adventure} beforeDelete={this.beforeDelete}/> : null
                 }
             </RightSide>
         </ContainerOne>

@@ -24,7 +24,7 @@ export const AdventureShow = (props) =>{
         <Link to={`/adventures/${adventure.id}/edit`} style={{ textDecoration: 'none', color: 'inherit' }}> 
             <EditButtonSquare>Edit</EditButtonSquare>
         </Link>
-            <DeleteButtonSquare onClick={()=>props.handleDelete(adventure.id)}>Delete</DeleteButtonSquare>
+            <DeleteButtonSquare onClick={()=>props.beforeDelete(adventure.id, adventure)}>Delete</DeleteButtonSquare>
         </ButtonContainer2>
         </div>
     )
