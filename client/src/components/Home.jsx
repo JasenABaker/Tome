@@ -17,7 +17,7 @@ const Home = () => {
                 </p>
                 <Link to='/adventures' style={{ textDecoration: 'none', color: 'inherit' }}>
                     <ToAdvButton>
-                    Adventures
+                    Adventures!
                     </ToAdvButton>
                 </Link>
             </HomeCard>

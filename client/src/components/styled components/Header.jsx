@@ -29,6 +29,16 @@ export const HeaderDiv = styled.a`
         fill: #FFBF00;
     }
 `
+export const HeaderTwoDiv = HeaderDiv.extend`
+    font-size: .8em;
+    margin-left: 0px;
+    margin-right: 10px;
+    margin-top: 30px;
+    @media screen and (min-width: 500px){
+        margin-right: 30px
+        font-size: 1em;
+    }
+`
 
 export const NavBar = styled.div`
     height: 15vh;

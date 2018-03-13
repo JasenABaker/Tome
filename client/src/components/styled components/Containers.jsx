@@ -9,7 +9,7 @@ export const PageContainer = styled.div`
     min-width: 100vw;
     display: flex;
     flex-direction: column;
-    background-color:#F6F7EB;
+    background-color:#F7F9F9;
 `
 
 export const HomeContainer = styled.div`
@@ -22,7 +22,7 @@ export const HomeContainer = styled.div`
 `
 
 export const HomeCard = styled.div`
-    height: 75vh;
+    height: 80vh;
     width: 60vw;
     color: #fff;
     display: flex;
@@ -30,7 +30,8 @@ export const HomeCard = styled.div`
     align-items: center;
     border-radius: 5px;
     background: linear-gradient(0deg, rgba(63,136,197,0.8), rgba(63,136,197,0.8)), url(${image}) center no-repeat;
-        background-size: cover;
+    background-size: cover;
+    box-shadow: 0 0 1.5em #867453;
 
     p{
         width: 90%;
@@ -199,8 +200,15 @@ export const AdvView = styled.div`
     }
 
 `
-export const MapView = AdvView.extend`
-    background-color: #E0E0E0;
+export const MapView = styled.div`
+    height: 43vh;
+    width: 95vw;
+    overflow: scroll;
+    @media screen and (min-width: 500px){
+        height: 87vh;
+        width:50vw;
+    }
+  
 
 `
 
@@ -229,6 +237,7 @@ flex-direction: column;
 justify-content: space-between;
 @media screen and (min-width: 500px){
     flex-direction: row;
+    overflow:scroll;
 }
 
 `

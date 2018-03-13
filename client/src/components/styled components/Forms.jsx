@@ -117,7 +117,7 @@ export const MonsterContainer = styled.div`
     height: 80vh;
     width: 95%;
     background-color: #F9F5D9;
-    border: 1px: solid black;
+    border: 1px solid black;
     display: flex;
     justify-content: space-between:
     align-items: center;

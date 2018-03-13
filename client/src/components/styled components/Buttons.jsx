@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 
 export const ToAdvButton = styled.div`
-    height: 100px;
+    height: 50px;
     width: 100px;
     background-color: #22333B;
     color:rgba(255, 255, 255, 0.8);
@@ -18,6 +18,10 @@ export const ToAdvButton = styled.div`
         background: linear-gradient(to bottom, #ffeab5 0%, #ffba08  10%);
         box-shadow: 0 5px 15px rgba(255,186,8, .4)
     
+    }
+    @media screen and (min-width: 500px) {
+        height: 50px;
+        width: 200px;
     }
 
 `

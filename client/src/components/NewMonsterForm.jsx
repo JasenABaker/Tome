@@ -105,7 +105,7 @@ class NewMonsterForm extends Component {
                 </FormStyled>
                 <FormStyled onSubmit={this.submit}>
                     <FormDiv>
-                        <h3>Add to Encouter {this.state.encounterLocation}</h3>
+                        <h3>Add to Encounter {this.state.encounterLocation}</h3>
                         <MonsterContainer>
                             {this.state.isCreatureFound ?
                                 <CreatureList creature={this.state.resultCreature} /> : <p>{this.state.falseMessage}</p>}

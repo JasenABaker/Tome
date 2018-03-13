@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 export const StatBlock = styled.div`
-    height: 100%;
+    min-height: 50vh;
     text-align: left;
-    margin: 20px;
+    margin: 100px 20px 20px 20px;
     display: inline-block;
     vertical-align: top;
     width: 17%;
