@@ -77,6 +77,7 @@ class NewMonsterForm extends Component {
         event.preventDefault()
         this.monsterSubmit()
         this.newMonsterPost()
+        alert(`${this.state.creature.count} ${this.state.creature.resultCreature.name}s to encounter.`)
         event.target.reset()
     }
 

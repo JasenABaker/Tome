@@ -58,9 +58,10 @@ class NewChapter extends Component {
             const newChap = { ...this.state.newChapter }
             newChap.instructions = this.state.instructions
             event.target.reset()
+            alert(`Added Instruction: ${this.state.inp.title}.`)
             this.setState({ newChapter: newChap})
         } else {
-
+            alert("No instruction added.")
             return this.state.inp
         }
     }
@@ -72,8 +73,10 @@ class NewChapter extends Component {
             const newChap = { ...this.state.newChapter }
             newChap.descriptions = this.state.descs
             event.target.reset()
+            alert('Description Added.')
             this.setState({ newChapter: newChap})
         } else {
+            alert('No Description Added.')
             return this.state.desc
         }
     }
@@ -87,6 +90,7 @@ class NewChapter extends Component {
     handleChapSubmit = async (event) => {
         event.preventDefault()
         this.newChapterPost()
+        alert(`Added New Chapter: ${this.state.newChapter.title}!`)
         event.target.reset()
 
     }
@@ -166,7 +170,7 @@ class NewChapter extends Component {
                 </FormStyled>
                         <ButtonDiv>
                             <SubmitForm type="submit" form="FormAd">Add Chapter</SubmitForm>
-                            <FinishButton onClick={()=>this.props.setChapter()}>Finished Adding Chapters</FinishButton>
+                            <FinishButton onClick={()=>this.props.beforeChapterSet()}>Finished Adding Chapters</FinishButton>
                         </ButtonDiv>
             </FormContainer>
         )

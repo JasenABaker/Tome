@@ -76,9 +76,11 @@ class NewEncounter extends Component {
             this.state.dangers.push(this.state.danger)
             const newEnc = { ...this.state.newEncounter }
             newEnc.dangers = this.state.dangers
+            alert(`Added Danger: ${this.state.danger.title}`)
             event.target.reset()
             this.setState({ newEncounter: newEnc })
         } else {
+            alert('Nothing Added')
             return this.state.danger
         }
     }
@@ -92,9 +94,11 @@ class NewEncounter extends Component {
             this.state.infos.push(this.state.info)
             const newEnc = { ...this.state.newEncounter }
             newEnc.additional_info = this.state.infos
+            alert(`Added Additional Info: ${this.state.info.title}`)
             event.target.reset()
             this.setState({ newEncounter: newEnc })
         } else {
+            alert('Nothing Added')
             return this.state.info
         }
     }
@@ -105,9 +109,11 @@ class NewEncounter extends Component {
             this.state.descs.push(this.state.desc)
             const newEnc = { ...this.state.newEncounter }
             newEnc.descriptions = this.state.descs
+            alert(`Added Description.`)
             event.target.reset()
             this.setState({ newEncounter: newEnc })
         } else {
+            alert('Nothing Added')
             return this.state.desc
         }
     }
@@ -122,9 +128,11 @@ class NewEncounter extends Component {
             this.state.subs.push(this.state.sub)
             const newEnc = { ...this.state.newEncounter }
             newEnc.sub_locations = this.state.subs
+            alert(`Added New Sublocation: ${this.state.sub.title}`)
             event.target.reset()
             this.setState({ newEncounter: newEnc })
         } else {
+            alert('Nothing Added')
             return this.state.sub
         }
     }
@@ -270,7 +278,7 @@ class NewEncounter extends Component {
                 
                 <ButtonDiv>
                     <SubmitForm type="submit" form="FormAd">Add Encounter</SubmitForm>
-                    <FinishButton onClick={()=>this.props.setEncounter()}>Finish</FinishButton>
+                    <FinishButton onClick={()=>this.props.beforeEncounterSet()}>Finish</FinishButton>
                 </ButtonDiv>
             </FormContainer>
         )

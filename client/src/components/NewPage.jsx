@@ -26,6 +26,11 @@ class NewPage extends Component {
         encFormComplete: false,
         
     }
+    beforeSubmitAll = () => {
+        if(window.confirm(`Are you finished creating an adventure?`)){
+            this.handleSubmitAll()
+        }
+    }
     handleSubmitAll = async () =>{
         this.props.addNewAdv(this.state.adventure)
         this.setState({redirect: true})
@@ -41,8 +46,18 @@ class NewPage extends Component {
     pushEncounter = (encounter) => {
         this.state.encounters.unshift(encounter)
     }
+    beforeChapterSet = () => {
+        if(window.confirm(`Are You Done Adding Chapters?`)){
+            this.setChapter()
+        }
+    }
     setChapter = () =>{
         this.setState({showChapterForm: false, chapFormComplete: true, showEncounterForm: true})
+    }
+    beforeEncounterSet = () => {
+        if(window.confirm('Are You Done Adding Encounters?')){
+            this.setEncounter()
+        }
     }
     setEncounter = () => {
 
@@ -54,18 +69,18 @@ class NewPage extends Component {
             this.state.redirect ? <Redirect to="/adventures" /> :
             <NewPageContainer>
                 
-                <SubmitButton onClick={this.handleSubmitAll}>Submit</SubmitButton>
+                <SubmitButton onClick={this.beforeSubmitAll}>Submit</SubmitButton>
             <NewContainer>
                 {this.state.showAdvForm ?
                 <NewAdventure addNewAdv={this.props.addNewAdv} setAdventure={this.setAdventure}/> : <NewAdv adventure={this.state.adventure} /> }
                 {this.state.showChapterForm ?
-                <NewChapter pushChapter={this.pushChapter} setChapter={this.setChapter} advenId={this.state.adventure.id} /> :
+                <NewChapter pushChapter={this.pushChapter} beforeChapterSet={this.beforeChapterSet} advenId={this.state.adventure.id} /> :
                 this.state.chapFormComplete ? 
                 this.state.chapters.map((chap)=> {
                     return (<NewChap chapter={chap}/>
                 )}) : <h1>Chapters</h1>
                 } 
-                {this.state.showEncounterForm ? <NewEncounter  chapters={this.state.chapters} pushEncounter={this.pushEncounter}  setEncounter={this.setEncounter}/>: 
+                {this.state.showEncounterForm ? <NewEncounter  chapters={this.state.chapters} pushEncounter={this.pushEncounter}  beforeEncounterSet={this.beforeEncounterSet}/>: 
                 this.state.encFormComplete ?
                 this.state.encounters.map((enc)=>{
                     return (

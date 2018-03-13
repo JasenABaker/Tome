@@ -59,10 +59,11 @@ class NewAdventure extends Component {
             this.state.hooks.push(this.state.hook)
             const newAdv = { ...this.state.newAdventure }
             newAdv.hooks = this.state.hooks
+            alert(`Added Hook: ${this.state.hook.title}.`)
             event.target.reset()
             this.setState({ newAdventure: newAdv })
         } else {
-
+            alert("No Hook Added.")
             return this.state.hook
         }
     }
@@ -76,9 +77,11 @@ class NewAdventure extends Component {
             this.state.infos.push(this.state.info)
             const newAdv = { ...this.state.newAdventure }
             newAdv.additional_info = this.state.infos
+            alert(`Added Additional Info: ${this.state.info.title}.`)
             event.target.reset()
             this.setState({ newAdventure: newAdv })
         } else {
+            alert("No Information added/")
             return this.state.info
         }
     }
@@ -99,6 +102,7 @@ class NewAdventure extends Component {
 
     handleAdvSubmit = async (event) => {
         event.preventDefault()
+        alert(`Created New Adventure: ${this.state.newAdventure.title}.`)
         this.newAdventurePost()
 
     }
