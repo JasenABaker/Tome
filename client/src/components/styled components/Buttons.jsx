@@ -104,5 +104,27 @@ export const SubmitButton = EditButtonSquare.extend`
 
 `
 
+export const ToolButton = styled.button`
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    background: radial-gradient(ellipse at center, rgba(173,219,21,1) 0%,rgba(127,184,0,1) 100%);
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 900;
+    outline-style:none;
+    border: none;
+
+    :hover {
+        background: linear-gradient(to bottom, rgba(173,219,21,1) 0%,rgba(127,184,0,1) 87%);
+        box-shadow: 0 5px 15px rgba(127,184,0, .4); 
+    }
+    :active {
+        background: radial-gradient(ellipse at center, rgba(127,184,0,1) 0%,rgba(173,219,21,1) 100%);
+    }
+
+`
+
 
 

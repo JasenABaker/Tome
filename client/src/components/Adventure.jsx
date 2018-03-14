@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Skylight from 'react-skylight'
 import { Collapse } from 'react-collapse'
-import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, HeadingContainer } from './styled components/Containers'
+import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, HeadingContainer, ToolBar } from './styled components/Containers'
 import {MonsterContainer} from './styled components/Forms'
 import Draggable from 'react-draggable'
 import AdventureTab from './AdventureTab'
@@ -14,6 +14,8 @@ import { Dragon, Rules, Spells, Monster, Knight, Castle } from './styled compone
 import { NavBar, NavButtons, NavSpell, NavMon, NavAdv, NavEdit } from './styled components/Header'
 import { HeaderTab, AdvTab } from './styled components/Tabs'
 import SearchInput from './SearchInput'
+import {ToolButton} from './styled components/Buttons'
+import TurnTracker from './TurnTracker'
 
 const cardStyle = {
     padding: "20px 0",
@@ -27,6 +29,10 @@ const cardStyle = {
     overflow: "scroll",
 }
 
+const tracker = {
+    height: "52vh",
+    width: "16vw",
+}
 
 
 class Adventure extends Component {
@@ -134,6 +140,9 @@ class Adventure extends Component {
     searchMonster = () => {
         this.refs.monsterSearch.show()
     }
+    tracker = () => {
+        this.refs.turnTracker.show()
+    }
 
     render() {
         const adventure = this.state.adventure
@@ -170,6 +179,11 @@ class Adventure extends Component {
                     </AdvHeader>
                     <AdvPageContainer>
                         <AdvView>
+                        <ToolBar>
+                            <ToolButton onClick={this.tracker}>
+                                +
+                            </ToolButton>
+                        </ToolBar>
                             <AdvTab onClick={this.handleOpen}>
                                 Adventure
                         </AdvTab>
@@ -232,6 +246,13 @@ class Adventure extends Component {
 
 
                     </AdvPageContainer>
+                    <Skylight
+                        dialogStyles={tracker}
+                        showOverlay={false}
+                        ref="turnTracker">
+                        <TurnTracker/>
+                    </Skylight>
+
                     <Skylight
                         dialogStyles={cardStyle}
                         showOverlay={false}
