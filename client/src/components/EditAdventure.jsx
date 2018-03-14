@@ -1,23 +1,50 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, ImgPreview } from './styled components/Forms'
+import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, ImgPreview, DeleteButton, SubmitForm } from './styled components/Forms'
 
 
 class EditAventure extends Component {
     state = {
-        editAdventure: this.props.adventure,
-        hooks: this.props.adventure.hooks,
-        infos: this.props.adventure.additional_info,
+        editAdventure: {},
+        hooks: [],
+        infos: [],
         hook: {},
         info: {},
         file: [],
         imagePreviewUrl: "",
-
+        isPageNotLoaded: true,
         hasInfo: false,
     }
+    componentWillMount() {
+        this.setState({editAdventure: this.props.adventure, hooks: this.props.adventure.hooks, infos:this.props.adventure.additional_info,isPageNotLoaded: false })
+    }
 
+    handleHookDelete = (event,hook) => {
+        event.preventDefault()
+        const Adv = {...this.state.editAdventure}
+        const hookToRemove = this.state.editAdventure.hooks.indexOf(hook)
+        const hooks = [...Adv.hooks]
+        if(window.confirm(`Are you sure you want to delete ${hook.title}?`)){
+        hooks.splice(hookToRemove, 1)
+        Adv.hooks = hooks
+        this.setState({ editAdventure: Adv})
 
-    
+        }
+        
+    }
+    handleInfoDelete = (event, info) => {
+        event.preventDefault()
+        const Adv = {...this.state.editAdventure}
+        const infoToRemove = this.state.editAdventure.additional_info.indexOf(info)
+        const addInfo = [...Adv.additional_info]
+        console.log(addInfo)
+        if(window.confirm(`Are you sure you want to delete ${info.title}?`)){
+        addInfo.splice(infoToRemove, 1)
+        Adv.additional_info = addInfo
+        this.setState({ editAdventure: Adv})
+        } 
+        console.log(this.state.editAdventure.additional_info)
+    }
     
 handleImageChange = (event) =>{
         event.preventDefault()
@@ -79,9 +106,11 @@ handleImageChange = (event) =>{
             (this.state.info.description !== "")) {
             const editAdv = { ...this.state.editAdventure }
             editAdv.additional_info.push(this.state.info)
+            alert(`Added Additional Info: ${this.state.info.title}.`)
             event.target.reset()
-            this.setState({ ditAdventure: editAdv })
+            this.setState({ editAdventure: editAdv })
         } else {
+            alert("No Information added.")
             return this.state.info
         }
     }
@@ -92,10 +121,11 @@ handleImageChange = (event) =>{
             (this.state.hook.description !== "")) {
             const editAdv = { ...this.state.editAdventure }
             editAdv.hooks.push(this.state.hook)
+            alert(`Added Hook: ${this.state.hook.title}.`)
             event.target.reset()
             this.setState({ editAdventure: editAdv})
         } else {
-
+            alert("No Hook Added.")
             return this.state.hook
         }
     }
@@ -103,7 +133,8 @@ handleImageChange = (event) =>{
     
 
     editAdventurePatch = async () =>{
-        await axios.patch(`/api/adventures/${this.props.match.params.id}`, this.state.editAdventure)
+        const res = await axios.patch(`/api/adventures/${this.props.match.params.id}`, this.state.editAdventure)
+        this.setState({editAdventure: res.data})
 
     }
 
@@ -116,7 +147,7 @@ handleImageChange = (event) =>{
     handleAdvSubmit = async (event) => {
         event.preventDefault()
         this.editAdventurePatch()
-
+        alert(`${this.state.editAdventure.title} updated!`)
     }
 
 
@@ -138,8 +169,8 @@ handleImageChange = (event) =>{
         } else {
             $imagePreview = (<div>Please select an Image for Preview</div>);
         }
-        if(this.props.adventure.hooks){
-            hooks = adventure.hooks.map((hook, index)=>{
+        if(this.state.editAdventure.hooks){
+            hooks = this.state.editAdventure.hooks.map((hook, index)=>{
                 return(
                 <FormStyled>
                 <FormDiv>
@@ -153,6 +184,9 @@ handleImageChange = (event) =>{
                         </div>
                         <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Text for the hook" onChange={(event)=>this.handleHookEdit(event,index)}value={hook.description}></TextAreaStyle >
                     </div>
+                    <ButtonDiv>
+                        <DeleteButton onClick={(event)=>this.handleHookDelete(event,hook)}>Delete Hook</DeleteButton>
+                    </ButtonDiv>
                 </FormDiv>
 
             </FormStyled>
@@ -160,8 +194,8 @@ handleImageChange = (event) =>{
             } else {
                 hooks = null
             }
-            if(this.props.adventure.additional_info){
-                info = adventure.additional_info.map((info, index)=>{
+            if(this.state.editAdventure.additional_info){
+                info = this.state.editAdventure.additional_info.map((info, index)=>{
                     return(
                 <FormStyled onSubmit={this.handleNewInfoSubmit} id="info">
                     <FormDiv>
@@ -175,6 +209,9 @@ handleImageChange = (event) =>{
                             </div>
                             <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Infomation" onChange={(event)=>this.handleInfoEdit(event,index)} value={info.description}></TextAreaStyle >
                         </div>
+                        <ButtonDiv>
+                        <DeleteButton onClick={(event)=>this.handleInfoDelete(event,info)}>Delete Info</DeleteButton>
+                    </ButtonDiv>
                     </FormDiv>
                 </FormStyled>)})
                 }else {
@@ -183,6 +220,7 @@ handleImageChange = (event) =>{
 
 
         return (
+            this.state.isPageNotLoaded ? <div></div> :
             <FormContainer>
                 <h1>Edit {adventure.title}</h1>
                 <FormStyled onSubmit={this.handleAdvSubmit} id="FormAd">
@@ -266,7 +304,7 @@ handleImageChange = (event) =>{
                     </FormDiv>
                 </FormStyled>
                         <ButtonDiv>
-                            <SubmitButton type="submit" form="FormAd">Add Adventure</SubmitButton>
+                            <SubmitForm type="submit" form="FormAd">Edit {this.state.editAdventure.title}</SubmitForm>
                         </ButtonDiv>
  
             </FormContainer>

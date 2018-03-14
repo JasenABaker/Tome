@@ -81,7 +81,7 @@ class NewAdventure extends Component {
             event.target.reset()
             this.setState({ newAdventure: newAdv })
         } else {
-            alert("No Information added/")
+            alert("No Information added.")
             return this.state.info
         }
     }

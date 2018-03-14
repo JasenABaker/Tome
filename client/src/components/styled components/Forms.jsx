@@ -84,7 +84,7 @@ export const FileUpload = styled.input`
 `
 
 export const ButtonDiv = styled.div`
-    height: 200px;
+    min-height: 60px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -112,6 +112,14 @@ outline-style:none;
     color: rgba(255, 255, 255, 1);
     box-shadow: 0 5px 15px rgba(63,136,197, .4)
 }
+`
+export const DeleteButton = SubmitButton.extend`
+    background-color: #D00000;
+
+    :hover {
+        background: linear-gradient(to bottom, #DC4545 0%,#D00000 80%);
+        box-shadow: 0 5px 15px rgba(208,0,0, .4)
+    }
 `
 
 export const SubmitForm = styled.button`

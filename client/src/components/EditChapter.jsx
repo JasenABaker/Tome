@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { FormContainerTwo, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, ImgPreview } from './styled components/Forms'
-
+import { FormContainerTwo, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, ImgPreview, DeleteButton, SubmitForm } from './styled components/Forms'
+import { HeaderTab } from './styled components/Tabs'
+import { HeadingContainer } from './styled components/Containers'
 
 class EditChapter extends Component {
     state = {
@@ -49,14 +50,14 @@ class EditChapter extends Component {
 
     }
 
-    handleChapSelect = (chap)=> {
-        this.setState({editChapter: chap, chapterNotSelected: false})
+    handleChapSelect = (chap) => {
+        this.setState({ editChapter: chap, chapterNotSelected: false })
     }
 
 
     editChapterPatch = async () => {
         const res = await axios.patch(`/api/adventures/${this.props.match.params.id}/chapters/${this.state.editChapter.id}`, this.state.editChapter)
-        
+
         this.props.updateChapter(res.data)
 
     }
@@ -108,6 +109,29 @@ class EditChapter extends Component {
         this.editChapterPatch()
 
     }
+    handleInstDelete = (event, inst) => {
+        event.preventDefault()
+        const chap = { ...this.state.editChapter }
+        const instToRemove = this.state.editChapter.instructions.indexOf(inst)
+        const editInst = [...chap.instructions]
+        if (window.confirm(`Are you sure you want to delete ${inst.title}?`)) {
+            editInst.splice(instToRemove, 1)
+            chap.instructions = editInst
+            this.setState({ editChapter: chap })
+        }
+
+    }
+    handleDescDelete = (event, desc) => {
+        event.preventDefault()
+        const chap = { ...this.state.editChapter }
+        const descToRemove = this.state.editChapter.descriptions.indexOf(desc)
+        const editDesc = [...chap.descriptions]
+        if (window.confirm(`Are you sure you want to delete this description?`)) {
+            editDesc.splice(descToRemove, 1)
+            chap.descriptions = editDesc
+            this.setState({ editChapter: chap })
+        }
+    }
 
 
 
@@ -120,7 +144,7 @@ class EditChapter extends Component {
         }
         let $imagePreview = null;
         if (imagePreviewUrl) {
-            $imagePreview = (<img src={imagePreviewUrl}  alt="nothing"/>)
+            $imagePreview = (<img src={imagePreviewUrl} alt="nothing" />)
 
         } else if (this.state.editChapter.mapUrl) {
             $imagePreview = (<img src={this.state.editChapter.mapUrl} alt={this.state.chapterNotSelected.title} />);
@@ -139,6 +163,9 @@ class EditChapter extends Component {
                                 </div>
                                 <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Infomation" onChange={(event) => this.handleDescEdit(event, index)} value={des}></TextAreaStyle >
                             </div>
+                            <ButtonDiv>
+                                <DeleteButton onClick={(event) => this.handleDescDelete(event, des)}>Delete Description</DeleteButton>
+                            </ButtonDiv>
                         </FormDiv>
                     </FormStyled>
                 )
@@ -161,6 +188,9 @@ class EditChapter extends Component {
                                 </div>
                                 <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Text for the hook" onChange={(event) => this.handleInpEdit(event, index)} value={int.description}></TextAreaStyle >
                             </div>
+                            <ButtonDiv>
+                                <DeleteButton onClick={(event) => this.handleInstDelete(event, int)}>Delete {int.title}</DeleteButton>
+                            </ButtonDiv>
                         </FormDiv>
 
                     </FormStyled>
@@ -172,80 +202,80 @@ class EditChapter extends Component {
 
         return (
             <FormContainerTwo>
-                <div>
-                {this.props.chapters.map((chap)=>{
-                    return (
-                        <SubmitButton onClick={()=>this.handleChapSelect(chap)}>{chap.title}</SubmitButton>
-                    )
-                })}
-                </div>
-                {this.state.chapterNotSelected ?  <div></div> :
-                <div>
-                <h1>Edit {this.state.editChapter.title}</h1>
-                <FormStyled onSubmit={this.handleChapSubmit} id={this.state.editChapter}>
-                    <FormDiv>
-                        <TitleDiv>
-                            <LabelStyle htmlFor="title">Title:</LabelStyle>
-                            <InputStyle type="text" name="title" placeholder="Title" onChange={this.handleInput} value={this.state.editChapter.title} />
-                        </TitleDiv>
-                        <div>
-                            <div>
-                                <LabelStyle htmlFor="intro">Introduction: </LabelStyle>
-                            </div>
-                            <TextAreaStyle name="intro" id="" cols="30" rows="10" placeholder="Text for the introduction" onChange={this.handleInput} value={this.state.editChapter.intro}></TextAreaStyle >
-                        </div>
+                <HeadingContainer>
+                    {this.props.chapters.map((chap) => {
+                        return (
+                            <HeaderTab onClick={() => this.handleChapSelect(chap)}>{chap.title}</HeaderTab>
+                        )
+                    })}
+                </HeadingContainer>
+                {this.state.chapterNotSelected ? <div></div> :
+                    <div>
+                        <h1>Edit {this.state.editChapter.title}</h1>
+                        <FormStyled onSubmit={this.handleChapSubmit} id={this.state.editChapter}>
+                            <FormDiv>
+                                <TitleDiv>
+                                    <LabelStyle htmlFor="title">Title:</LabelStyle>
+                                    <InputStyle type="text" name="title" placeholder="Title" onChange={this.handleInput} value={this.state.editChapter.title} />
+                                </TitleDiv>
+                                <div>
+                                    <div>
+                                        <LabelStyle htmlFor="intro">Introduction: </LabelStyle>
+                                    </div>
+                                    <TextAreaStyle name="intro" id="" cols="30" rows="10" placeholder="Text for the introduction" onChange={this.handleInput} value={this.state.editChapter.intro}></TextAreaStyle >
+                                </div>
 
 
-                        <div>
-                            <LabelStyle htmlFor="mapUrl">Stater Map for the chapter: </LabelStyle>
-                        </div>
-                        <FileUpload type="text" name="mapUrl" placeholder="upload" onChange={this.handleImageChange} />
-                        <ImgPreview>{$imagePreview}</ImgPreview>
+                                <div>
+                                    <LabelStyle htmlFor="mapUrl">Stater Map for the chapter: </LabelStyle>
+                                </div>
+                                <FileUpload type="text" name="mapUrl" placeholder="upload" onChange={this.handleImageChange} />
+                                <ImgPreview>{$imagePreview}</ImgPreview>
 
-                    </FormDiv>
-                </FormStyled>
-                <h2>Instructions</h2>
-                {int}
+                            </FormDiv>
+                        </FormStyled>
+                        <h2>Instructions</h2>
+                        {int}
 
-                <FormStyled onSubmit={this.handleNewInpSubmit}>
-                    <FormDiv>
-                        <TitleDiv>
-                            <LabelStyle htmlFor="title">Title of instruction:</LabelStyle>
-                            <InputStyle type="text" name="title" placeholder="Title of Instruction" onChange={this.handleInpInput} />
-                        </TitleDiv>
-                        <div>
-                            <div>
-                                <LabelStyle htmlFor="description">Description of the Instruction: </LabelStyle>
-                            </div>
-                            <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Instuctions" onChange={this.handleInpInput}></TextAreaStyle >
-                        </div>
-                    
-                    <ButtonDiv>
-                        <SubmitButton type="submit">Add Instruction</SubmitButton>
-                    </ButtonDiv>
-                    </FormDiv>
-                </FormStyled>
+                        <FormStyled onSubmit={this.handleNewInpSubmit}>
+                            <FormDiv>
+                                <TitleDiv>
+                                    <LabelStyle htmlFor="title">Title of instruction:</LabelStyle>
+                                    <InputStyle type="text" name="title" placeholder="Title of Instruction" onChange={this.handleInpInput} />
+                                </TitleDiv>
+                                <div>
+                                    <div>
+                                        <LabelStyle htmlFor="description">Description of the Instruction: </LabelStyle>
+                                    </div>
+                                    <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Instuctions" onChange={this.handleInpInput}></TextAreaStyle >
+                                </div>
 
-                <h2>Descriptions:</h2>
-                {desc}
-                <FormStyled onSubmit={this.handleNewDescSubmit}>
-                    <FormDiv>
+                                <ButtonDiv>
+                                    <SubmitButton type="submit">Add Instruction</SubmitButton>
+                                </ButtonDiv>
+                            </FormDiv>
+                        </FormStyled>
 
-                        <div>
-                            <div>
-                                <LabelStyle htmlFor="description">Description: </LabelStyle>
-                            </div>
-                            <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Infomation" onChange={this.handleDescInput}></TextAreaStyle >
-                        </div>
+                        <h2>Descriptions:</h2>
+                        {desc}
+                        <FormStyled onSubmit={this.handleNewDescSubmit}>
+                            <FormDiv>
+
+                                <div>
+                                    <div>
+                                        <LabelStyle htmlFor="description">Description: </LabelStyle>
+                                    </div>
+                                    <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Infomation" onChange={this.handleDescInput}></TextAreaStyle >
+                                </div>
+                                <ButtonDiv>
+                                    <SubmitButton type="submit">Add Description</SubmitButton>
+                                </ButtonDiv>
+                            </FormDiv>
+                        </FormStyled>
                         <ButtonDiv>
-                            <SubmitButton type="submit">Add Description</SubmitButton>
+                            <SubmitForm type="submit" form={this.state.editChapter}>Edit Chapter</SubmitForm>
                         </ButtonDiv>
-                    </FormDiv>
-                </FormStyled>
-                <ButtonDiv>
-                    <SubmitButton type="submit" form={this.state.editChapter}>Edit Chapter</SubmitButton>
-                </ButtonDiv>
-                </div>
+                    </div>
                 }
             </FormContainerTwo>
         )
