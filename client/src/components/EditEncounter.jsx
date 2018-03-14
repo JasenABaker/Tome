@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { FormContainerTwo, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, ButtonDiv, SubmitButton } from './styled components/Forms'
-
-
+import { FormContainerTwo, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, ButtonDiv, SubmitButton, SubmitForm, DeleteButton } from './styled components/Forms'
+import {HeadingContainer, SectionSelction} from './styled components/Containers'
+import {HeaderTab} from './styled components/Tabs'
+import NewEncounter from './NewEncounter'
 class EditEncounter extends Component {
     state = {
         editEncounter: {},
@@ -100,6 +101,7 @@ class EditEncounter extends Component {
             (this.state.info.description !== "")) {
             const editEnc = { ...this.state.editEncounter }
             editEnc.additional_info.push(this.state.info)
+            alert(`Info ${this.state.info.title} added.`)
             event.target.reset()
             this.setState({ editEncounter: editEnc })
         } else {
@@ -112,7 +114,8 @@ class EditEncounter extends Component {
             (this.state.danger.title !== "") &&
             (this.state.danger.description !== "")) {
             const editEnc = { ...this.state.editEncounter }
-            editEnc.dangers.push(this.state.dangers)
+            editEnc.dangers.push(this.state.danger)
+            alert(`Added ${this.state.danger.title}`)
             event.target.reset()
             this.setState({ editEncounter: editEnc })
         } else {
@@ -170,6 +173,50 @@ class EditEncounter extends Component {
     
         this.setState({editEncounter: enc, encNotSelected: false})
     }
+    handleDescDelete = (event, desc) => {
+        event.preventDefault()
+        const enc = { ...this.state.editEncounter }
+        const descToRemove = this.state.editEncounter.descriptions.indexOf(desc)
+        const editDesc = [...enc.descriptions]
+        if (window.confirm(`Are you sure you want to delete this description?`)) {
+            editDesc.splice(descToRemove, 1)
+            enc.descriptions = editDesc
+            this.setState({ editEncounter: enc })
+        }
+    }
+    handleInfoDelete = (event, info) => {
+        event.preventDefault()
+        const enc = {...this.state.editEncounter}
+        const infoToRemove = this.state.editEncounter.additional_info.indexOf(info)
+        const addInfo = [...enc.additional_info]
+        if(window.confirm(`Are you sure you want to delete ${info.title}?`)){
+        addInfo.splice(infoToRemove, 1)
+        enc.additional_info = addInfo
+        this.setState({ editEncounter: enc})
+        } 
+    }
+    handleDangDelete = (event, dang) => {
+        event.preventDefault()
+        const enc = {...this.state.editEncounter}
+        const dangToRemove = this.state.editEncounter.dangers.indexOf(dang)
+        const addDang = [...enc.dangers]
+        if(window.confirm(`Are you sure you want to delete ${dang.title}?`)){
+        addDang.splice(dangToRemove, 1)
+        enc.dangers = addDang
+        this.setState({ editEncounter: enc})
+        } 
+    }
+    handleSubDelete = (event, sub) => {
+        event.preventDefault()
+        const enc = {...this.state.editEncounter}
+        const subToRemove = this.state.editEncounter.sub_locations.indexOf(sub)
+        const addSub = [...enc.sub_locations]
+        if(window.confirm(`Are you sure you want to delete ${sub.title}?`)){
+        addSub.splice(subToRemove, 1)
+        enc.sub_locations = addSub
+        this.setState({ editEncounter: enc})
+        } 
+    }
 
 
     render() {
@@ -188,8 +235,11 @@ class EditEncounter extends Component {
                             <div>
                                 <LabelStyle htmlFor="description">Description: </LabelStyle>
                             </div>
-                            <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Infomation" onChange={(event)=>this.handleDescEdit(event, index)}></TextAreaStyle >
+                            <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Infomation" onChange={(event)=>this.handleDescEdit(event, index)} value={desc}></TextAreaStyle >
                         </div>
+                        <ButtonDiv>
+                                <DeleteButton onClick={(event) => this.handleDescDelete(event, desc)}>Delete Description</DeleteButton>
+                            </ButtonDiv>
                     </FormDiv>
                 </FormStyled>
                 )}) 
@@ -198,26 +248,30 @@ class EditEncounter extends Component {
             }
         if(this.state.editEncounter.dangers){
             danger = this.state.editEncounter.dangers.map((danger, index)=>{
+                return(
                 <FormStyled>
                     <FormDiv>
                         <TitleDiv>
                             <LabelStyle htmlFor="title">Type of Danger</LabelStyle>
-                            <InputStyle type="text" name="title" placeholder="Type of Danger" onChange={(event)=>this.handleDangInputEdit(event,index)} />
+                            <InputStyle type="text" name="title" placeholder="Type of Danger" onChange={(event)=>this.handleDangInputEdit(event,index)} value={danger.title}/>
                         </TitleDiv>
                         <div>
                             <div>
                                 <LabelStyle htmlFor="description">Danger information: </LabelStyle>
                             </div>
-                            <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Infomation on the Danger" onChange={(event)=>this.handleDangInputEdit(event,index)}></TextAreaStyle >
+                            <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Infomation on the Danger" onChange={(event)=>this.handleDangInputEdit(event,index)}value={danger.description}></TextAreaStyle >
                         </div>
+                        <ButtonDiv>
+                                <DeleteButton onClick={(event) => this.handleDangDelete(event, danger)}>Delete {danger.title}</DeleteButton>
+                            </ButtonDiv>
                     </FormDiv>
                 </FormStyled>
-            })
+             )})
         } else {
             danger = null
         }
         if(this.state.editEncounter.additional_info){
-                info = this.state.editEncounter.sub_locations.map((info, index)=>{
+                info = this.state.editEncounter.additional_info.map((info, index)=>{
                     return(
                 <FormStyled onSubmit={this.handleNewInfoSubmit} id="info">
                     <FormDiv>
@@ -231,6 +285,9 @@ class EditEncounter extends Component {
                             </div>
                             <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Infomation" onChange={(event)=>this.handleInfoEdit(event,index)} value={info.description}></TextAreaStyle >
                         </div>
+                        <ButtonDiv>
+                                <DeleteButton onClick={(event) => this.handleInfoDelete(event, info)}>Delete {info.title}</DeleteButton>
+                            </ButtonDiv>
                     </FormDiv>
                 </FormStyled>)})
                 }else {
@@ -255,6 +312,9 @@ class EditEncounter extends Component {
                             </div>
                             <TextAreaStyle name="instructions" id="" cols="30" rows="10" placeholder="Instructions about the sublocation." onChange={(event)=>this.handleSubEdit(event,index)} value={sub.instructions}></TextAreaStyle >
                         </div>
+                        <ButtonDiv>
+                                <DeleteButton onClick={(event) => this.handleSubDelete(event, sub)}>Delete {sub.title}</DeleteButton>
+                            </ButtonDiv>
                     </FormDiv>
                 </FormStyled>
 
@@ -271,9 +331,14 @@ class EditEncounter extends Component {
                 return encounter.chapter_id === this.state.chapter.id
             })
             if(filteredEncounters.length > 0){
-            displayBlock = filteredEncounters.map((encounter) => {
-                return <SubmitButton onClick={()=>this.handleEncSelect(encounter)}>{encounter.location}</SubmitButton>
-            })
+            displayBlock =<SectionSelction>
+                <h2>Select Encounter</h2>
+            <HeadingContainer>
+            {filteredEncounters.map((encounter) => {
+                return( <HeaderTab onClick={()=>this.handleEncSelect(encounter)}>{encounter.location}</HeaderTab>
+            )})}
+            </HeadingContainer>
+            </SectionSelction>
             }  else {
                 displayBlock = null
             }
@@ -281,14 +346,15 @@ class EditEncounter extends Component {
 
         return (
             <FormContainerTwo>
-            <div>
+                <h1>Encounters</h1>
+            <HeadingContainer>
                 {this.props.chapters.map((chap)=>{
                     return(
-                        <SubmitButton onClick={()=>this.handleChapSelect(chap)}>{chap.title}</SubmitButton>
+                        <HeaderTab onClick={()=>this.handleChapSelect(chap)}>{chap.title}</HeaderTab>
                     )
                 })}
                 {displayBlock}
-            </div>
+            </HeadingContainer>
                 { this.state.encNotSelected ? 
                 <div></div> :
                 <div>
@@ -404,7 +470,7 @@ class EditEncounter extends Component {
                     </FormDiv>
                 </FormStyled>
                         <ButtonDiv>
-                            <SubmitButton type="submit" form={this.state.editEncounter.id}>Add encounter</SubmitButton>
+                            <SubmitForm type="submit" form={this.state.editEncounter.id}>Edit {this.state.editEncounter.location}</SubmitForm>
                         </ButtonDiv>
                         </div>
             }

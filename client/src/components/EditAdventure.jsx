@@ -37,13 +37,11 @@ class EditAventure extends Component {
         const Adv = {...this.state.editAdventure}
         const infoToRemove = this.state.editAdventure.additional_info.indexOf(info)
         const addInfo = [...Adv.additional_info]
-        console.log(addInfo)
         if(window.confirm(`Are you sure you want to delete ${info.title}?`)){
         addInfo.splice(infoToRemove, 1)
         Adv.additional_info = addInfo
         this.setState({ editAdventure: Adv})
         } 
-        console.log(this.state.editAdventure.additional_info)
     }
     
 handleImageChange = (event) =>{

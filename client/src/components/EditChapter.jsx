@@ -202,6 +202,7 @@ class EditChapter extends Component {
 
         return (
             <FormContainerTwo>
+                <h1>Chapters</h1>
                 <HeadingContainer>
                     {this.props.chapters.map((chap) => {
                         return (
