@@ -127,6 +127,7 @@ class EditEncounter extends Component {
         if (this.state.desc !== "") {
             const editEnc = { ...this.state.editEncounter }
             editEnc.descriptions.push(this.state.desc)
+            alert("Added Description")
             event.target.reset()
             this.setState({ editEncounter: editEnc })
         } else {
@@ -141,6 +142,7 @@ class EditEncounter extends Component {
             (this.state.sub.instructions !== "")) {
             const editEnc = { ...this.state.editEncounter }
             editEnc.sub_locations.push(this.state.sub)
+            alert(`Added ${this.state.sub.title} to sub locations.`)
             event.target.reset()
             this.setState({ editEncounter: editEnc })
         } else {
