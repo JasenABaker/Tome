@@ -5,7 +5,7 @@ import Skylight from 'react-skylight'
 import { Collapse } from 'react-collapse'
 import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, HeadingContainer, ToolBar } from './styled components/Containers'
 import {MonsterContainer} from './styled components/Forms'
-import Draggable from 'react-draggable'
+import Dialog from 'react-dialog'
 import AdventureTab from './AdventureTab'
 import ChaptersTab from './ChaptersTab'
 import EncountersTab from './EncountersTab'
@@ -54,7 +54,9 @@ class Adventure extends Component {
         isOpenedChap: true,
         isEncSet: false,
         isEncOpen: false,
-        creature: {}
+        creature: {},
+        isDialogOpen2: false,
+        isMonsterSearchOpen: false
 
     }
     async componentWillMount() {
@@ -87,7 +89,7 @@ class Adventure extends Component {
     }
 
     handleMonsterOpen = (creature) => {
-        this.simpleDialog.show()
+        // this.simpleDialog.show()
         this.setState({ isDialogOpen: true, creature: creature })
     }
     handleMonsterClose = () => {
@@ -134,14 +136,23 @@ class Adventure extends Component {
         this.setState({ creature: creature })
     }
     openDialog = () => {
-        this.refs.simpleDialog.show()
+        // this.refs.simpleDialog.show()
         this.setState({isDialogOpen: true})
     }
-    searchMonster = () => {
-        this.refs.monsterSearch.show()
+    searchMonsterOpen = () => {
+        this.setState({isMonsterSearchOpen: true})
+        
+    }
+    searchMonsterClose = () => {
+        this.setState({isMonsterSearchOpen: false})
+        
     }
     tracker = () => {
-        this.refs.turnTracker.show()
+        this.setState({isDialogOpen2: true})
+        // this.refs.turnTracker.show()
+    }
+    handleTrackerClose = () => {
+        this.setState({isDialogOpen2: false})
     }
 
     render() {
@@ -152,6 +163,7 @@ class Adventure extends Component {
         return (
             this.state.stateNotLoaded ? <div></div> :
                 <AdvPageContainerTwo>
+                    <div className="container">
                     <AdvHeader>
                         <h1>{this.state.adventure.title}</h1>
                         <NavBar>
@@ -163,7 +175,7 @@ class Adventure extends Component {
                                 <Spells />
                                 <p>spells</p>
                             </NavSpell>
-                            <NavMon onClick={this.searchMonster}>
+                            <NavMon onClick={this.searchMonsterOpen}>
                                 <Monster />
                                 <p>monsters</p>
                             </NavMon>
@@ -246,30 +258,36 @@ class Adventure extends Component {
 
 
                     </AdvPageContainer>
-                    <Skylight
-                        dialogStyles={tracker}
-                        showOverlay={false}
-                        ref="turnTracker">
-                        <TurnTracker/>
-                    </Skylight>
-
-                    <Skylight
-                        dialogStyles={cardStyle}
-                        showOverlay={false}
-                        ref="monsterSearch">
-                        <SearchInput />
-                    </Skylight>
-
-                        <Skylight
-                            dialogStyles={cardStyle}
-                            showOverlay={false}
-                            ref="simpleDialog">
-                        {this.state.isDialogOpen ? 
-                        <CreatureList creature={this.state.creature}/> 
+                    {this.state.isDialogOpen2 &&
+                    <Dialog
+                        title="Turn Tacker"
+                        height="400"
+                        width="600"
+                        isDraggable="true"
+                        onClose={this.handleTrackerClose}
+                        allowMinimize="true">
                         
-                        : null}
-                        </Skylight> 
-        
+                        <TurnTracker/>
+                    </Dialog>}
+                    {this.state.isMonsterSearchOpen &&
+                    <Dialog
+                        title="Search Monsters"
+                        height="300"
+                        width="200"
+                        isDraggable="true"
+                        onClose={this.searchMonsterClose}>
+                        <SearchInput />
+                    </Dialog>}
+                        {this.state.isDialogOpen &&
+                        <Dialog
+                            title={this.state.creature.name}
+                            height="100"
+                            width="50"
+                            isDraggable="true"
+                            onClose={this.handleMonsterClose}>
+                        <CreatureList creature={this.state.creature}/> 
+                        </Dialog> }
+                        </div>
                 </AdvPageContainerTwo>
         )
     }

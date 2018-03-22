@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const StatBlock = styled.div`
-    min-height: 50vh;
+    height: 40vh;
     text-align: left;
     margin: 100px 20px 20px 20px;
     display: inline-block;
@@ -11,6 +11,7 @@ export const StatBlock = styled.div`
     background: #FDF1DC;
     padding: 5px 10px 20px;
     box-shadow: 0 0 1.5em #867453;
+    overflow: scroll;
 `
 export const OrangeBorder = styled.div`
     display: block;

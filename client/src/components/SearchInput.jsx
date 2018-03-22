@@ -1,7 +1,25 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import CreatureList from './CreatureList'
+import styled from 'styled-components'
 
+
+const Search = styled.div`
+    height: 100%;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+`
+const Container = styled.div`
+    height: 40vh;
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+`
 
 
 class SearchInput extends Component {
@@ -36,16 +54,16 @@ class SearchInput extends Component {
     }
     render() {
         return (
-            <div>
+            <Search>
             <form onSubmit={this.handleSearchSubmit}>
                 <input type="text" placeholder="search"  onChange={this.handleSearchInput}/>
                 <button type="submit">Find</button>
             </form>
-            <div>
+            <Container>
             {this.state.isCreatureFound ? 
             <CreatureList creature={this.state.creature}/> : <p>{this.state.falseMessage}</p> }
-            </div>
-            </div>
+            </Container>
+            </Search>
 
         )
     }
