@@ -25,7 +25,7 @@ class ChaptersTab extends Component {
         const chapter = this.props.chapter
         let inst = null
         let desc = null
-        if (chapter.instructions) {
+        if (chapter.instructions.length > 0) {
             inst = <ContentDiv>
                 <MainTab onClick={this.handleInstOpen}>
                 Instructions

@@ -74,14 +74,13 @@ class EncountersTab extends Component {
         }
 
         if (this.props.encounter.developments) {
-
             developments = <ContentDiv>
                 <MainTab onClick={this.handleDevOpen}>
                     Developments
             </MainTab>
                 <Collapse isOpened={this.state.isOpenedDev}>
                     <Content>
-                        <p>{this.props.encounter.developements}</p>
+                        <p>{this.props.encounter.developments}</p>
                     </Content>
                 </Collapse>
             </ContentDiv>

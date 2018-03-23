@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { FormContainerTwo, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, ImgPreview, DeleteButton, SubmitForm } from './styled components/Forms'
+import { FormContainerTwo, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, ImgPreview, DeleteButton, SubmitForm , FinishButton} from './styled components/Forms'
 import { HeaderTab } from './styled components/Tabs'
 import { HeadingContainer } from './styled components/Containers'
+import NewChapter from './NewChapter'
 
 class EditChapter extends Component {
     state = {
@@ -13,6 +14,7 @@ class EditChapter extends Component {
         inp: {},
         imagePreviewUrl: "",
         chapterNotSelected: true,
+        addNewChapter: false
     }
 
 
@@ -51,14 +53,18 @@ class EditChapter extends Component {
     }
 
     handleChapSelect = (chap) => {
-        this.setState({ editChapter: chap, chapterNotSelected: false })
+        this.setState({ editChapter: chap, chapterNotSelected: false, addNewChapter: false})
     }
 
 
     editChapterPatch = async () => {
-        const res = await axios.patch(`/api/adventures/${this.props.match.params.id}/chapters/${this.state.editChapter.id}`, this.state.editChapter)
-
+        try {const res = await axios.patch(`/api/adventures/${this.props.match.params.id}/chapters/${this.state.editChapter.id}`, this.state.editChapter)
         this.props.updateChapter(res.data)
+        alert(`${this.state.editChapter.title} updated!`)
+        } catch (error){
+            console.log(error)
+            alert(error)
+        } 
 
     }
 
@@ -108,6 +114,7 @@ class EditChapter extends Component {
         event.preventDefault()
         this.editChapterPatch()
 
+
     }
     handleInstDelete = (event, inst) => {
         event.preventDefault()
@@ -132,6 +139,16 @@ class EditChapter extends Component {
             this.setState({ editChapter: chap })
         }
     }
+
+    addNewChapter = ()=> {
+        this.setState({addNewChapter: true})
+    }
+    beforeChapterSet = () => {
+        if(window.confirm(`Are You Done Adding Chapters?`)){
+            this.setState({addNewChapter: false})
+        }
+    }
+    
 
 
 
@@ -209,8 +226,14 @@ class EditChapter extends Component {
                             <HeaderTab onClick={() => this.handleChapSelect(chap)}>{chap.title}</HeaderTab>
                         )
                     })}
+                    
                 </HeadingContainer>
-                {this.state.chapterNotSelected ? <div></div> :
+                <HeadingContainer>
+                <FinishButton onClick={this.addNewChapter}>Add New Chapter</FinishButton>
+                </HeadingContainer>
+                {this.state.addNewChapter ?
+                <NewChapter pushChapter={this.props.pushChapter} beforeChapterSet={this.beforeChapterSet} advenId={this.props.match.params.id} /> :
+                    this.state.chapterNotSelected ? <div></div> :
                     <div>
                         <h1>Edit {this.state.editChapter.title}</h1>
                         <FormStyled onSubmit={this.handleChapSubmit} id={this.state.editChapter}>
@@ -275,9 +298,11 @@ class EditChapter extends Component {
                         </FormStyled>
                         <ButtonDiv>
                             <SubmitForm type="submit" form={this.state.editChapter}>Edit Chapter</SubmitForm>
+                            
                         </ButtonDiv>
                     </div>
                 }
+            
             </FormContainerTwo>
         )
 

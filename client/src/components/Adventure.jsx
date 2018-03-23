@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import Skylight from 'react-skylight'
 import { Collapse } from 'react-collapse'
+import Dialog from 'react-dialog'
 import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, HeadingContainer, ToolBar } from './styled components/Containers'
 import {MonsterContainer} from './styled components/Forms'
-import Dialog from 'react-dialog'
 import AdventureTab from './AdventureTab'
 import ChaptersTab from './ChaptersTab'
 import EncountersTab from './EncountersTab'
@@ -251,8 +250,10 @@ class Adventure extends Component {
 
                         </AdvView>
                         <MapView>
-                    
+                
                             <img src={this.state.map} alt={this.state.adventure.title}/>
+                            
+    
                         </MapView>
                         
 

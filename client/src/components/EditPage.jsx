@@ -56,7 +56,10 @@ class EditPage extends Component {
         this.setState({encounters})
 
     }
-
+    pushChapter = (chapter)=>{
+        this.state.chapters.push(chapter)
+        this.componentWillMount()
+    }
     
     render(){
         return(
@@ -66,7 +69,7 @@ class EditPage extends Component {
                 <SubmitButton onClick={this.handleSubmitAll}>Submit</SubmitButton>
                 <NewContainer>
                     <EditAdventure adventure={this.state.adventure} {...this.props} upadateAdventure={this.upadateAdventure}/>
-                    <EditChapter chapters={this.state.chapters}  {...this.props}  updateChapter={this.updateChapter}/>
+                    <EditChapter chapters={this.state.chapters}  {...this.props}  updateChapter={this.updateChapter} pushChapter={this.pushChapter}/>
                     <EditEncounter chapters={this.state.chapters} encounters={this.state.encounters} updateEncounter={this.updateEncounter} />
                                     
                 </NewContainer>

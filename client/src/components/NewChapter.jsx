@@ -81,19 +81,24 @@ class NewChapter extends Component {
         }
     }
     newChapterPost = async () =>{
-        const resChap = await axios.post(`api/adventures/${this.props.advenId}/chapters`, this.state.newChapter)
+    try { const resChap = await axios.post(`/api/adventures/${this.props.advenId}/chapters`, this.state.newChapter)
         const updateChapter = {...this.state.newChapter}
         updateChapter.id = resChap.data.id
         this.props.pushChapter(updateChapter)
+        alert(`Added New Chapter: ${this.state.newChapter.title}!`)
+    } catch (error) {
+        console.log(error)
+        alert(`chapter was not added for some dumb reason.`)
+    }
 
     }
     handleChapSubmit = async (event) => {
         event.preventDefault()
         this.newChapterPost()
-        alert(`Added New Chapter: ${this.state.newChapter.title}!`)
         event.target.reset()
 
     }
+
 
     render() {
         let {imagePreviewUrl} = {
@@ -111,7 +116,7 @@ class NewChapter extends Component {
         
             <FormContainer>
                 <h1>New Chapter</h1>
-                <FormStyled onSubmit={this.handleChapSubmit} id="FormAd">
+                <FormStyled onSubmit={this.handleChapSubmit} id="FormChap">
                     <FormDiv>
                         <TitleDiv>
                             <LabelStyle htmlFor="title">Title:</LabelStyle>
@@ -169,7 +174,7 @@ class NewChapter extends Component {
                     </FormDiv>
                 </FormStyled>
                         <ButtonDiv>
-                            <SubmitForm type="submit" form="FormAd">Add Chapter</SubmitForm>
+                            <SubmitForm type="submit" form="FormChap">Add Chapter</SubmitForm>
                             <FinishButton onClick={()=>this.props.beforeChapterSet()}>Finished Adding Chapters</FinishButton>
                         </ButtonDiv>
             </FormContainer>
