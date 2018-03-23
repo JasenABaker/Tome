@@ -48,6 +48,15 @@ class EditPage extends Component {
         this.setState({chapters})
         
     }
+
+    removeChapter = (chap) => {
+        const upchap = this.state.chapters.indexOf(chap)
+        const chapters = [...this.state.chapters]
+        chapters.splice(upchap, 1)
+        this.componentWillMount()
+        this.setState({chapters})
+    }
+
     updateEncounter = (enc) => {
         const upEnc = this.state.encounters.indexOf(enc)
         const encounters = [...this.state.encounters]
@@ -69,7 +78,11 @@ class EditPage extends Component {
                 <SubmitButton onClick={this.handleSubmitAll}>Submit</SubmitButton>
                 <NewContainer>
                     <EditAdventure adventure={this.state.adventure} {...this.props} upadateAdventure={this.upadateAdventure}/>
-                    <EditChapter chapters={this.state.chapters}  {...this.props}  updateChapter={this.updateChapter} pushChapter={this.pushChapter}/>
+                    <EditChapter chapters={this.state.chapters}  
+                    {...this.props}  
+                    updateChapter={this.updateChapter} 
+                    pushChapter={this.pushChapter}
+                    removeChapter={this.removeChapter}/>
                     <EditEncounter chapters={this.state.chapters} encounters={this.state.encounters} updateEncounter={this.updateEncounter} />
                                     
                 </NewContainer>
