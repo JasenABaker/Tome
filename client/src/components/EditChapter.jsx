@@ -95,7 +95,7 @@ class EditChapter extends Component {
         }
     }
     handleDescEdit = (event, i) => {
-        const editChap = { ...this.state.chapters }
+        const editChap = { ...this.state.editChapter}
         const editDesc = [...editChap.descriptions]
         editDesc[i] = event.target.value
     }
