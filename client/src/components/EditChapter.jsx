@@ -94,10 +94,11 @@ class EditChapter extends Component {
             return this.state.desc
         }
     }
-    handleDescEdit = (event, i) => {
+    handleDescEdit = (event, desc) => {
         const editChap = { ...this.state.editChapter}
-        const editDesc = [...editChap.descriptions]
-        editDesc[i] = event.target.value
+        const editDesc = editChap.descriptions.indexOf(desc)
+        editChap.descriptions[editDesc] = event.target.value
+        this.setState({editChapter: editChap})
     }
 
     handleInpEdit = (event, i) => {
@@ -197,7 +198,7 @@ class EditChapter extends Component {
                                 <div>
                                     <LabelStyle htmlFor="description">The Description: </LabelStyle>
                                 </div>
-                                <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Infomation" onChange={(event) => this.handleDescEdit(event, index)} value={des}></TextAreaStyle >
+                                <TextAreaStyle name="descriptions" id="" cols="30" rows="10" placeholder="Infomation" onChange={(event) => this.handleDescEdit(event, des)} value={des}></TextAreaStyle >
                             </div>
                             <ButtonDiv>
                                 <DeleteButton onClick={(event) => this.handleDescDelete(event, des)}>Delete Description</DeleteButton>

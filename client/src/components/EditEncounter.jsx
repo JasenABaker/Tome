@@ -40,10 +40,10 @@ class EditEncounter extends Component {
     newCreaturePush = (creature) => {
         this.state.currnetCreatures.push(creature)
     }
-    handleDescEdit = (event, i) => {
+    handleDescEdit = (event, desc) => {
         const editEnc = { ...this.state.editEncounter }
-        const editDesc = [...editEnc.descriptions]
-        editDesc[i] = event.target.value
+        const editDesc = editEnc.descriptions.indexOf(desc)
+        editEnc.descriptions[editDesc] = event.target.value
         this.setState({ editEncounter: editEnc })
 
     }
@@ -296,7 +296,7 @@ class EditEncounter extends Component {
                                 <div>
                                     <LabelStyle htmlFor="description">Description: </LabelStyle>
                                 </div>
-                                <TextAreaStyle name="description" id="" cols="30" rows="10" placeholder="Infomation" onChange={(event) => this.handleDescEdit(event, index)} value={desc}></TextAreaStyle >
+                                <TextAreaStyle name="descriptions" id="" cols="30" rows="10" placeholder="Infomation" onChange={(event) => this.handleDescEdit(event, desc)} value={desc}></TextAreaStyle >
                             </div>
                             <ButtonDiv>
                                 <DeleteButton onClick={(event) => this.handleDescDelete(event, desc)}>Delete Description</DeleteButton>
