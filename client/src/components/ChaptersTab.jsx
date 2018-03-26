@@ -46,7 +46,7 @@ class ChaptersTab extends Component {
         }else {
             inst = null
         }
-        if(chapter.descriptions) {
+        if(chapter.descriptions.length > 0) {
             desc = <ContentDiv>
                     <MainTab onClick={this.handleDescOpen}>
                     Descriptions

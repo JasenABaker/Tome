@@ -139,10 +139,15 @@ class NewEncounter extends Component {
         }
     }
     newEncounterPost = async () => {
-        const resEnc = await axios.post(`api/encounter`, this.state.newEncounter)
+        try{ const resEnc = await axios.post(`/api/encounter`, this.state.newEncounter)
         const updateEnc = { ...this.state.newEncounter }
         updateEnc.id = resEnc.data.id
         this.props.pushEncounter(updateEnc)
+        alert(`${this.state.newEncounter.location} added to ${this.state.chapterTitle}`)
+        } catch(error){
+            alert('Not added')
+            console.log(error)
+        }
     }
     handleEncSubmit = async (event) => {
         event.preventDefault()
@@ -166,7 +171,7 @@ class NewEncounter extends Component {
                     )
                 })}
                 </HeadingContainer>
-                <FormStyled onSubmit={this.handleEncSubmit} id="FormAd">
+                <FormStyled onSubmit={this.handleEncSubmit} id="FormEnc">
                     <FormDiv>
                         <TitleDiv>
                             <LabelStyle htmlFor="location">Location: </LabelStyle>
@@ -281,7 +286,7 @@ class NewEncounter extends Component {
                 </FormStyled>
                 
                 <ButtonDiv>
-                    <SubmitForm type="submit" form="FormAd">Add Encounter</SubmitForm>
+                    <SubmitForm type="submit" form="FormEnc">Add Encounter</SubmitForm>
                 </ButtonDiv>
                 <ButtonDiv>
                     <FinishButton onClick={()=>this.props.beforeEncounterSet()}>Finish</FinishButton>

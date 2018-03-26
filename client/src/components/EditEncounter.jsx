@@ -192,9 +192,9 @@ class EditEncounter extends Component {
 
     handleAdvSubmit = async (event) => {
         event.preventDefault()
-        console.log(`Patching ${this.state.editEncounter.location}`)
         this.editEncounterPatch()
-
+        alert(`${this.state.editEncounter.location} is updated!`)
+        this.setState({encNotSelected: true})
     }
     handleChapSelect = (chap) => {
         this.setState({ chapter: chap, chapNotSelected: false, encNotSelected: true })

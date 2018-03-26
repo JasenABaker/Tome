@@ -228,13 +228,13 @@ class Adventure extends Component {
                                 <HeadingContainer>
                                     {this.state.encounterPass.map((enc) => {
                                         return (
-                                            <HeaderTab onClick={() => this.selectedEnc(enc)}>{enc.location}</HeaderTab>
+                                            <HeaderTab onClick={() => this.selectedEnc(enc)}>{enc.map_location_number}. {enc.location}</HeaderTab>
                                         )
 
                                     })}
                                 </HeadingContainer> : null}
                             {this.state.isEncSet ?
-                                <AdvTab onClick={this.handleEncounterOpen}>{this.state.encounter.map_location_number} {this.state.encounter.location}</AdvTab> :
+                                <AdvTab onClick={this.handleEncounterOpen}>{this.state.encounter.map_location_number}. {this.state.encounter.location}</AdvTab> :
                                 null}
 
                             {this.state.isEncSet ?
