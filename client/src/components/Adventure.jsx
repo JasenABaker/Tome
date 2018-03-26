@@ -56,7 +56,8 @@ class Adventure extends Component {
         isEncOpen: false,
         creature: {},
         isDialogOpen2: false,
-        isMonsterSearchOpen: false
+        isMonsterSearchOpen: false,
+        isRollerOpen: false
 
     }
     async componentWillMount() {
@@ -136,11 +137,10 @@ class Adventure extends Component {
         this.setState({ creature: creature })
     }
     openDialog = () => {
-        // this.refs.simpleDialog.show()
         this.setState({isDialogOpen: true})
     }
     searchMonsterOpen = () => {
-        this.setState({isMonsterSearchOpen: true})
+        this.setState({isMonsterSearchOpen: !this.state.isMonsterSearchOpen})
         
     }
     searchMonsterClose = () => {
@@ -148,11 +148,16 @@ class Adventure extends Component {
         
     }
     tracker = () => {
-        this.setState({isDialogOpen2: true})
-        // this.refs.turnTracker.show()
+        this.setState({isDialogOpen2: !this.state.isDialogOpen2})
     }
     handleTrackerClose = () => {
         this.setState({isDialogOpen2: false})
+    }
+    rollerOpen = () => {
+        this.setState({isRollerOpen: !this.state.isRollerOpen})
+    }
+    rollerClose = () => {
+        this.setState({isRollerOpen: false})
     }
 
     render() {
@@ -195,7 +200,7 @@ class Adventure extends Component {
                             <ToolButton onClick={this.tracker}>
                                 +
                             </ToolButton>
-                            <DiceButton>
+                            <DiceButton onClick={this.rollerOpen}>
                                 <Dice />
                             </DiceButton>
                         </ToolBar>
@@ -263,6 +268,16 @@ class Adventure extends Component {
 
 
                     </AdvPageContainer>
+                    {this.state.isRollerOpen &&
+                    <Dialog
+                        title="Dice Roller"
+                        height="200"
+                        width="400"
+                        isDraggable="true"
+                        onClose={this.rollerClose}
+                        allowMinimize="true">
+                        <h1>Dice Roller!!</h1>
+                    </Dialog>}
                     {this.state.isDialogOpen2 &&
                     <Dialog
                         title="Turn Tacker"
