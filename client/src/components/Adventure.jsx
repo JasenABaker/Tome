@@ -16,6 +16,7 @@ import SearchInput from './SearchInput'
 import {ToolButton, DiceButton} from './styled components/Buttons'
 import TurnTracker from './TurnTracker'
 import {Dice} from './styled components/Svg'
+import DiceRoller from './DiceRoller'
 
 const cardStyle = {
     padding: "20px 0",
@@ -276,7 +277,7 @@ class Adventure extends Component {
                         isDraggable="true"
                         onClose={this.rollerClose}
                         allowMinimize="true">
-                        <h1>Dice Roller!!</h1>
+                        <DiceRoller />
                     </Dialog>}
                     {this.state.isDialogOpen2 &&
                     <Dialog
