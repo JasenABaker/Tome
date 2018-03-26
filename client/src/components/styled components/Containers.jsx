@@ -317,7 +317,6 @@ export const ToolBar = styled.div `
     height: 60px;
     width: 90%;
     display: flex;
-    justify-content: space-between;
 `
 
 

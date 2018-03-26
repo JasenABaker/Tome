@@ -115,6 +115,7 @@ export const ToolButton = styled.button`
     font-weight: 900;
     outline-style:none;
     border: none;
+    margin-right: 5px;
 
     :hover {
         background: linear-gradient(to bottom, rgba(173,219,21,1) 0%,rgba(127,184,0,1) 87%);
@@ -122,6 +123,18 @@ export const ToolButton = styled.button`
     }
     :active {
         background: radial-gradient(ellipse at center, rgba(127,184,0,1) 0%,rgba(173,219,21,1) 100%);
+    }
+
+`
+
+export const DiceButton = ToolButton.extend`
+    background: radial-gradient(ellipse at center, rgba(160,141,186,1) 0%,rgba(106,76,147,1) 100%);
+    :hover {
+        background: linear-gradient(to bottom, rgba(160,141,186,1) 0%,rgba(106,76,147,1) 87%);
+        box-shadow: 0 5px 15px rgba(106,76,147, .4); 
+    }
+    :active {
+        background: radial-gradient(ellipse at center, rgba(160,141,186,1) 0%,rgba(106,76,147,1) 100%);
     }
 
 `

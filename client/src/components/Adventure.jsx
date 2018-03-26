@@ -13,8 +13,9 @@ import { Dragon, Rules, Spells, Monster, Knight, Castle } from './styled compone
 import { NavBar, NavButtons, NavSpell, NavMon, NavAdv, NavEdit } from './styled components/Header'
 import { HeaderTab, AdvTab } from './styled components/Tabs'
 import SearchInput from './SearchInput'
-import {ToolButton} from './styled components/Buttons'
+import {ToolButton, DiceButton} from './styled components/Buttons'
 import TurnTracker from './TurnTracker'
+import {Dice} from './styled components/Svg'
 
 const cardStyle = {
     padding: "20px 0",
@@ -194,6 +195,9 @@ class Adventure extends Component {
                             <ToolButton onClick={this.tracker}>
                                 +
                             </ToolButton>
+                            <DiceButton>
+                                <Dice />
+                            </DiceButton>
                         </ToolBar>
                             <AdvTab onClick={this.handleOpen}>
                                 Adventure
