@@ -153,11 +153,12 @@ export const FinishButton = SubmitForm.extend`
 
 export const MonsterContainer = styled.div`
     margin: 10px 0 5px 11px;
-    height: 80vh;
+    height: 30vh;
     width: 95%;
     background-color: #F9F5D9;
     border: 1px solid black;
     display: flex;
+    color: black;
     justify-content: space-between:
     align-items: center;
     overflow: scroll;

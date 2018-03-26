@@ -3,6 +3,8 @@ import axios from 'axios'
 import { FormContainer, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, MonsterContainer, SubmitForm, FinishButton } from './styled components/Forms'
 import { AdvCard } from './styled components/Containers'
 import CreatureList from './CreatureList'
+import { HeadingContainer } from './styled components/Containers'
+import { HeaderTab } from './styled components/Tabs'
 
 
 
@@ -154,14 +156,16 @@ class NewEncounter extends Component {
         return (
             <FormContainer>
                 <h1>New Encounter</h1>
+                <HeadingContainer>
                 {this.props.chapters.map((chapter) => {
                     
                     return (
                         <div>
-                            <AdvCard onClick={() => this.handleChapterId(chapter.id, chapter.title)}>{chapter.title}</AdvCard>
+                            <HeaderTab onClick={() => this.handleChapterId(chapter.id, chapter.title)}>{chapter.title}</HeaderTab>
                         </div>
                     )
                 })}
+                </HeadingContainer>
                 <FormStyled onSubmit={this.handleEncSubmit} id="FormAd">
                     <FormDiv>
                         <TitleDiv>
@@ -278,6 +282,8 @@ class NewEncounter extends Component {
                 
                 <ButtonDiv>
                     <SubmitForm type="submit" form="FormAd">Add Encounter</SubmitForm>
+                </ButtonDiv>
+                <ButtonDiv>
                     <FinishButton onClick={()=>this.props.beforeEncounterSet()}>Finish</FinishButton>
                 </ButtonDiv>
             </FormContainer>

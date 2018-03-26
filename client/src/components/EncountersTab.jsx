@@ -63,7 +63,7 @@ class EncountersTab extends Component {
         let danger = null
         let add = null
         {
-            this.props.creatures.find((creature) => {
+            this.props.creatures.map((creature) => {
                 if (creature.encounter_id === this.props.encounter.id) {
                     creatureArray.push(creature)
                 } else {
@@ -103,9 +103,7 @@ class EncountersTab extends Component {
             treasures = null
         }
 
-        if (creatureArray.length < 1) {
-            creatures = null
-        } else if (creatureArray.length >= 1) {
+        if (creatureArray.length >= 1) {
             creatures = <ContentDiv>
                 <MainTab onClick={this.handleMonOpen}>Creatures</MainTab>
                 <Collapse isOpened={this.state.isOpenedMon}>

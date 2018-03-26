@@ -213,9 +213,10 @@ export const MapView = styled.div`
 `
 
 export const MonsterCardContainer = styled.div`
+    height: 20vh;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     overflow: scroll;
 
 `

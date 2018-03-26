@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import { FormContainerTwo, FormStyled, FormDiv, TitleDiv, InputStyle, TextAreaStyle, LabelStyle, FileUpload, ButtonDiv, SubmitButton, MonsterContainer } from './styled components/Forms'
-import { AdvCard } from './styled components/Containers'
 import CreatureList from './CreatureList'
 
 
 
-class NewMonsterForm extends Component {
+class EditMonsterForm extends Component {
     state = {
         encounterId: 0,
         enounterLocation: "",
@@ -19,12 +18,10 @@ class NewMonsterForm extends Component {
         isCreatureFound: false,
         falseMessage: ""
     }
-
-    handleEncounterId = (encounId, encounterLocation) => {
-        const encounterCreature = { ...this.state.encounter_creature }
-        encounterCreature.encounter_id = encounId
-        this.setState({ encounter_creature: encounterCreature, encounterLocation: encounterLocation, encounterId: encounId })
+    componentWillMount() {
+        this.setState({encounterId: this.props.encounter.id, encounterLocation: this.props.encounter.location})
     }
+
     handleCountChange = (event) => {
         let count = this.state.count
         count = event.target.value
@@ -58,6 +55,7 @@ class NewMonsterForm extends Component {
             const encounterCreature = { ...this.state.encounter_creature }
             encounterCreature.count = this.state.count
             encounterCreature.creatures = this.state.resultCreature
+            this.props.newCreaturePush(encounterCreature)
             this.setState({ encounter_creature: encounterCreature })
         } else {
             return null
@@ -85,13 +83,6 @@ class NewMonsterForm extends Component {
         return (
             <FormContainerTwo>
                 <h2>Creatures!</h2>
-                {this.props.encounters.map((encounter) => {
-                    return (
-                        <div>
-                            <AdvCard onClick={() => this.handleEncounterId(encounter.id, encounter.location)}>{encounter.location}</AdvCard>
-                        </div>
-                    )
-                })}
                 <FormStyled onSubmit={this.handleSearchSubmit} id="info">
                     <FormDiv>
                         <TitleDiv>
@@ -126,4 +117,4 @@ class NewMonsterForm extends Component {
     }
 }
 
-export default NewMonsterForm
+export default EditMonsterForm

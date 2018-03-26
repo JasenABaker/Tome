@@ -38,6 +38,7 @@ class EditPage extends Component {
     }
 
     handleSubmitAll = async () =>{
+        this.componentWillMount()
         this.setState({redirect: true})
     }
     updateChapter = (chap) =>{
@@ -69,6 +70,11 @@ class EditPage extends Component {
         this.state.chapters.push(chapter)
         this.componentWillMount()
     }
+    pushEncounter = (encounter) => {
+        this.state.encounters.push(encounter)
+        this.componentWillMount()
+    }
+    
     
     render(){
         return(
@@ -83,7 +89,8 @@ class EditPage extends Component {
                     updateChapter={this.updateChapter} 
                     pushChapter={this.pushChapter}
                     removeChapter={this.removeChapter}/>
-                    <EditEncounter chapters={this.state.chapters} encounters={this.state.encounters} updateEncounter={this.updateEncounter} />
+                    <EditEncounter chapters={this.state.chapters} encounters={this.state.encounters} updateEncounter={this.updateEncounter}
+                    pushEncounter={this.pushEncounter}  creatures={this.state.creatures}/>
                                     
                 </NewContainer>
             </NewPageContainer>
