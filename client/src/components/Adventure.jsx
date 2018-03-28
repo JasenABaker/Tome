@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Collapse } from 'react-collapse'
 import Dialog from 'react-dialog'
+import { MapInteractionCSS } from 'react-map-interaction'
 import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, HeadingContainer, ToolBar } from './styled components/Containers'
 import {MonsterContainer} from './styled components/Forms'
 import AdventureTab from './AdventureTab'
@@ -260,9 +261,9 @@ class Adventure extends Component {
 
                         </AdvView>
                         <MapView>
-                
+                            <MapInteractionCSS>
                             <img src={this.state.map} alt={this.state.adventure.title}/>
-                            
+                            </MapInteractionCSS>
     
                         </MapView>
                         

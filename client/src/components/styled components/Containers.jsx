@@ -202,12 +202,16 @@ export const AdvView = styled.div`
 
 `
 export const MapView = styled.div`
+
     height: 43vh;
     width: 95vw;
+    border: 1px solid black;
+    background-color: black;
     overflow: scroll;
     @media screen and (min-width: 500px){
         height: 87vh;
         width:50vw;
+        margin-right: 10px;
     }
   
 
