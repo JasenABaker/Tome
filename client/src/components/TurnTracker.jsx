@@ -14,12 +14,18 @@ const TrackContainer = styled.div`
 `
 
 const Player = styled.div`
-    height: 5vh;
-    width: 100%;
+    height: 30px;
+    width: 15vw;
     background-color: white;
     display: flex;
-    justify-content: space-between;
     border-bottom: 1px solid #727D82;
+`
+
+const PlayerName = styled.div`
+    height: 100%;
+    width: 50%;
+    overflow: hidden;
+
 `
 const AddPlayerButton = styled.button`
     height: 30px;
@@ -54,37 +60,36 @@ const IntDiv = styled.div`
     width: 20%;
     border: 1px solid black;
     background-color: #FFBA08;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
 `
 const IntInput = styled.input`
-    height: 100%;
-    width: 20%;
+    height: 70%;
+    width: 15%;
     font-size: 1em;
 `
 const PlayerContainer = styled.div`
-    height: 80%;
-    width: 100%;
+    height: 40vh;
+    width: 15vw;
     display: flex;
     flex-direction: column;
     overflow: scroll;
-
-    :first-child {
-        background-color: #FAFF00;
-    }
 `
 const ButtonContainer = styled.div`
     height: 10%;
-    width: 100%;
+    width: 90%;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
 
 `
 const TrackerBottom = styled.div`
-    height: 20%:
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     border-top: 1px solid grey;
 `
 const SortButton = AddPlayerButton.extend`
@@ -96,8 +101,8 @@ const NexTurnButton = AddPlayerButton.extend`
 
 `
 const RemovePlayer = AddPlayerButton.extend`
-    height: 20px;
-    width: 25px;
+    height: 80%;
+    width: 15%;
     font-weight: 900;
     background-color:#D00000;
     display: flex;
@@ -176,7 +181,7 @@ class TurnTracker extends Component {
                 {this.state.players.map((player, index) => {
                     return (
 
-                        <Player><RemovePlayer onClick={()=>this.removeFromOrder(index)}>X</RemovePlayer><div>{player.name}</div> <IntDiv onClick={this.intChange}>{player.int}</IntDiv>{this.state.showIntForm ?
+                        <Player><RemovePlayer onClick={()=>this.removeFromOrder(index)}>X</RemovePlayer><PlayerName>{player.name}</PlayerName> <IntDiv onClick={this.intChange}>{player.int}</IntDiv>{this.state.showIntForm ?
                             <IntInput type="number" name="int" value={player.int} onChange={(event) => this.handleIntInput(event, index)} /> : null}
                         </Player>
                     )
