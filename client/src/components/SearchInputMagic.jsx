@@ -6,15 +6,15 @@ import styled from 'styled-components'
 
 const Search = styled.div`
     height: 100%;
-    width: 85%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 
 `
 const Container = styled.div`
-    height: 40vh;
-    width: 30vw;
+    min-height: 10vh;
+    width: 60vw;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

@@ -282,7 +282,7 @@ class Adventure extends Component {
                     <Dialog
                         title="Spells"
                         height="500"
-                        width="600"
+                        width="300"
                         isDraggable="true"
                         onClose={this.handleMagicSearchClose}>
                         <SearchInputMagic />

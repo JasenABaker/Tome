@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 const Search = styled.div`
     height: 100%;
-    width: 85%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;

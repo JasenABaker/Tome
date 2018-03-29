@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
-    height: 60vh;
-    width: 80vw;
+    min-height: 80vh;
+    width: 60vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,53 +14,73 @@ const Container = styled.div`
     }
 `
 const SpecContainer = styled.div`
-    height: 60%;
-    width: 100%;
+    height: 30vh;
+    width: 90%;
     display: flex;
-    justifiy-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
 `
 const DescContainer = styled.div`
-    height: 40%;
-    width: 80%;
+    height: 40vh;
+    width: 95%;
     display: flex;
     flex-direction: column;
 `
 
 const Spec = styled.div`
-    height: 20vh;
-    width: 20vw;
+    height: 10vh;
+    width: 10vw;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin: 0 10px 10px 10px;
+`
+const Divider = styled.div`
+    height: 5px;
+    width: 100%;
+    background: #00A6ED;
 `
 
 const SpellList = (props) => {
     const spell =  props.spell
+    let mat = null
+    let high = null
+    if(props.spell.material){
+        mat = <div><p><strong>Materials. </strong>{spell.material}</p></div>
+    } else {
+        mat = null
+    }
+    if(props.spell.higher_level){
+        high = <div><p><strong>At Higher Levels. </strong>{spell.higher_level}</p></div>
+    } else {
+        high = null
+    }
     return(
         <Container>
             <h2>{spell.name}</h2>
             <SpecContainer>
-            <Spec><h4>Level</h4><h5>{spell.level}</h5></Spec>
-            <Spec><h4>Casting Time</h4><h5>{spell.casting_time}</h5></Spec>
-            <Spec><h4>Range/Area</h4><h5>{spell.range}</h5></Spec>
-            <Spec><h4>Components</h4><h5>{spell.components.map((comp)=>{
+            <Spec><strong>Level</strong><strong>{spell.level}</strong></Spec>
+            <Spec><strong>Casting Time</strong><strong>{spell.casting_time}</strong></Spec>
+            <Spec><strong>Range/Area</strong><strong>{spell.range}</strong></Spec>
+            <Spec><strong>Components</strong><strong>{spell.components.map((comp)=>{
                 return(
-                    <p>
+                    <span>
                         {comp}
-                    </p>
+                    </span>
                 )
-            })}</h5></Spec>
-            <Spec><h4>Duration</h4><h5>{spell.duration}</h5></Spec>
-            <Spec><h4>School</h4><h5>{spell.school.name}</h5></Spec>
-            <Spec><h4>ritual</h4><h5>{spell.ritual}</h5></Spec>
-            <Spec><h4>concentration</h4><h5>{spell.concentration}</h5></Spec>
+            })}</strong></Spec>
+            <Spec><strong>Duration</strong><strong>{spell.duration}</strong></Spec>
+            <Spec><strong>School</strong><strong>{spell.school.name}</strong></Spec>
+            <Spec><strong>ritual</strong><strong>{spell.ritual}</strong></Spec>
+            <Spec><strong>concentration</strong><strong>{spell.concentration}</strong></Spec>
             </SpecContainer>
+            <Divider />
             <DescContainer>
             <div>
                 <p>{spell.desc}</p>
             </div>
-            <div><span>At Higher Levels</span><p>{spell.higher_level}</p></div>
-            <div><span>Materials</span><p>{spell.material}</p></div>
+            {high}
+            {mat}
             </DescContainer>
         </Container>
     )
