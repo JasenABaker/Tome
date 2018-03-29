@@ -32,5 +32,6 @@ As a Dungeon Master, you are charged with keeping the story going which can be d
 * styled-component
 * axios
 * react-collaspse
-* react-skylight
+* react-dialog
+* react-map-interaction
 * http://www.dnd5eapi.co/ api

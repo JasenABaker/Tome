@@ -18,6 +18,7 @@ import {ToolButton, DiceButton} from './styled components/Buttons'
 import TurnTracker from './TurnTracker'
 import {Dice} from './styled components/Svg'
 import DiceRoller from './DiceRoller'
+import SearchInputMagic from './SearchInputMagic'
 
 const cardStyle = {
     padding: "20px 0",
@@ -59,7 +60,8 @@ class Adventure extends Component {
         creature: {},
         isDialogOpen2: false,
         isMonsterSearchOpen: false,
-        isRollerOpen: false
+        isRollerOpen: false,
+        isMagicSearchOpen: false
 
     }
     async componentWillMount() {
@@ -87,6 +89,12 @@ class Adventure extends Component {
         })
 
     }
+    handleMagicSearchOpen = () => {
+        this.setState({isMagicSearchOpen: !this.state.isMagicSearchOpen})
+    }
+    handleMagicSearchClose = () => {
+        this.setState({isMagicSearchOpen: false})
+    } 
     handleChapterOpen = () => {
         this.setState({ isOpenedChap: !this.state.isOpenedChap })
     }
@@ -178,7 +186,7 @@ class Adventure extends Component {
                                 <Rules />
                                 <p>rules</p>
                             </NavButtons>
-                            <NavSpell>
+                            <NavSpell onClick={this.handleMagicSearchOpen}>
                                 <Spells />
                                 <p>spells</p>
                             </NavSpell>
@@ -270,6 +278,15 @@ class Adventure extends Component {
 
 
                     </AdvPageContainer>
+                    {this.state.isMagicSearchOpen &&
+                    <Dialog
+                        title="Spells"
+                        height="500"
+                        width="600"
+                        isDraggable="true"
+                        onClose={this.handleMagicSearchClose}>
+                        <SearchInputMagic />
+                    </Dialog>}
                     {this.state.isRollerOpen &&
                     <Dialog
                         title="Dice Roller"
