@@ -281,7 +281,7 @@ export const AdvInfoSection = styled.div`
     overflow: scroll;
     @media screen and (min-width: 500px){
         padding: 0 20px;
-        min-height: 45vh;
+        min-height: 5vh;
         width: 46vw;
         justify-content: space-between;
         align-items: flex-start;

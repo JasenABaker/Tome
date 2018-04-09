@@ -21,7 +21,7 @@ export const MainTab = styled.div`
 `
 
 export const ContentDiv = styled.div`
-        max-height: 50vh;
+        min-height: 20vh;
         width: 90vw;
         margin-bottom: 10px;
         display: flex;

@@ -10,7 +10,6 @@ const TrackContainer = styled.div`
     flex-direction: column;
     align-items:center;
     background-color: #FAFAF4;
-    overflow: scroll;
 `
 
 const Player = styled.div`
@@ -75,7 +74,7 @@ const PlayerContainer = styled.div`
     width: 15vw;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflowY: auto;
 `
 const ButtonContainer = styled.div`
     height: 10%;
@@ -108,7 +107,7 @@ const RemovePlayer = AddPlayerButton.extend`
     display: flex;
     justify-content: center;
     align-items: center;
-   
+
 `
 
 

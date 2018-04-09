@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Collapse } from 'react-collapse'
 import Dialog from 'react-dialog'
 import { MapInteractionCSS } from 'react-map-interaction'
+import Dropdown, {MenuItem} from './Dropdown'
 import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, HeadingContainer, ToolBar } from './styled components/Containers'
 import {MonsterContainer} from './styled components/Forms'
 import AdventureTab from './AdventureTab'
@@ -106,14 +107,27 @@ class Adventure extends Component {
     handleMonsterClose = () => {
         this.setState({ isDialogOpen: false })
     }
+    handleEncounter = (chapter) => {
+        let enc = this.state.encounters.filter((enc) => {
+            return enc.chapter_id === chapter.id
+
+        })
+
+        if (enc.length > 0) {
+            this.setState({ encounterPass: enc, hasEncounters: true })
+        } else {
+            this.setState({ hasEncounters: false })
+        }
+
+    }
 
     setChapter = (chapter) => {
         if(chapter.mapUrl){
         this.handleEncounter(chapter)
-        this.setState({ chapter: chapter, isChapterSet: true, map: chapter.mapUrl })
+        this.setState({ chapter: chapter, isChapterSet: true, map: chapter.mapUrl, isEncSet: false})
         } else {
             this.handleEncounter(chapter)
-            this.setState({ chapter: chapter, isChapterSet: true})
+            this.setState({ chapter: chapter, isChapterSet: true, isEncSet: false})
         }
     }
     handleOpen = () => {
@@ -123,19 +137,7 @@ class Adventure extends Component {
         this.setState({ isOpened: !this.state.isOpened })
         }
     }
-    handleEncounter = (chapter) => {
-        let enc = this.state.encounters.filter((enc) => {
-            return enc.chapter_id === chapter.id
-
-        })
-
-        if (enc !== []) {
-            this.setState({ encounterPass: enc, hasEncounters: true })
-        } else {
-            this.setState({ hasEncounters: false })
-        }
-
-    }
+    
     selectedEnc = (enc) => {
         this.setState({ encounter: enc, isEncSet: true })
     }
@@ -220,16 +222,20 @@ class Adventure extends Component {
                             <Collapse isOpened={this.state.isOpened} hasNestedCollapse={true}>
                                 <AdventureTab adventure={this.state.adventure} />
                             </Collapse>
-
-                            <HeadingContainer>
+                                <Dropdown>
+                                    <Dropdown.Toggle title="Select A Chapter" />
+                                        <Dropdown.MenuWrapper>
+                                            <Dropdown.Menu>
                                 {this.state.chapters.map((chapter) => {
                                     return (
 
-                                        <HeaderTab onClick={() => this.setChapter(chapter)}>{chapter.title}</HeaderTab>
+                                        <MenuItem onSelect={() =>this.setChapter(chapter)}>{chapter.title}</MenuItem>
 
                                     )
-                                })}
-                            </HeadingContainer>
+                                })} 
+                                    </Dropdown.Menu>
+                                </Dropdown.MenuWrapper>
+                                </Dropdown>
                             {this.state.isChapterSet ? <AdvTab onClick={this.handleChapterOpen}>{this.state.chapter.title}</AdvTab> :
                                 null}
                             {this.state.isChapterSet ?
@@ -244,14 +250,19 @@ class Adventure extends Component {
 
                                 </Collapse> : null}
                             {this.state.hasEncounters ?
-                                <HeadingContainer>
+                                <Dropdown>
+                                    <Dropdown.Toggle title="Select An Encounter" />
+                                        <Dropdown.MenuWrapper>
+                                            <Dropdown.Menu>
                                     {this.state.encounterPass.map((enc) => {
                                         return (
-                                            <HeaderTab onClick={() => this.selectedEnc(enc)}>{enc.map_location_number}. {enc.location}</HeaderTab>
+                                            <MenuItem onClick={() => this.selectedEnc(enc)}>{enc.map_location_number}. {enc.location}</MenuItem>
                                         )
 
                                     })}
-                                </HeadingContainer> : null}
+                                        </Dropdown.Menu>
+                                    </Dropdown.MenuWrapper>
+                                </Dropdown> : null}
                             {this.state.isEncSet ?
                                 <AdvTab onClick={this.handleEncounterOpen}>{this.state.encounter.map_location_number}. {this.state.encounter.location}</AdvTab> :
                                 null}

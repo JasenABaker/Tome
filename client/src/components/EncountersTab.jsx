@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Collapse from 'react-collapse'
+import Dropdown, {MenuItem} from './Dropdown'
 import { AdvInfoSection, HeadingContainer } from './styled components/Containers'
 import { MainTab, Content, ContentDiv, HeaderTab, AdvTab, SubTab } from './styled components/Tabs'
 import { MonsterCardContainer, SectionSelction } from './styled components/Containers'
@@ -130,17 +131,22 @@ class EncountersTab extends Component {
         }
         if (this.props.encounter.sub_locations.length > 0) {
             sub = <SectionSelction>
-                <HeadingContainer>
+                <Dropdown>
+                    <Dropdown.Toggle title="Select A Sub Location" />
+                        <Dropdown.MenuWrapper>
+                            <Dropdown.Menu>
                     {this.props.encounter.sub_locations.map((sub) => {
                         return (
-                            <HeaderTab onClick={() => this.setSub(sub)}>{sub.title} ({sub.map_location})</HeaderTab>
+                            <MenuItem onClick={() => this.setSub(sub)}>{sub.title} ({sub.map_location})</MenuItem>
                         )
                     })}
-                </HeadingContainer>
+                        </Dropdown.Menu>
+                    </Dropdown.MenuWrapper>
+                </Dropdown>
                 {this.state.isSubSet ?
                     <ContentDiv>
                         <SubTab onClick={this.openSub}>
-                            {this.state.subLocation.title}
+                        ({this.state.subLocation.map_location}) {this.state.subLocation.title}
                         </SubTab>
                         <Collapse isOpened={this.state.isSubOpen}>
                             <Content>
