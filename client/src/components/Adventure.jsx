@@ -180,17 +180,14 @@ class Adventure extends Component {
             this.state.stateNotLoaded ? <div></div> :
                 <AdvPageContainerTwo>
                     <div className="container">
-                    <NaviBar adventure={this.state.adventure}/>
+                    
+                        <NaviBar adventure={this.state.adventure} 
+                                tracker={this.tracker}
+                                rollerOpen={this.rollerOpen}
+                        />
+                
                     <AdvPageContainer>
                         <AdvView>
-                        <ToolBar>
-                            <ToolButton onClick={this.tracker}>
-                                +
-                            </ToolButton>
-                            <DiceButton onClick={this.rollerOpen}>
-                                <Dice />
-                            </DiceButton>
-                        </ToolBar>
                             <AdvTab onClick={this.handleOpen}>
                                 Adventure
                         </AdvTab>
