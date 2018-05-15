@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Dragon, Rules, Spells, Monster, Knight, Castle, New, Dice, Edit } from './styled components/Svg'
+import { Dragon, Rules, Spells, Monster, Knight, Castle, New, Dice, Edit, Turn } from './styled components/Svg'
 import { NavBar} from './styled components/Header'
-import {ToolButton,DiceButton, HomeButton, Overlay, OverlayBlk, NewButton, EditAdvButton, AdvButton, RulesButton, SpellButton} from './styled components/Buttons'
+import {ToolButton,DiceButton, HomeButton, Overlay, NewButton, EditAdvButton, AdvButton, RulesButton, SpellButton, MonstButton} from './styled components/Buttons'
+import TurnTracker from './TurnTracker';
 
 
 class NaviBar extends Component {
@@ -34,6 +35,24 @@ class NaviBar extends Component {
                     </Overlay>
                 </NewButton>
                 {this.state.adventureSet ? <div>
+                    <ToolButton>
+                        <Turn />
+                        <Overlay>
+                            <p>Turn Tracker</p>
+                        </Overlay>
+                    </ToolButton>
+                    <DiceButton>
+                        <Dice />
+                        <Overlay>
+                            <p>Dice Roller</p>
+                        </Overlay>
+                    </DiceButton>
+                    <MonstButton>
+                        <Monster />
+                        <Overlay>
+                            <p>Creatures</p>
+                        </Overlay>
+                    </MonstButton>
                     <SpellButton>
                         <Spells />
                         <Overlay>
@@ -48,9 +67,9 @@ class NaviBar extends Component {
                     </RulesButton>
                     <EditAdvButton>
                 <Edit />
-                <OverlayBlk>
+                <Overlay>
                     <p>Edit</p>
-                </OverlayBlk>
+                </Overlay>
             </EditAdvButton> 
                 <AdvButton>
                 <Knight />

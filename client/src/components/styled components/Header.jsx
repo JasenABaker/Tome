@@ -41,7 +41,7 @@ export const HeaderTwoDiv = HeaderDiv.extend`
 `
 
 export const NavBar = styled.div`
-    height: 8vh;
+    height: 15vh;
     width: 100vw;
     display flex;
     flex-direction: row-reverse;

@@ -105,10 +105,9 @@ export const SubmitButton = EditButtonSquare.extend`
 `
 
 export const ToolButton = styled.button`
-    height: 50px;
-    width: 50px;
-    border-radius: 10px;
-    background: radial-gradient(ellipse at center, rgba(173,219,21,1) 0%,rgba(127,184,0,1) 100%);
+    height: 75px;
+    width: 75px;
+    background: rgba(0,0,0,.5);
     color: white;
     text-align: center;
     font-size: 1.5em;
@@ -116,7 +115,11 @@ export const ToolButton = styled.button`
     outline-style:none;
     border: none;
     margin: 5px 10px 0 10px;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    display: inline-block;
 
     :hover {
         background: linear-gradient(to bottom, rgba(173,219,21,1) 0%,rgba(127,184,0,1) 87%);
@@ -129,14 +132,10 @@ export const ToolButton = styled.button`
 `
 
 export const DiceButton = ToolButton.extend`
-    background: radial-gradient(ellipse at center, rgba(160,141,186,1) 0%,rgba(106,76,147,1) 100%);
     :hover {
         background: linear-gradient(to bottom, rgba(160,141,186,1) 0%,rgba(106,76,147,1) 87%);
         box-shadow: 0 5px 15px rgba(106,76,147, .4); 
 
-        svg {
-            opacity: 0;
-        }
     }
     :active {
         background: radial-gradient(ellipse at center, rgba(160,141,186,1) 0%,rgba(106,76,147,1) 100%);
@@ -145,7 +144,6 @@ export const DiceButton = ToolButton.extend`
 `
 
 export const HomeButton = ToolButton.extend`
-background: radial-gradient(ellipse at center, rgba(169,210,247,1) 0%,rgba(99,173,242,1) 100%);
 :hover {
     background: linear-gradient(to bottom, rgba(169,210,247,1) 0%,rgba(99,173,242,1) 87%);
     box-shadow: 0 5px 15px rgba(99,173,242, .4); 
@@ -156,7 +154,6 @@ background: radial-gradient(ellipse at center, rgba(169,210,247,1) 0%,rgba(99,17
 `
 
 export const NewButton = ToolButton.extend`
-background: radial-gradient(ellipse at center, rgba(244,212,228,1) 0%,rgba(239,188,213,1) 100%);
 :hover {
     background: linear-gradient(to bottom, rgba(244,212,228,1) 0%,rgba(239,188,213,1) 87%);
     box-shadow: 0 5px 15px rgba(239,188,213, .4); 
@@ -167,7 +164,6 @@ background: radial-gradient(ellipse at center, rgba(244,212,228,1) 0%,rgba(239,1
 
 `
 export const EditAdvButton = ToolButton.extend`
-background: radial-gradient(ellipse at center, rgba(252,162,119,1) 0%,rgba(251,86,7,1) 100%);
 :hover {
     background: linear-gradient(to bottom, rgba(252,162,119,1) 0%,rgba(251,86,7,1) 87%);
     box-shadow: 0 5px 15px rgba(251,86,7, .4); 
@@ -177,7 +173,6 @@ background: radial-gradient(ellipse at center, rgba(252,162,119,1) 0%,rgba(251,8
 }
 `
 export const AdvButton = ToolButton.extend`
-background: radial-gradient(ellipse at center, rgba(163,144,167,1) 0%,rgba(88,53,94,1) 100%);
 :hover {
     background: linear-gradient(to bottom, rgba(163,144,167,1) 0%,rgba(88,53,94,1) 87%);
     box-shadow: 0 5px 15px rgba(88,53,94, .4); 
@@ -187,7 +182,6 @@ background: radial-gradient(ellipse at center, rgba(163,144,167,1) 0%,rgba(88,53
 }
 `
 export const RulesButton = ToolButton.extend`
-background: radial-gradient(ellipse at center, rgba(135,163,190,1) 0%,rgba(35,87,137,1) 100%);
 :hover {
     background: linear-gradient(to bottom, rgba(135,163,190,1) 0%,rgba(35,87,137,1) 87%);
     box-shadow: 0 5px 15px rgba(35,87,137,.4); 
@@ -197,7 +191,6 @@ background: radial-gradient(ellipse at center, rgba(135,163,190,1) 0%,rgba(35,87
 }
 `
 export const SpellButton = ToolButton.extend`
-background: radial-gradient(ellipse at center, rgba(173,204,159,1) 0%,rgba(127,176,105,1) 100%);
 :hover {
     background: linear-gradient(to bottom, rgba(173,204,159,1) 0%,rgba(127,176,105,1) 87%);
     box-shadow: 0 5px 15px rgba(127,176,105,.4); 
@@ -206,38 +199,29 @@ background: radial-gradient(ellipse at center, rgba(173,204,159,1) 0%,rgba(127,1
     background: radial-gradient(ellipse at center, rgba(173,204,159,1) 0%,rgba(127,176,105,1) 100%);
 }
 `
+export const MonstButton = ToolButton.extend`
+:hover {
+    background: linear-gradient(to bottom, rgba(245,131,135,1) 0%,rgba(237,28,36,1) 87%);
+    box-shadow: 0 5px 15px rgba(237,28,36,.4); 
+}
+:active {
+    background: radial-gradient(ellipse at center, rgba(245,131,135,1) 0%,rgba(237,28,36,1) 100%);
+}
+`
 
 export const Overlay = styled.a`
-position: absolute;
 display: flex;
 align-items: center;
 justify-content: center;
-top: 0;
-bottom: 0;
-left: 0;
-right: 0;
-height: 100%;
-width: 100%;
-opacity: 0;
 transition: .5s ease;
 text-decoration: none;
     
 p{
-    font-size: .5em;
+    font-size: .4em;
     text-align: center;
     text-transform: uppercase;
-    color: #ED1C24;
-    }
-
-    :hover {
-        opacity: 1;
-    }
-
-`
-
-export const OverlayBlk = Overlay.extend`
-    p{
-        color: black;
+    color: white;
+    margin: 0;
     }
 `
 
