@@ -11,8 +11,6 @@ import AdventureTab from './AdventureTab'
 import ChaptersTab from './ChaptersTab'
 import EncountersTab from './EncountersTab'
 import CreatureList from './CreatureList'
-import { Dragon, Rules, Spells, Monster, Knight, Castle } from './styled components/Svg'
-import { NavBar, NavButtons, NavSpell, NavMon, NavAdv, NavEdit } from './styled components/Header'
 import { HeaderTab, AdvTab } from './styled components/Tabs'
 import SearchInput from './SearchInput'
 import {ToolButton, DiceButton} from './styled components/Buttons'
@@ -20,6 +18,7 @@ import TurnTracker from './TurnTracker'
 import {Dice} from './styled components/Svg'
 import DiceRoller from './DiceRoller'
 import SearchInputMagic from './SearchInputMagic'
+import NaviBar from './NaviBar'
 
 const cardStyle = {
     padding: "20px 0",
@@ -181,31 +180,7 @@ class Adventure extends Component {
             this.state.stateNotLoaded ? <div></div> :
                 <AdvPageContainerTwo>
                     <div className="container">
-                    <AdvHeader>
-                        <h1>{this.state.adventure.title}</h1>
-                        <NavBar>
-                            <NavButtons>
-                                <Rules />
-                                <p>rules</p>
-                            </NavButtons>
-                            <NavSpell onClick={this.handleMagicSearchOpen}>
-                                <Spells />
-                                <p>spells</p>
-                            </NavSpell>
-                            <NavMon onClick={this.searchMonsterOpen}>
-                                <Monster />
-                                <p>monsters</p>
-                            </NavMon>
-                            <Link to={`/adventures`} style={{ textDecoration: 'none', color: 'inherit' }}> <NavAdv>
-                                <Knight />
-                                <p>adventures</p>
-                            </NavAdv></Link>
-                            <Link to={`/adventures/${this.state.adventure.id}/edit`} style={{ textDecoration: 'none', color: 'inherit' }}><NavEdit>
-                                <Castle />
-                                <p>Edit</p>
-                            </NavEdit></Link>
-                        </NavBar>
-                    </AdvHeader>
+                    <NaviBar adventure={this.state.adventure}/>
                     <AdvPageContainer>
                         <AdvView>
                         <ToolBar>

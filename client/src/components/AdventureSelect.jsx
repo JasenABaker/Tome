@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom' 
 import axios from 'axios'
-import {ContainerOne, LeftSide, AdvCard, InsideLeft, CardContainer, ButtonContainer, RightSide} from './styled components/Containers'
+import {ContainerOne, LeftSide, AdvCard, InsideLeft, CardContainer, ButtonContainer, RightSide, PageContainer} from './styled components/Containers'
 import { AddButton, EditButton, DeleteButton, PlayButton} from './styled components/Buttons'
 import AdventureShow from './AdventureShow'
+import NaviBar from './NaviBar'
 
 
 
@@ -36,6 +37,8 @@ class AdventureSelect extends Component {
     
     
         return(
+            <PageContainer>
+                <NaviBar />
             <ContainerOne>
                 <LeftSide>
                 
@@ -73,6 +76,7 @@ class AdventureSelect extends Component {
                 }
             </RightSide>
         </ContainerOne>
+        </PageContainer>
         )
     }
 }

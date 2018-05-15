@@ -9,7 +9,7 @@ export const PageContainer = styled.div`
     min-width: 100vw;
     display: flex;
     flex-direction: column;
-    background-color:#F7F9F9;
+    background-color:#1F262C;
     overflow: auto;
 `
 
@@ -60,7 +60,7 @@ export const HomeCard = styled.div`
 `
 
 export const ContainerOne = styled.div`
-    min-height: 90vh;
+    min-height: 100vh;
     width: 100vw;
     display: flex;
 `
@@ -125,7 +125,7 @@ export const AdvCard = styled.button`
     margin-bottom: 10px;
     height: 50px;
     width: 200px;
-    background: radial-gradient(ellipse at center, rgba(93,145,128,1) 23%,rgba(19,111,99,1) 88%);
+    background: #7FB069;
     color: rgba(255,255,255,0.8);
     display: flex;
     align-items: center;
@@ -150,16 +150,19 @@ export const AdvCard = styled.button`
 `
 
 export const AdvShowPage = styled.div `
+    padding: 10px 0;
     margin: 20px;
-    height: 65vh;
+    height: 70vh;
     width: 40vw;
-    border: 4px solid black;
-    background-color:#F9F5D9;
+    background-color:#C4C4C4;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 
     p{
+        padding: 0 10px;
+        border: 1px solid black;
         margin: 10px 10px;
         overflow: scroll;
     }

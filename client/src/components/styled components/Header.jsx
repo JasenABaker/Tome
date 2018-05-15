@@ -41,12 +41,12 @@ export const HeaderTwoDiv = HeaderDiv.extend`
 `
 
 export const NavBar = styled.div`
-    height: 15vh;
-    width: 50vw;
-    margin-right: 20px;
+    height: 8vh;
+    width: 100vw;
     display flex;
-    justify-content: space-around;
-    align-self: flex-end;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    align-self: center;
     @media screen and (max-width: 500px){
         display: none;
     }
@@ -59,8 +59,9 @@ export const HomeNav = styled.div`
 `
 
 export const NavButtons = styled.div`
-    height: 85px;
-    width: 85px;
+    margin: 0px 5px;
+    height: 55px;
+    width: 55px;
     background-color: rgba(0,0,0,0.6);
     display-flex;
     flex-direction-column;

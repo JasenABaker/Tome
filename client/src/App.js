@@ -76,10 +76,6 @@ class App extends Component {
     return (
   
         <PageContainer>
-          <Header>
-            <HeaderDiv href="/"><Dragon /><h1>Tome</h1></HeaderDiv>
-            <HeaderTwoDiv href="/new"><h2>New Adventure</h2></HeaderTwoDiv>
-          </Header>
           <Router>
             <div>
               <Switch>
