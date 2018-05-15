@@ -180,16 +180,18 @@ class Adventure extends Component {
             this.state.stateNotLoaded ? <div></div> :
                 <AdvPageContainerTwo>
                     <div className="container">
-                    
+            
                         <NaviBar adventure={this.state.adventure} 
                                 tracker={this.tracker}
                                 rollerOpen={this.rollerOpen}
+                                searchMonsterOpen={this.searchMonsterOpen}
+                                handleMagicSearchOpen={this.handleMagicSearchOpen}
                         />
                 
                     <AdvPageContainer>
                         <AdvView>
                             <AdvTab onClick={this.handleOpen}>
-                                Adventure
+                                {this.state.adventure.title}
                         </AdvTab>
                             <Collapse isOpened={this.state.isOpened} hasNestedCollapse={true}>
                                 <AdventureTab adventure={this.state.adventure} />

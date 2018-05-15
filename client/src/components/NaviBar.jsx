@@ -51,13 +51,13 @@ class NaviBar extends Component {
                             <p>Dice Roller</p>
                         </Overlay>
                     </DiceButton>
-                    <MonstButton>
+                    <MonstButton onClick={this.props.searchMonsterOpen}>
                         <Monster />
                         <Overlay>
                             <p>Creatures</p>
                         </Overlay>
                     </MonstButton>
-                    <SpellButton>
+                    <SpellButton onClick={this.props.handleMagicSearchOpen}>
                         <Spells />
                         <Overlay>
                             <p>Spells</p>
