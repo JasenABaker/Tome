@@ -332,6 +332,11 @@ export const ToolBar = styled.div `
     display: flex;
 `
 
+export const DropDownContainer = styled.div`
+    width: 100%;
+    display: flex;
+`
+
 
 
 

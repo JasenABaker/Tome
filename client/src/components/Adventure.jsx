@@ -5,7 +5,7 @@ import { Collapse } from 'react-collapse'
 import Dialog from 'react-dialog'
 import { MapInteractionCSS } from 'react-map-interaction'
 import Dropdown, {MenuItem} from './Dropdown'
-import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, HeadingContainer, ToolBar, AdvViewCon } from './styled components/Containers'
+import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, HeadingContainer, ToolBar, AdvViewCon, DropDownContainer } from './styled components/Containers'
 import {MonsterContainer} from './styled components/Forms'
 import AdventureTab from './AdventureTab'
 import ChaptersTab from './ChaptersTab'
@@ -13,7 +13,7 @@ import EncountersTab from './EncountersTab'
 import CreatureList from './CreatureList'
 import { HeaderTab, AdvTab } from './styled components/Tabs'
 import SearchInput from './SearchInput'
-import {ToolButton, DiceButton} from './styled components/Buttons'
+import {ToolButton, DiceButton, Toggle} from './styled components/Buttons'
 import TurnTracker from './TurnTracker'
 import {Dice} from './styled components/Svg'
 import DiceRoller from './DiceRoller'
@@ -198,7 +198,10 @@ class Adventure extends Component {
                         <AdvView>
                             
                                 <AdventureTab adventure={this.state.adventure} />
-
+                                <DropDownContainer>
+                                    <Toggle onClick={this.handleChapterOpen}>
+                                    {this.state.isOpenedChap ? "-" : "+"}
+                                    </Toggle>
                                 <Dropdown>
                                     <Dropdown.Toggle title={this.state.isChapterSet ? this.state.chapter.title : "Select A Chapter"} />
                                         <Dropdown.MenuWrapper>
@@ -213,8 +216,7 @@ class Adventure extends Component {
                                     </Dropdown.Menu>
                                 </Dropdown.MenuWrapper>
                                 </Dropdown>
-                            {this.state.isChapterSet ? <AdvTab onClick={this.handleChapterOpen}>{this.state.chapter.title}</AdvTab> :
-                                null}
+                                </DropDownContainer>
                             {this.state.isChapterSet ?
 
                                 <Collapse isOpened={this.state.isOpenedChap} hasNestedCollapse={true}>
@@ -233,7 +235,7 @@ class Adventure extends Component {
                                             <Dropdown.Menu>
                                     {this.state.encounterPass.map((enc) => {
                                         return (
-                                            <MenuItem onClick={() => this.selectedEnc(enc)}>{enc.map_location_number}. {enc.location}</MenuItem>
+                                            <MenuItem onClick={() => this.selectedEnc(enc)}>{enc.map_location_number ? enc.map_location_number +".": null} {enc.location}</MenuItem>
                                         )
 
                                     })}
@@ -241,7 +243,7 @@ class Adventure extends Component {
                                     </Dropdown.MenuWrapper>
                                 </Dropdown> : null}
                             {this.state.isEncSet ?
-                                <AdvTab onClick={this.handleEncounterOpen}>{this.state.encounter.map_location_number}. {this.state.encounter.location}</AdvTab> :
+                                <AdvTab onClick={this.handleEncounterOpen}>{this.state.encounter.map_location_number ? this.state.encounter.map_location_number + "." : null} {this.state.encounter.location}</AdvTab> :
                                 null}
 
                             {this.state.isEncSet ?

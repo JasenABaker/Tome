@@ -225,5 +225,18 @@ p{
     }
 `
 
+export const Toggle = styled.button`
+    height: 30px;
+    width: 30px;
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 900;
+    outline-style:none;
+    border: none;
+    background-color: red;
+
+`
+
 
 
