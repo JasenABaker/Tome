@@ -173,10 +173,12 @@ export const AdvPageContainer = styled.div`
     width: 100vw;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
     @media screen and (min-width: 500px) {
-        flex-direction: row;
+        position: relative;
+        justify-content: none;
+        align-items: flex-start;
+        margin: 0 10px;
     }
 
 `
@@ -185,7 +187,6 @@ export const AdvPageContainerTwo = styled.div`
     width:100vw;
     display: flex;
     flex-direction: column;
-
 `
 
 export const AdvView = styled.div`
@@ -196,27 +197,35 @@ export const AdvView = styled.div`
     overflow: scroll;
 
     @media screen and (min-width: 500px) {
-        min-height: 87vh;
-        width: 50vw;
+    
+        height: 80vh;
+        width: 40vw;
         overflow: scroll;
         justify-content: flex-start;
         align-items: center;
+        background-color: white;
     }
 
 `
-export const MapView = styled.div`
+export const AdvViewCon = styled.div`
+    position: absolute;
+    z-index: 1;
 
+`
+export const MapView = styled.div`
+    
     height: 43vh;
     width: 95vw;
     border: 1px solid black;
     background-color: black;
     overflow: scroll;
     @media screen and (min-width: 500px){
-        height: 87vh;
-        width:50vw;
+        position: relative;
+        z-index: 0;
+        height: 80vh;
+        width: 98vw;
         margin-right: 10px;
     }
-  
 
 `
 
@@ -283,14 +292,11 @@ export const AdvInfoSection = styled.div`
     align-items: center;
     overflow: scroll;
     @media screen and (min-width: 500px){
-        padding: 0 20px;
         min-height: 5vh;
-        width: 46vw;
-        justify-content: space-between;
+        width: 100%;
         align-items: flex-start;
-        flex-direction: row;
-        flex-wrap: wrap;
-        overflow: hidden;
+        flex-direction: column;
+
     
     }
 

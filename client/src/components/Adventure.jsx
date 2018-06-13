@@ -5,7 +5,7 @@ import { Collapse } from 'react-collapse'
 import Dialog from 'react-dialog'
 import { MapInteractionCSS } from 'react-map-interaction'
 import Dropdown, {MenuItem} from './Dropdown'
-import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, HeadingContainer, ToolBar } from './styled components/Containers'
+import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, HeadingContainer, ToolBar, AdvViewCon } from './styled components/Containers'
 import {MonsterContainer} from './styled components/Forms'
 import AdventureTab from './AdventureTab'
 import ChaptersTab from './ChaptersTab'
@@ -52,7 +52,7 @@ class Adventure extends Component {
         stateNotLoaded: true,
         isDialogOpen: false,
         isChapterSet: false,
-        isOpened: true,
+        isOpened: false,
         hasEncounters: false,
         isOpenedChap: true,
         isEncSet: false,
@@ -189,15 +189,18 @@ class Adventure extends Component {
                         />
                 
                     <AdvPageContainer>
-                        <AdvView>
-                            <AdvTab onClick={this.handleOpen}>
+                    <AdvTab onClick={this.handleOpen}>
                                 {this.state.adventure.title}
                         </AdvTab>
-                            <Collapse isOpened={this.state.isOpened} hasNestedCollapse={true}>
+                        <MapView>
+                        <AdvViewCon>
+                        <Collapse isOpened={this.state.isOpened} hasNestedCollapse={true}>
+                        <AdvView>
+                            
                                 <AdventureTab adventure={this.state.adventure} />
-                            </Collapse>
+
                                 <Dropdown>
-                                    <Dropdown.Toggle title="Select A Chapter" />
+                                    <Dropdown.Toggle title={this.state.isChapterSet ? this.state.chapter.title : "Select A Chapter"} />
                                         <Dropdown.MenuWrapper>
                                             <Dropdown.Menu>
                                 {this.state.chapters.map((chapter) => {
@@ -253,7 +256,8 @@ class Adventure extends Component {
 
 
                         </AdvView>
-                        <MapView>
+                        </Collapse>
+                        </AdvViewCon>
                             <MapInteractionCSS>
                             <img src={this.state.map} alt={this.state.adventure.title}/>
                             </MapInteractionCSS>

@@ -21,14 +21,10 @@ export const MainTab = styled.div`
 `
 
 export const ContentDiv = styled.div`
-        min-height: 20vh;
         width: 90vw;
         margin-bottom: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         @media screen and (min-width: 500px) {
-            width: 255px;
+            width: 100%;
         }
 
 `
@@ -48,7 +44,7 @@ export const Content = styled.div`
 
         @media screen and (min-width: 500px) {
             height: 20vh;
-            width: 255px;
+            width: 98%;
         }
 
 `
@@ -75,15 +71,14 @@ export const HeaderTab = styled.div`
 
 export const AdvTab = MainTab.extend`
         height: 20px;
-        width: 99vw;
-        margin-bottom: 10px;
+        max-width: 99vw;
         background: radial-gradient(ellipse at center, rgba(51,66,79,1) 28%,rgba(1,22,39,1) 99%);
         border-radius: 0;
         padding-left: 30px;
 
 
         @media screen and (min-width: 500px){
-            width: 45vw;
+            width: 20vw;
         }
 
 `
@@ -91,7 +86,7 @@ export const AdvTab = MainTab.extend`
 export const SubTab = AdvTab.extend`
         border-radius: 10px;
     @media screen and (min-width: 500px){
-        width: 20vw;
+        min-width: 20vw;
     }
 
 `
