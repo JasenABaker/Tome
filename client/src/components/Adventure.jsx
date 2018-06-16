@@ -131,7 +131,7 @@ class Adventure extends Component {
     }
     handleOpen = () => {
         if (!(this.state.isOpened)) {
-            this.setState({ isOpened: !this.state.isOpened, map: this.state.adventure.mapUrl })
+            this.setState({ isOpened: !this.state.isOpened})
         } else {
             this.setState({ isOpened: !this.state.isOpened })
         }
@@ -170,6 +170,9 @@ class Adventure extends Component {
     rollerClose = () => {
         this.setState({ isRollerOpen: false })
     }
+    resetMap = () =>{
+        this.setState({map: this.state.adventure.mapUrl })
+    }
 
     render() {
         const adventure = this.state.adventure
@@ -189,9 +192,14 @@ class Adventure extends Component {
                         />
 
                         <AdvPageContainer>
+                            <DropDownContainer>
                             <AdvTab onClick={this.handleOpen}>
-                                {this.state.adventure.title}
+                                {this.state.isOpened ? `${this.state.adventure.title} -`: `${this.state.adventure.title}     +`}
                             </AdvTab>
+                            <Toggle onClick={this.resetMap}>
+                            map
+                            </Toggle>
+                            </DropDownContainer>
                             <MapView>
                                 <AdvViewCon>
                                     <Collapse isOpened={this.state.isOpened} hasNestedCollapse={true}>

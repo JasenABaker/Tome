@@ -75,7 +75,7 @@ class AdventureTab extends Component {
         } else {
             run = null
         }
-        if (this.props.adventure.additional_info) {
+        if (this.props.adventure.additional_info.length > 1) {
             add = <ContentDiv>
                 <MainTab onClick={this.handleAddOpen}>
                     Additional Information
