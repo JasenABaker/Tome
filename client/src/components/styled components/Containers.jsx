@@ -200,7 +200,6 @@ export const AdvView = styled.div`
     
         height: 80vh;
         width: 40vw;
-        overflow: scroll;
         justify-content: flex-start;
         align-items: center;
         background-color: white;
@@ -285,19 +284,15 @@ export const AdvHeader = styled.div`
 `
 
 export const AdvInfoSection = styled.div`
-    min-height: 50vh;
     width: 95vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: scroll;
     @media screen and (min-width: 500px){
-        min-height: 5vh;
         width: 100%;
         align-items: flex-start;
         flex-direction: column;
-
-    
     }
 
 `
@@ -334,7 +329,12 @@ export const ToolBar = styled.div `
 
 export const DropDownContainer = styled.div`
     width: 100%;
+    height: 5vh;
     display: flex;
+`
+
+export const AdvSecCon = styled.div`
+    max-heght: 110vh;
 `
 
 

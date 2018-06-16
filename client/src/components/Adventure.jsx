@@ -4,18 +4,18 @@ import { Link } from 'react-router-dom'
 import { Collapse } from 'react-collapse'
 import Dialog from 'react-dialog'
 import { MapInteractionCSS } from 'react-map-interaction'
-import Dropdown, {MenuItem} from './Dropdown'
-import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, HeadingContainer, ToolBar, AdvViewCon, DropDownContainer } from './styled components/Containers'
-import {MonsterContainer} from './styled components/Forms'
+import Dropdown, { MenuItem } from './Dropdown'
+import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, HeadingContainer, ToolBar, AdvViewCon, DropDownContainer, AdvSecCon } from './styled components/Containers'
+import { MonsterContainer } from './styled components/Forms'
 import AdventureTab from './AdventureTab'
 import ChaptersTab from './ChaptersTab'
 import EncountersTab from './EncountersTab'
 import CreatureList from './CreatureList'
 import { HeaderTab, AdvTab } from './styled components/Tabs'
 import SearchInput from './SearchInput'
-import {ToolButton, DiceButton, Toggle} from './styled components/Buttons'
+import { ToolButton, DiceButton, Toggle } from './styled components/Buttons'
 import TurnTracker from './TurnTracker'
-import {Dice} from './styled components/Svg'
+import { Dice } from './styled components/Svg'
 import DiceRoller from './DiceRoller'
 import SearchInputMagic from './SearchInputMagic'
 import NaviBar from './NaviBar'
@@ -41,7 +41,7 @@ const tracker = {
 class Adventure extends Component {
 
     state = {
-        map:"",
+        map: "",
         adventure: {},
         chapters: [],
         chapter: {},
@@ -90,11 +90,11 @@ class Adventure extends Component {
 
     }
     handleMagicSearchOpen = () => {
-        this.setState({isMagicSearchOpen: !this.state.isMagicSearchOpen})
+        this.setState({ isMagicSearchOpen: !this.state.isMagicSearchOpen })
     }
     handleMagicSearchClose = () => {
-        this.setState({isMagicSearchOpen: false})
-    } 
+        this.setState({ isMagicSearchOpen: false })
+    }
     handleChapterOpen = () => {
         this.setState({ isOpenedChap: !this.state.isOpenedChap })
     }
@@ -121,22 +121,22 @@ class Adventure extends Component {
     }
 
     setChapter = (chapter) => {
-        if(chapter.mapUrl){
-        this.handleEncounter(chapter)
-        this.setState({ chapter: chapter, isChapterSet: true, map: chapter.mapUrl, isEncSet: false})
+        if (chapter.mapUrl) {
+            this.handleEncounter(chapter)
+            this.setState({ chapter: chapter, isChapterSet: true, map: chapter.mapUrl, isEncSet: false })
         } else {
             this.handleEncounter(chapter)
-            this.setState({ chapter: chapter, isChapterSet: true, isEncSet: false})
+            this.setState({ chapter: chapter, isChapterSet: true, isEncSet: false })
         }
     }
     handleOpen = () => {
-        if(!(this.state.isOpened)){
-            this.setState({isOpened: !this.state.isOpened, map: this.state.adventure.mapUrl})
+        if (!(this.state.isOpened)) {
+            this.setState({ isOpened: !this.state.isOpened, map: this.state.adventure.mapUrl })
         } else {
-        this.setState({ isOpened: !this.state.isOpened })
+            this.setState({ isOpened: !this.state.isOpened })
         }
     }
-    
+
     selectedEnc = (enc) => {
         this.setState({ encounter: enc, isEncSet: true })
     }
@@ -148,27 +148,27 @@ class Adventure extends Component {
         this.setState({ creature: creature })
     }
     openDialog = () => {
-        this.setState({isDialogOpen: true})
+        this.setState({ isDialogOpen: true })
     }
     searchMonsterOpen = () => {
-        this.setState({isMonsterSearchOpen: !this.state.isMonsterSearchOpen})
-        
+        this.setState({ isMonsterSearchOpen: !this.state.isMonsterSearchOpen })
+
     }
     searchMonsterClose = () => {
-        this.setState({isMonsterSearchOpen: false})
-        
+        this.setState({ isMonsterSearchOpen: false })
+
     }
     tracker = () => {
-        this.setState({isDialogOpen2: !this.state.isDialogOpen2})
+        this.setState({ isDialogOpen2: !this.state.isDialogOpen2 })
     }
     handleTrackerClose = () => {
-        this.setState({isDialogOpen2: false})
+        this.setState({ isDialogOpen2: false })
     }
     rollerOpen = () => {
-        this.setState({isRollerOpen: !this.state.isRollerOpen})
+        this.setState({ isRollerOpen: !this.state.isRollerOpen })
     }
     rollerClose = () => {
-        this.setState({isRollerOpen: false})
+        this.setState({ isRollerOpen: false })
     }
 
     render() {
@@ -180,144 +180,153 @@ class Adventure extends Component {
             this.state.stateNotLoaded ? <div></div> :
                 <AdvPageContainerTwo>
                     <div className="container">
-            
-                        <NaviBar adventure={this.state.adventure} 
-                                tracker={this.tracker}
-                                rollerOpen={this.rollerOpen}
-                                searchMonsterOpen={this.searchMonsterOpen}
-                                handleMagicSearchOpen={this.handleMagicSearchOpen}
+
+                        <NaviBar adventure={this.state.adventure}
+                            tracker={this.tracker}
+                            rollerOpen={this.rollerOpen}
+                            searchMonsterOpen={this.searchMonsterOpen}
+                            handleMagicSearchOpen={this.handleMagicSearchOpen}
                         />
-                
-                    <AdvPageContainer>
-                    <AdvTab onClick={this.handleOpen}>
+
+                        <AdvPageContainer>
+                            <AdvTab onClick={this.handleOpen}>
                                 {this.state.adventure.title}
-                        </AdvTab>
-                        <MapView>
-                        <AdvViewCon>
-                        <Collapse isOpened={this.state.isOpened} hasNestedCollapse={true}>
-                        <AdvView>
+                            </AdvTab>
+                            <MapView>
+                                <AdvViewCon>
+                                    <Collapse isOpened={this.state.isOpened} hasNestedCollapse={true}>
+                                        <AdvView>
+                                            <AdvSecCon>
+                                                <AdventureTab adventure={this.state.adventure} />
+                                            </AdvSecCon>
+                                            <DropDownContainer>
+                                                <Toggle onClick={this.handleChapterOpen}>
+                                                    {this.state.isOpenedChap ? "-" : "+"}
+                                                </Toggle>
+                                                <Dropdown>
+                                                    <Dropdown.Toggle title={this.state.isChapterSet ? this.state.chapter.title : "Select A Chapter"} />
+                                                    <Dropdown.MenuWrapper>
+                                                        <Dropdown.Menu>
+                                                            {this.state.chapters.map((chapter) => {
+                                                                return (
+
+                                                                    <MenuItem onSelect={() => this.setChapter(chapter)}>{chapter.title}</MenuItem>
+
+                                                                )
+                                                            })}
+                                                        </Dropdown.Menu>
+                                                    </Dropdown.MenuWrapper>
+                                                </Dropdown>
+                                            </DropDownContainer>
+                                            <AdvSecCon>
+                                            {this.state.isChapterSet ?
+                
+                                                <Collapse isOpened={this.state.isOpenedChap} hasNestedCollapse={true}>
+                                                        <ChaptersTab chapter={this.state.chapter}
+                                                            encounters={this.state.encounters}
+                                                            creatures={this.state.creatures}
+                                                            handleMonsterOpen={this.handleMonsterOpen}
+                                                            handleMonsterClose={this.handleMonsterClose} />
+                                                </Collapse> : null}
+                                                </AdvSecCon>
+                                            
+                                            {this.state.hasEncounters ?
+                                            <DropDownContainer>
+                                                <Toggle onClick={this.handleEncounterOpen}>
+                                                    {this.state.isEncOpen ? "-" : "+"}
+                                                </Toggle>
+                                                <Dropdown>
+                                                    <Dropdown.Toggle title="Select An Encounter" />
+                                                    <Dropdown.MenuWrapper>
+                                                        <Dropdown.Menu>
+                                                            {this.state.encounterPass.map((enc) => {
+                                                                return (
+                                                                    <MenuItem onClick={() => this.selectedEnc(enc)}>{enc.map_location_number ? enc.map_location_number + "." : null} {enc.location}</MenuItem>
+                                                                )
+
+                                                            })}
+                                                        </Dropdown.Menu>
+                                                    </Dropdown.MenuWrapper>
+                                                </Dropdown> 
+                                                </DropDownContainer>
+                                                : null}
                             
-                                <AdventureTab adventure={this.state.adventure} />
-                                <DropDownContainer>
-                                    <Toggle onClick={this.handleChapterOpen}>
-                                    {this.state.isOpenedChap ? "-" : "+"}
-                                    </Toggle>
-                                <Dropdown>
-                                    <Dropdown.Toggle title={this.state.isChapterSet ? this.state.chapter.title : "Select A Chapter"} />
-                                        <Dropdown.MenuWrapper>
-                                            <Dropdown.Menu>
-                                {this.state.chapters.map((chapter) => {
-                                    return (
+                                                <AdvSecCon>
 
-                                        <MenuItem onSelect={() =>this.setChapter(chapter)}>{chapter.title}</MenuItem>
+                                            {this.state.isEncSet ?
+                                                <Collapse isOpened={this.state.isEncOpen} hasNestedCollapse={true}>
+                    
+                                                        <EncountersTab encounter={this.state.encounter}
+                                                            creatures={this.state.creatures}
+                                                            findCreature={this.findCreature} />
+                                                    
+                                                </Collapse>
 
-                                    )
-                                })} 
-                                    </Dropdown.Menu>
-                                </Dropdown.MenuWrapper>
-                                </Dropdown>
-                                </DropDownContainer>
-                            {this.state.isChapterSet ?
+                                                : null}
+                                                </AdvSecCon>
 
-                                <Collapse isOpened={this.state.isOpenedChap} hasNestedCollapse={true}>
 
-                                    <ChaptersTab chapter={this.state.chapter}
-                                        encounters={this.state.encounters}
-                                        creatures={this.state.creatures}
-                                        handleMonsterOpen={this.handleMonsterOpen}
-                                        handleMonsterClose={this.handleMonsterClose} />
+                                        </AdvView>
+                                    </Collapse>
+                                </AdvViewCon>
+                                <MapInteractionCSS>
+                                    <img src={this.state.map} alt={this.state.adventure.title} />
+                                </MapInteractionCSS>
 
-                                </Collapse> : null}
-                            {this.state.hasEncounters ?
-                                <Dropdown>
-                                    <Dropdown.Toggle title="Select An Encounter" />
-                                        <Dropdown.MenuWrapper>
-                                            <Dropdown.Menu>
-                                    {this.state.encounterPass.map((enc) => {
-                                        return (
-                                            <MenuItem onClick={() => this.selectedEnc(enc)}>{enc.map_location_number ? enc.map_location_number +".": null} {enc.location}</MenuItem>
-                                        )
-
-                                    })}
-                                        </Dropdown.Menu>
-                                    </Dropdown.MenuWrapper>
-                                </Dropdown> : null}
-                            {this.state.isEncSet ?
-                                <AdvTab onClick={this.handleEncounterOpen}>{this.state.encounter.map_location_number ? this.state.encounter.map_location_number + "." : null} {this.state.encounter.location}</AdvTab> :
-                                null}
-
-                            {this.state.isEncSet ?
-                                <Collapse isOpened={this.state.isEncOpen} hasNestedCollapse={true}>
-                                    <EncountersTab encounter={this.state.encounter}
-                                        creatures={this.state.creatures}
-                                        findCreature={this.findCreature} />
-                                </Collapse>
-
-                                : null}
+                            </MapView>
 
 
 
-                        </AdvView>
-                        </Collapse>
-                        </AdvViewCon>
-                            <MapInteractionCSS>
-                            <img src={this.state.map} alt={this.state.adventure.title}/>
-                            </MapInteractionCSS>
-    
-                        </MapView>
-                        
+                        </AdvPageContainer>
+                        {this.state.isMagicSearchOpen &&
+                            <Dialog
+                                title="Spells"
+                                height="500"
+                                width="300"
+                                isDraggable="true"
+                                onClose={this.handleMagicSearchClose}>
+                                <SearchInputMagic />
+                            </Dialog>}
+                        {this.state.isRollerOpen &&
+                            <Dialog
+                                title="Dice Roller"
+                                height="200"
+                                width="400"
+                                isDraggable="true"
+                                onClose={this.rollerClose}
+                                allowMinimize="true">
+                                <DiceRoller />
+                            </Dialog>}
+                        {this.state.isDialogOpen2 &&
+                            <Dialog
+                                title="Turn Tacker"
+                                height="400"
+                                width="600"
+                                isDraggable="true"
+                                onClose={this.handleTrackerClose}
+                                allowMinimize="true">
 
-
-                    </AdvPageContainer>
-                    {this.state.isMagicSearchOpen &&
-                    <Dialog
-                        title="Spells"
-                        height="500"
-                        width="300"
-                        isDraggable="true"
-                        onClose={this.handleMagicSearchClose}>
-                        <SearchInputMagic />
-                    </Dialog>}
-                    {this.state.isRollerOpen &&
-                    <Dialog
-                        title="Dice Roller"
-                        height="200"
-                        width="400"
-                        isDraggable="true"
-                        onClose={this.rollerClose}
-                        allowMinimize="true">
-                        <DiceRoller />
-                    </Dialog>}
-                    {this.state.isDialogOpen2 &&
-                    <Dialog
-                        title="Turn Tacker"
-                        height="400"
-                        width="600"
-                        isDraggable="true"
-                        onClose={this.handleTrackerClose}
-                        allowMinimize="true">
-                        
-                        <TurnTracker/>
-                    </Dialog>}
-                    {this.state.isMonsterSearchOpen &&
-                    <Dialog
-                        title="Search Monsters"
-                        height="300"
-                        width="200"
-                        isDraggable="true"
-                        onClose={this.searchMonsterClose}>
-                        <SearchInput />
-                    </Dialog>}
+                                <TurnTracker />
+                            </Dialog>}
+                        {this.state.isMonsterSearchOpen &&
+                            <Dialog
+                                title="Search Monsters"
+                                height="300"
+                                width="200"
+                                isDraggable="true"
+                                onClose={this.searchMonsterClose}>
+                                <SearchInput />
+                            </Dialog>}
                         {this.state.isDialogOpen &&
-                        <Dialog
-                            title={this.state.creature.name}
-                            height="100"
-                            width="50"
-                            isDraggable="true"
-                            onClose={this.handleMonsterClose}>
-                        <CreatureList creature={this.state.creature}/> 
-                        </Dialog> }
-                        </div>
+                            <Dialog
+                                title={this.state.creature.name}
+                                height="100"
+                                width="50"
+                                isDraggable="true"
+                                onClose={this.handleMonsterClose}>
+                                <CreatureList creature={this.state.creature} />
+                            </Dialog>}
+                    </div>
                 </AdvPageContainerTwo>
         )
     }

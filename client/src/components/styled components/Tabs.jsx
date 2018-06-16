@@ -15,8 +15,9 @@ export const MainTab = styled.div`
         padding-left: 10px;
         cursor: pointer;
         @media screen and (min-width: 500px) {
-            width: 255px;
-            height: 40px;
+            font-size: 10px;
+            width: 155px;
+            height: 25px;
         }
 `
 
@@ -44,7 +45,7 @@ export const Content = styled.div`
 
         @media screen and (min-width: 500px) {
             height: 20vh;
-            width: 98%;
+            width: 90%;
         }
 
 `
@@ -78,6 +79,7 @@ export const AdvTab = MainTab.extend`
 
 
         @media screen and (min-width: 500px){
+            font-size: 1em;
             width: 20vw;
         }
 
