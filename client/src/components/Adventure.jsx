@@ -236,7 +236,7 @@ class Adventure extends Component {
                                                     {this.state.isEncOpen ? "-" : "+"}
                                                 </Toggle>
                                                 <Dropdown>
-                                                    <Dropdown.Toggle title="Select An Encounter" />
+                                                    <Dropdown.Toggle title={this.state.isEncSet ? this.state.encounter.location : "Select An Encounter"} />
                                                     <Dropdown.MenuWrapper>
                                                         <Dropdown.Menu>
                                                             {this.state.encounterPass.map((enc) => {
