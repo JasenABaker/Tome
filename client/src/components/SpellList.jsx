@@ -2,11 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
-    min-height: 80vh;
+    max-height: 60vh;
     width: 60vw;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: scroll;
 
     h2{
         font-size: 1.5em;

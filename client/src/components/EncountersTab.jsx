@@ -3,7 +3,7 @@ import Collapse from 'react-collapse'
 import Dropdown, {MenuItem} from './Dropdown'
 import { AdvInfoSection, HeadingContainer } from './styled components/Containers'
 import { MainTab, Content, ContentDiv, HeaderTab, AdvTab, SubTab } from './styled components/Tabs'
-import { MonsterCardContainer, SectionSelction } from './styled components/Containers'
+import { MonsterCardContainer, SectionSelction, AdvSecCon, DropDownContainer } from './styled components/Containers'
 
 
 
@@ -114,7 +114,7 @@ class EncountersTab extends Component {
                             return (
                                 <div>
                                     <h3>{creature.creatures.name}</h3>
-                                    <h4>Number of {creature.creatures.name}: {creature.count}</h4>
+                                    <h4>count: {creature.count}</h4>
                                     <h4><span>HP: </span>{creature.creatures.hit_points}</h4>
                                     <h4><span>AC: </span>{creature.creatures.armor_class}</h4>
                                     <button onClick={() => this.props.findCreature(creature.creatures)}>Monter stats </button>
@@ -130,9 +130,10 @@ class EncountersTab extends Component {
             creatures = null
         }
         if (this.props.encounter.sub_locations.length > 0) {
-            sub = <SectionSelction>
+            sub = <AdvSecCon>
+                <DropDownContainer>
                 <Dropdown>
-                    <Dropdown.Toggle title="Select A Sub Location" />
+                    <Dropdown.Toggle title={this.state.isSubSet ? `${this.state.subLocation.title} (${this.state.subLocation.map_location})`: "Select A Sub Location"} />
                         <Dropdown.MenuWrapper>
                             <Dropdown.Menu>
                     {this.props.encounter.sub_locations.map((sub) => {
@@ -143,18 +144,19 @@ class EncountersTab extends Component {
                         </Dropdown.Menu>
                     </Dropdown.MenuWrapper>
                 </Dropdown>
+                </DropDownContainer>
                 {this.state.isSubSet ?
                     <ContentDiv>
-                        <SubTab onClick={this.openSub}>
+                        <MainTab onClick={this.openSub}>
                         ({this.state.subLocation.map_location}) {this.state.subLocation.title}
-                        </SubTab>
+                        </MainTab>
                         <Collapse isOpened={this.state.isSubOpen}>
                             <Content>
                                 <p>{this.state.subLocation.instructions}</p>
                             </Content>
                         </Collapse>
                     </ContentDiv> : <div></div>}
-            </SectionSelction>
+            </AdvSecCon>
         } else {
             sub = null
         }

@@ -228,11 +228,15 @@ export const MapView = styled.div`
 `
 
 export const MonsterCardContainer = styled.div`
-    height: 20vh;
+    height: 30vh;
     width: 100%;
     display: flex;
-    flex-direction: column;
+    justify-content: space-evenly;
     overflow: scroll;
+    border-right: 1px solid grey;
+    border-left: 1px solid grey;
+    background-color: lightgray;
+    padding: 0px 5px 5px 5px;
 
 `
 
@@ -311,11 +315,8 @@ export const HeadingContainer = styled.div`
 `
 export const SectionSelction = HeadingContainer.extend`
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
     @media screen and (min-width: 500px) {
-        width: 45vw;
-
+        
     }
 
 `
@@ -333,7 +334,16 @@ export const DropDownContainer = styled.div`
 `
 
 export const AdvSecCon = styled.div`
+    min-height: 15vh
     max-heght: 110vh;
+`
+
+export const Container = styled.div`
+width: 25vw;
+display: flex;
+flex-direction: column;
+align-items: center;
+overflow: scroll;
 `
 
 

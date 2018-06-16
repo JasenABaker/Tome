@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import CreatureList from './CreatureList'
 import styled from 'styled-components'
+import {Container} from './styled components/Containers'
 
 
 const Search = styled.div`
@@ -12,29 +13,21 @@ const Search = styled.div`
     align-items: center;
 
 `
-const Container = styled.div`
-    height: 40vh;
-    width: 30vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-`
 
 
 class SearchInput extends Component {
-        state = {
-            search: "",
-            creature: {},
-            isCreatureFound: false,
-            falseMessage: ""
-        }
-        handleSearchInput = (event) => {
+    state = {
+        search: "",
+        creature: {},
+        isCreatureFound: false,
+        falseMessage: ""
+    }
+    handleSearchInput = (event) => {
         let search = this.state.search
         search = event.target.value
         this.setState({ search })
-        }
-        handleSearchSubmit = async (event) => {
+    }
+    handleSearchSubmit = async (event) => {
         event.preventDefault()
         const search = this.state.search
         const newSearc = search.replace(/\b[a-z]/g, (f) => { return f.toUpperCase(); })
@@ -54,17 +47,18 @@ class SearchInput extends Component {
     }
     render() {
         return (
+            <div>
             <Search>
-            <form onSubmit={this.handleSearchSubmit}>
-                <input type="text" placeholder="search"  onChange={this.handleSearchInput}/>
-                <button type="submit">Find</button>
-            </form>
-            <Container>
-            {this.state.isCreatureFound ? 
-            <CreatureList creature={this.state.creature}/> : <p>{this.state.falseMessage}</p> }
-            </Container>
+                <form onSubmit={this.handleSearchSubmit}>
+                    <input type="text" placeholder="search" onChange={this.handleSearchInput} />
+                    <button type="submit">Find</button>
+                </form>
             </Search>
-
+            <Container>
+                {this.state.isCreatureFound ?
+                    <CreatureList creature={this.state.creature} /> : <p>{this.state.falseMessage}</p>}
+            </Container>
+            </div>
         )
     }
 }

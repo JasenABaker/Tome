@@ -238,5 +238,11 @@ export const Toggle = styled.button`
 
 `
 
+export const MapToggle = Toggle.extend`
+    height: 25px;
+    width: 100px;
+    background-color: yellow;
+`
+
 
 

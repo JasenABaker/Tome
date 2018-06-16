@@ -5,7 +5,16 @@ import { Collapse } from 'react-collapse'
 import Dialog from 'react-dialog'
 import { MapInteractionCSS } from 'react-map-interaction'
 import Dropdown, { MenuItem } from './Dropdown'
-import { AdvPageContainer, AdvView, MapView, AdvHeader, AdvPageContainerTwo, HeadingContainer, ToolBar, AdvViewCon, DropDownContainer, AdvSecCon } from './styled components/Containers'
+import { AdvPageContainer, 
+        AdvView, 
+        MapView, 
+        AdvHeader, 
+        AdvPageContainerTwo, 
+        HeadingContainer, 
+        ToolBar, AdvViewCon, 
+        DropDownContainer, 
+        AdvSecCon,
+        Container } from './styled components/Containers'
 import { MonsterContainer } from './styled components/Forms'
 import AdventureTab from './AdventureTab'
 import ChaptersTab from './ChaptersTab'
@@ -13,7 +22,7 @@ import EncountersTab from './EncountersTab'
 import CreatureList from './CreatureList'
 import { HeaderTab, AdvTab } from './styled components/Tabs'
 import SearchInput from './SearchInput'
-import { ToolButton, DiceButton, Toggle } from './styled components/Buttons'
+import { ToolButton, DiceButton, Toggle, MapToggle } from './styled components/Buttons'
 import TurnTracker from './TurnTracker'
 import { Dice } from './styled components/Svg'
 import DiceRoller from './DiceRoller'
@@ -38,6 +47,8 @@ const tracker = {
 }
 
 
+
+
 class Adventure extends Component {
 
     state = {
@@ -56,7 +67,7 @@ class Adventure extends Component {
         hasEncounters: false,
         isOpenedChap: true,
         isEncSet: false,
-        isEncOpen: false,
+        isEncOpen: true,
         creature: {},
         isDialogOpen2: false,
         isMonsterSearchOpen: false,
@@ -196,9 +207,9 @@ class Adventure extends Component {
                             <AdvTab onClick={this.handleOpen}>
                                 {this.state.isOpened ? `${this.state.adventure.title} -`: `${this.state.adventure.title}     +`}
                             </AdvTab>
-                            <Toggle onClick={this.resetMap}>
+                            <MapToggle onClick={this.resetMap}>
                             map
-                            </Toggle>
+                            </MapToggle>
                             </DropDownContainer>
                             <MapView>
                                 <AdvViewCon>
@@ -332,7 +343,9 @@ class Adventure extends Component {
                                 width="50"
                                 isDraggable="true"
                                 onClose={this.handleMonsterClose}>
+                                <Container>
                                 <CreatureList creature={this.state.creature} />
+                                </Container>
                             </Dialog>}
                     </div>
                 </AdvPageContainerTwo>
