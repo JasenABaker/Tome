@@ -201,7 +201,6 @@ export const AdvView = styled.div`
         height: 80vh;
         width: 40vw;
         justify-content: flex-start;
-        align-items: center;
         background-color: white;
     }
 

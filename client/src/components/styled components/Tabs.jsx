@@ -33,18 +33,17 @@ export const ContentDiv = styled.div`
 
 
 export const Content = styled.div`
-        height: 50vh;
+        max-height: 50vh;
         width: 90vw;
         overflow: scroll;
         border-right: 1px solid grey;
         border-left: 1px solid grey;
-        border-bottom: 1px solid grey;
-        background-color:white;
-        padding: 5px 5px 0 5px;
+        background-color: lightgray;
+        padding: 0px 5px 5px 5px;
 
 
         @media screen and (min-width: 500px) {
-            height: 20vh;
+            max-height: 20vh;
             width: 90%;
         }
 

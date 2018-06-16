@@ -198,72 +198,72 @@ class Adventure extends Component {
                                         <AdvView>
                                             <AdvSecCon>
                                                 <AdventureTab adventure={this.state.adventure} />
+
+                                                <DropDownContainer>
+                                                    <Toggle onClick={this.handleChapterOpen}>
+                                                        {this.state.isOpenedChap ? "-" : "+"}
+                                                    </Toggle>
+                                                    <Dropdown>
+                                                        <Dropdown.Toggle title={this.state.isChapterSet ? this.state.chapter.title : "Select A Chapter"} />
+                                                        <Dropdown.MenuWrapper>
+                                                            <Dropdown.Menu>
+                                                                {this.state.chapters.map((chapter) => {
+                                                                    return (
+
+                                                                        <MenuItem onSelect={() => this.setChapter(chapter)}>{chapter.title}</MenuItem>
+
+                                                                    )
+                                                                })}
+                                                            </Dropdown.Menu>
+                                                        </Dropdown.MenuWrapper>
+                                                    </Dropdown>
+                                                </DropDownContainer>
                                             </AdvSecCon>
-                                            <DropDownContainer>
-                                                <Toggle onClick={this.handleChapterOpen}>
-                                                    {this.state.isOpenedChap ? "-" : "+"}
-                                                </Toggle>
-                                                <Dropdown>
-                                                    <Dropdown.Toggle title={this.state.isChapterSet ? this.state.chapter.title : "Select A Chapter"} />
-                                                    <Dropdown.MenuWrapper>
-                                                        <Dropdown.Menu>
-                                                            {this.state.chapters.map((chapter) => {
-                                                                return (
-
-                                                                    <MenuItem onSelect={() => this.setChapter(chapter)}>{chapter.title}</MenuItem>
-
-                                                                )
-                                                            })}
-                                                        </Dropdown.Menu>
-                                                    </Dropdown.MenuWrapper>
-                                                </Dropdown>
-                                            </DropDownContainer>
                                             <AdvSecCon>
-                                            {this.state.isChapterSet ?
-                
-                                                <Collapse isOpened={this.state.isOpenedChap} hasNestedCollapse={true}>
+                                                {this.state.isChapterSet ?
+
+                                                    <Collapse isOpened={this.state.isOpenedChap} hasNestedCollapse={true}>
                                                         <ChaptersTab chapter={this.state.chapter}
                                                             encounters={this.state.encounters}
                                                             creatures={this.state.creatures}
                                                             handleMonsterOpen={this.handleMonsterOpen}
                                                             handleMonsterClose={this.handleMonsterClose} />
-                                                </Collapse> : null}
-                                                </AdvSecCon>
-                                            
-                                            {this.state.hasEncounters ?
-                                            <DropDownContainer>
-                                                <Toggle onClick={this.handleEncounterOpen}>
-                                                    {this.state.isEncOpen ? "-" : "+"}
-                                                </Toggle>
-                                                <Dropdown>
-                                                    <Dropdown.Toggle title={this.state.isEncSet ? this.state.encounter.location : "Select An Encounter"} />
-                                                    <Dropdown.MenuWrapper>
-                                                        <Dropdown.Menu>
-                                                            {this.state.encounterPass.map((enc) => {
-                                                                return (
-                                                                    <MenuItem onClick={() => this.selectedEnc(enc)}>{enc.map_location_number ? enc.map_location_number + "." : null} {enc.location}</MenuItem>
-                                                                )
+                                                    </Collapse> : null}
 
-                                                            })}
-                                                        </Dropdown.Menu>
-                                                    </Dropdown.MenuWrapper>
-                                                </Dropdown> 
-                                                </DropDownContainer>
-                                                : null}
-                            
-                                                <AdvSecCon>
 
-                                            {this.state.isEncSet ?
-                                                <Collapse isOpened={this.state.isEncOpen} hasNestedCollapse={true}>
-                    
+                                                {this.state.hasEncounters ?
+                                                    <DropDownContainer>
+                                                        <Toggle onClick={this.handleEncounterOpen}>
+                                                            {this.state.isEncOpen ? "-" : "+"}
+                                                        </Toggle>
+                                                        <Dropdown>
+                                                            <Dropdown.Toggle title={this.state.isEncSet ? this.state.encounter.location : "Select An Encounter"} />
+                                                            <Dropdown.MenuWrapper>
+                                                                <Dropdown.Menu>
+                                                                    {this.state.encounterPass.map((enc) => {
+                                                                        return (
+                                                                            <MenuItem onClick={() => this.selectedEnc(enc)}>{enc.map_location_number ? enc.map_location_number + "." : null} {enc.location}</MenuItem>
+                                                                        )
+
+                                                                    })}
+                                                                </Dropdown.Menu>
+                                                            </Dropdown.MenuWrapper>
+                                                        </Dropdown>
+                                                    </DropDownContainer>
+                                                    : null}
+                                            </AdvSecCon>
+                                            <AdvSecCon>
+                                                {this.state.isEncSet ?
+                                                    <Collapse isOpened={this.state.isEncOpen} hasNestedCollapse={true}>
+
                                                         <EncountersTab encounter={this.state.encounter}
                                                             creatures={this.state.creatures}
                                                             findCreature={this.findCreature} />
-                                                    
-                                                </Collapse>
 
-                                                : null}
-                                                </AdvSecCon>
+                                                    </Collapse>
+
+                                                    : null}
+                                            </AdvSecCon>
 
 
                                         </AdvView>

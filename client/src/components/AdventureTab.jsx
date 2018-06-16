@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Collapse } from 'react-collapse'
 import { AdvInfoSection } from './styled components/Containers'
 import { MainTab, ContentDiv, Content } from './styled components/Tabs'
-
+import ChaptersTab from './ChaptersTab'
 
 
 let hooks = null
