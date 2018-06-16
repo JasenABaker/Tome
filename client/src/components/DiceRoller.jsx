@@ -81,7 +81,7 @@ class DiceRoller extends Component {
     }
     rollAndAddDice = (numDie, dieType) => {
         const die = () => {
-            const num = Math.floor(Math.random() * ((dieType + 1) - 1) + 1)
+            const num = Math.floor(Math.random() * dieType + 1)
             return num
         }
         const array = []
@@ -97,7 +97,7 @@ class DiceRoller extends Component {
         this.setState({total: add, rolledDice: array})
     }
     rollDTwenty = ()=> {
-        const num = Math.floor(Math.random() * (21-1) + 1)
+        const num = Math.floor(Math.random() * 20 + 1)
         total = <h1> Rolled: {num} </h1>
         this.setState({total: num, totalShow: true, showDiceRolled: false, howManyForm: false})
     }
