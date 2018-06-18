@@ -314,10 +314,10 @@ export const HeadingContainer = styled.div`
 
 `
 export const SectionSelction = HeadingContainer.extend`
+    min-height: 30vh;
     flex-direction: column;
     justify-content: flex-start;
     margin-top: 0;
-    margin-bottom: 5px;
     @media screen and (min-width: 500px) {
         width: 100%;
     }
