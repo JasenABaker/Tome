@@ -14,7 +14,8 @@ import { AdvPageContainer,
         ToolBar, AdvViewCon, 
         DropDownContainer, 
         AdvSecCon,
-        Container } from './styled components/Containers'
+        Container,
+        TopBarContainer} from './styled components/Containers'
 import { MonsterContainer } from './styled components/Forms'
 import AdventureTab from './AdventureTab'
 import ChaptersTab from './ChaptersTab'
@@ -22,7 +23,7 @@ import EncountersTab from './EncountersTab'
 import CreatureList from './CreatureList'
 import { HeaderTab, AdvTab } from './styled components/Tabs'
 import SearchInput from './SearchInput'
-import { ToolButton, DiceButton, Toggle, MapToggle } from './styled components/Buttons'
+import { ToolButton, DiceButton, Toggle, MapToggle, Overlay } from './styled components/Buttons'
 import TurnTracker from './TurnTracker'
 import { Dice } from './styled components/Svg'
 import DiceRoller from './DiceRoller'
@@ -203,14 +204,16 @@ class Adventure extends Component {
                         />
 
                         <AdvPageContainer>
-                            <DropDownContainer>
+                            <TopBarContainer>
                             <AdvTab onClick={this.handleOpen}>
-                                {this.state.isOpened ? `${this.state.adventure.title} -`: `${this.state.adventure.title}     +`}
+                                {this.state.isOpened ? `${this.state.adventure.title} -- close`: `${this.state.adventure.title} -- open  `}
                             </AdvTab>
                             <MapToggle onClick={this.resetMap}>
-                            map
+                            <Overlay>
+                            <p>map</p>
+                            </Overlay>
                             </MapToggle>
-                            </DropDownContainer>
+                            </TopBarContainer>
                             <MapView>
                                 <AdvViewCon>
                                     <Collapse isOpened={this.state.isOpened} hasNestedCollapse={true}>

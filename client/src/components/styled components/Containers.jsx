@@ -332,6 +332,12 @@ export const DropDownContainer = styled.div`
     height: 5vh;
     display: flex;
 `
+export const TopBarContainer = DropDownContainer.extend`
+    width: 30%;
+    justify-content: space-around;
+    align-items: center;
+
+`
 
 export const AdvSecCon = styled.div`
     min-height: 15vh

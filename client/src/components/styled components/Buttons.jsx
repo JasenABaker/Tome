@@ -238,10 +238,19 @@ export const Toggle = styled.button`
 
 `
 
-export const MapToggle = Toggle.extend`
+export const MapToggle = ToolButton.extend`
     height: 25px;
-    width: 100px;
-    background-color: yellow;
+    width: 25px;
+    margin: 0;
+    justify-content: center;
+
+    :hover {
+        background: linear-gradient(to bottom, rgba(245,131,135,1) 0%,rgba(237,28,36,1) 87%);
+        box-shadow: 0 5px 15px rgba(237,28,36,.4); 
+    }
+    :active {
+        background: radial-gradient(ellipse at center, rgba(245,131,135,1) 0%,rgba(237,28,36,1) 100%);
+    }
 `
 
 
