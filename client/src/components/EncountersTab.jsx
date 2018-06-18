@@ -130,7 +130,7 @@ class EncountersTab extends Component {
             creatures = null
         }
         if (this.props.encounter.sub_locations.length > 0) {
-            sub = <AdvSecCon>
+            sub = <SectionSelction>
                 <DropDownContainer>
                 <Dropdown>
                     <Dropdown.Toggle title={this.state.isSubSet ? `${this.state.subLocation.title} (${this.state.subLocation.map_location})`: "Select A Sub Location"} />
@@ -156,7 +156,7 @@ class EncountersTab extends Component {
                             </Content>
                         </Collapse>
                     </ContentDiv> : <div></div>}
-            </AdvSecCon>
+            </SectionSelction>
         } else {
             sub = null
         }
